@@ -18,54 +18,6 @@
 	<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
 	
 	
-	
-	******DEMO******			
-	 username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.174:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
-	
-	******DEMO_UAT /DEV2 ******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.85:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
-	
-	
-	
-	******UAT******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.170:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
-	
-	
-	******DEV3******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.81:3316/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
-	
-	
-	******DEV2******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.68:3365/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
-	 
-	 ******DEMO_UAT******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.85:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
-	
-	 
-	 ******DEV1******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome"
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.68:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"  
-	
-	******Local******			
-	
-	maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
-	
-	******unsecured******			
-		maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.174:3355/nrsdbdemo?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
-
-	******POST******			
-	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
-	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.200.12.178:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
-	-->
-
 	<!-- /********************************************************************************************************/ 
 												Place desired datasource here 
 		/********************************************************************************************************/ -->
