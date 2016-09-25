@@ -1,0 +1,85 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a="http://richfaces.org/a4j"
+                xmlns:c="http://java.sun.com/jstl/core"
+                template="/admin/template.xhtml">
+
+    <ui:define name="header">
+        <c:set var="modalId" value="employeeRegistration"/>
+        <ui:include src="/admin/header.xhtml"></ui:include>
+        <ui:include src="/Managed/managedModalDlgEmployeeComponent.xhtml" >
+            <ui:param name="modalId" value="${modalId}" />
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="userPicture">
+        
+    </ui:define>
+    <ui:define name="content">
+    <style type="text/css">
+
+        .rich-panel-body{
+             border-width: 1px;
+    padding: 1px;
+    height: 400px;
+    clear: both;
+     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    border-color: #C4C0B9;
+}
+
+    </style>
+        <a:form id="login" ajaxSubmit="true">
+
+            <rich:panel>
+                <f:facet name="header">Login</f:facet>
+                <div style="width: 50%;position: relative;top:35%;left: 35%;color: yellow">
+                <p>Please login here</p>
+
+                <div class="dialog">
+                    <h:panelGrid columns="3" rowClasses="prop" columnClasses="name,value">
+                        <h:outputLabel for="username">Username</h:outputLabel>
+                        <h:inputText id="username"
+                                     value="#{credentials.username}"/>
+                         <h:graphicImage value="images/icons/ip.png" />
+                        <h:outputLabel for="password">Password</h:outputLabel>
+                        <h:inputSecret id="password"
+                                       value="#{credentials.password}"/>
+                         <h:graphicImage value="images/icons/pass.png" />
+                        <h:outputLabel for="rememberMe">Remember me</h:outputLabel>
+                        <h:selectBooleanCheckbox id="rememberMe"
+                                                 value="#{identity.rememberMe}"  />
+                    </h:panelGrid>
+                <br/>
+                <hr/>
+                    <h:commandButton value="Login" action="#{identity.login}" />
+
+                </div>
+</div>
+            </rich:panel>
+
+            
+            <div style="position: absolute;top:100px;left: 450px;color: yellow">
+                <h:outputText value=" Please" /><rich:spacer width="10px" />
+                <a:commandLink action="#{employeeAction.setEmployeeId(0)}" ajaxSingle="true" style="color: yellowgreen;font-weight: bold"
+                               oncomplete="Richfaces.showModalPanel('${modalId}',{});"
+                               value="reagister" reRender="${modalId}" /><rich:spacer width="10px" />
+                
+                <h:outputText value=" to login to the system." />
+            </div>
+        </a:form>
+         
+       
+            
+    </ui:define>
+    <ui:define name="footer">
+        <s:div styleClass= "contentFooter">
+       <h:graphicImage value="images/logoFinal2.png" style="position: relative;left: 80%;top:-10%"/>
+        </s:div>
+    </ui:define>
+</ui:composition>

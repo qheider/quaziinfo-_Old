@@ -1,0 +1,100 @@
+package org.witchcraft.action.test;
+
+import java.util.List;
+import java.util.Random;
+
+import javax.faces.FactoryFinder;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.hibernate.exception.ConstraintViolationException;
+import org.jboss.seam.Seam;
+import org.jboss.seam.contexts.ServletLifecycle;
+import org.jboss.seam.core.Init;
+import org.jboss.seam.init.Initialization;
+import org.jboss.seam.mock.MockApplicationFactory;
+import org.jboss.seam.mock.MockServletContext;
+import org.witchcraft.exceptions.ContractViolationException;
+
+public abstract class AbstractTestDataFactory<T> {
+
+	private static final String NOMBRE_PERSISTENCE_UNIT = "appEntityManager";
+	protected EntityManagerFactory emf;
+	protected EntityManager em;
+
+	public EntityManagerFactory getEntityManagerFactory() {
+		return emf;
+	}
+
+	public void init() {
+		emf = Persistence.createEntityManagerFactory(NOMBRE_PERSISTENCE_UNIT);
+		em = getEntityManagerFactory().createEntityManager();
+
+	}
+
+	void create() {
+		MockServletContext servletContext = new MockServletContext();
+		ServletLifecycle.beginApplication(servletContext);
+		FactoryFinder.setFactory(FactoryFinder.APPLICATION_FACTORY,
+				MockApplicationFactory.class.getName());
+		new Initialization(servletContext).create().init();
+		((Init) servletContext.getAttribute(Seam.getComponentName(Init.class)))
+				.setDebug(false);
+	}
+
+	protected void persist(T t) {
+		try {
+			em.getTransaction().begin();
+			em.persist(t);
+			em.getTransaction().commit();
+		} catch (ConstraintViolationException cve) {
+			System.out.println("Const Violation:" + cve.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (em.getTransaction().isActive())
+				em.getTransaction().rollback();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public T getRandomRecord() {
+		try {
+	
+			if (getListOfRecords().isEmpty()) {
+				persistAll();
+			}
+
+			List<T> records = em.createQuery(getQuery()).getResultList();
+
+			return records.get(new Random().nextInt(records.size()));
+		} catch (Exception e) {
+			throw new ContractViolationException(
+					"error instaniating object of type ", e);
+		}
+	}
+
+	public abstract void persistAll();
+
+	public abstract List<T> getListOfRecords();
+	
+	public abstract String getQuery();
+
+	protected String getClassName(T t) {
+		String name = t.getClass().getSimpleName();
+		if (name.indexOf("$$") > 0)
+			name = name.substring(0, name.indexOf("$$"));
+		return name;
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		em.close();
+		emf.close();
+		super.finalize();
+	}
+
+	
+
+}

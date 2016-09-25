@@ -1,0 +1,96 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/webtemplate/template.xhtml">
+
+	<ui:define name="content">
+		<a:keepAlive beanName="jbpmHelper" />
+		<h:form>
+			<h:outputLabel value="Process Node defintion for #{processName}_#{processVersion} with process definition Id: #{processDefinitionId}" />
+
+			<rich:datascroller for="processNodesTab" maxPages="30" id="ds"/>
+			<rich:spacer height="30" />
+			
+  			<rich:dataTable id="processNodesTab" var="n" rows="20"
+                    onRowMouseOver="this.style.backgroundColor='yellow'"
+                    onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                    cellpadding="0" cellspacing="0" reRender="ds"
+                    value="#{jbpmHelper.nodedm}" 
+				     styleClass="dataTable" >
+
+               <f:facet name="header">
+                  <rich:columnGroup>
+					<rich:column rowspan="2">
+						<h:outputLabel value="Node Id" />
+					</rich:column>
+					<rich:column rowspan="2" >
+						<h:outputLabel value="Name" />
+					</rich:column>
+					<rich:column rowspan="2">
+						<h:outputLabel value="Type" />
+					</rich:column>
+					<rich:column colspan="2">
+						<h:outputLabel value="Arriving Transitions" />
+					</rich:column>
+					<rich:column colspan="2">
+						<h:outputLabel value="Leaving Transitions" />
+					</rich:column>
+					<rich:column breakBefore="true">
+						<h:outputLabel value="TransName" />
+					</rich:column>
+					<rich:column >
+						<h:outputLabel value="FromNode" />
+					</rich:column>
+					<rich:column >
+						<h:outputLabel value="TransName" />
+					</rich:column>
+					<rich:column>
+						<h:outputLabel value="ToNode" />
+					</rich:column>
+				</rich:columnGroup>		
+               </f:facet>
+                        			
+					<rich:column>
+						<h:outputText value="#{n.id}" />
+					</rich:column>
+					<rich:column sortBy="#{n.name}"  filterBy="#{n.name}" filterEvent="onblur" filterValue="#{jbpmNodeFilter.name}">
+						<h:outputText value="#{n.name}" />
+					</rich:column>
+					<rich:column>
+						<h:outputText value="#{n.class.simpleName}"  />
+					</rich:column>
+					<rich:column colspan="2">
+						<rich:dataTable value="#{jbpmHelper.getNodeArrivingTransitions(n)}" var="at" rendered="#{not empty n.arrivingTransitions}" width="100%">
+							<rich:column width="40%">
+								<h:outputText value="#{at.name}" />
+							</rich:column>
+							<rich:column width="60%">
+								<h:outputText value="#{at.from}" />
+							</rich:column>
+						</rich:dataTable>
+					</rich:column>
+					<rich:column colspan="2">
+						<rich:dataTable value="#{n.leavingTransitions}" var="at" rendered="#{not empty n.leavingTransitions}" width="100%">
+							<rich:column width="40%">
+								<h:outputText value="#{at.name}" />
+							</rich:column>
+							<rich:column width="60%">
+								<h:outputText value="#{at.to}" />
+							</rich:column>
+						</rich:dataTable>
+					</rich:column>
+
+			</rich:dataTable>
+
+			<s:button value="Return" view="/jbpm/jbpmProcessVersions.xhtml"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

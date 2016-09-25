@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+
+<ui:composition>
+
+	<h:form>
+		<rich:simpleTogglePanel switchType="client" label="Comments">
+		
+
+			<ui:repeat var="comment" value="#{backingAction.comments}">
+				<ul>
+					<li><b>${comment.createdByUser.displayName} ,
+					${comment.dateCreated} </b> <br />
+					<h:outputText value="#{comment.text}" escape="false" />
+					<hr />
+					</li>
+				</ul>
+			</ui:repeat>
+
+
+                    <rich:editor width="700"
+				id="Comment_text" required="false"
+				value="#{backingAction.currentCommentText}" />
+			<h:commandButton action="#{backingAction.saveComment}"
+				value="Add Comment" partialSubmit="true" />
+
+
+		</rich:simpleTogglePanel>
+	</h:form>
+
+
+</ui:composition>
+
+</html>

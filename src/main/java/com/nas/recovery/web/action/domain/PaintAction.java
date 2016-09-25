@@ -1,0 +1,58 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nas.recovery.web.action.domain;
+
+import com.oreon.kg.domain.Employee;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
+import org.apache.commons.lang.StringUtils;
+
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Scope;
+
+import org.jboss.seam.annotations.Begin;
+import org.jboss.seam.annotations.End;
+import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Logger;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Out;
+import org.jboss.seam.Component;
+import org.jboss.seam.security.Identity;
+
+import org.jboss.seam.annotations.datamodel.DataModel;
+import org.jboss.seam.annotations.datamodel.DataModelSelection;
+import org.jboss.seam.faces.FacesMessages;
+import org.jboss.seam.log.Log;
+import org.jboss.seam.annotations.Observer;
+
+import org.witchcraft.base.entity.FileAttachment;
+
+import org.apache.commons.io.FileUtils;
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
+
+@Scope(ScopeType.CONVERSATION)
+@Name("paintAction")
+public class PaintAction implements java.io.Serializable {
+
+    EmployeeAction employeeAction = (EmployeeAction) Component.getInstance("employeeAction");
+
+    public void paint(OutputStream stream, Object object) throws IOException {
+        
+            stream.write(employeeAction.getCurrentLoggedInEmployee().getEmpPicture().getData());
+        
+    }
+}

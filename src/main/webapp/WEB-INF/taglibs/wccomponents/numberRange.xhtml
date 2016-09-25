@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:acegijsf="http://sourceforge.net/projects/jsf-comp/acegijsf"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<ui:composition>
+
+<!--  
+This code breaks dry principle because of a facelet issue	
+-->
+	<a4j:outputPanel>
+		<!--  <h:outputText value="${label}" /> -->
+		<c:choose>
+			<c:when test="${type == 'integer'}">
+
+				<h:outputText value="Min " />
+				<h:inputText id="${rangeFieldName}_begin"
+					value="#{backingBean[rangeFieldName].begin}"
+					converter="integerConverter" size="6" />
+				<h:message for="${rangeFieldName}_begin" styleClass="errMessage" />
+
+				<h:outputText value="Max " />
+				<h:inputText id="${rangeFieldName}_end"
+					value="#{backingBean[rangeFieldName].end}"
+					converter="integerConverter" size="6" />
+				<h:message for="${rangeFieldName}_end" styleClass="errMessage" />
+
+			</c:when>
+			<c:when test="${type == 'long'}">
+				<h:outputText value="Min" />
+				<h:inputText id="${rangeFieldName}_begin"
+					value="#{backingBean[rangeFieldName].begin}"
+					converter="integerConverter" size="6" />
+				<h:message for="${rangeFieldName}_begin" styleClass="errMessage" />
+
+				<h:outputText value="Max" />
+				<h:inputText id="${rangeFieldName}_end"
+					value="#{backingBean[rangeFieldName].end}"
+					converter="integerConverter" size="6" />
+				<h:message for="${rangeFieldName}_end" styleClass="errMessage" />
+			</c:when>
+			<c:when test="${type == 'double'}">
+				<h:outputText value="Min" />
+				<h:inputText id="${rangeFieldName}_begin"
+					value="#{backingBean[rangeFieldName].begin}"
+					converter="doubleConverter" size="8" />
+				<h:message for="${rangeFieldName}_begin" styleClass="errMessage" />
+
+				<h:outputText value="Max" />
+				<h:inputText id="${rangeFieldName}_end"
+					value="#{backingBean[rangeFieldName].end}"
+					converter="doubleConverter" size="8" />
+				<h:message for="${rangeFieldName}_end" styleClass="errMessage" />
+			</c:when>
+		</c:choose>
+
+
+	</a4j:outputPanel>
+
+</ui:composition>
+
+</html>

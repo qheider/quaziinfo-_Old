@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <h:panelGrid columns="6"> 
+    <h:panelGroup> 
+      <h:outputText value="#{msg.user_userName} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'userEdit')}"/>  
+      <br/>  
+      <h:inputText id="userName" value="#{userList.user.userName}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.user_enabled}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'userEdit')}"/>  
+      <br/>  
+      <h:selectOneMenu id="enabled" value="#{userList.user.enabled}" required="false"> 
+        <f:selectItem itemLabel="Any" itemValue=""/>  
+        <f:selectItem itemLabel="True" itemValue="true"/>  
+        <f:selectItem itemLabel="False" itemValue="false"/> 
+      </h:selectOneMenu> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.user_roles}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('roles', 'userEdit')}"/>  
+      <br/>  
+      <h:selectOneMenu id="roles" value="#{ userList.rolesToSearch}"> 
+        <s:selectItems value="#{roleList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Any..."/>  
+        <s:convertEntity/>  
+        <f:selectItem itemLabel="--None--" itemValue=""/> 
+      </h:selectOneMenu> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.user_email} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'userEdit')}"/>  
+      <br/>  
+      <h:inputText id="email" value="#{userList.user.email}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.user_lastLogin}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastLogin', 'userEdit')}"/>  
+      <br/>  
+      <h:outputText value="From"/>  
+      <br/>  
+      <rich:calendar value="#{userList.lastLoginRange.begin}"/> To
+      <br/>  
+      <rich:calendar value="#{userList.lastLoginRange.end}"/> 
+    </h:panelGroup> 
+  </h:panelGrid>  
+  <h:panelGrid columns="2"> 
+    <h:outputText value="Creation Date From"/>  
+    <h:outputText value="Creation Date To"/>  
+    <rich:calendar id="from" value="#{userList.dateCreatedRange.begin}"/>  
+    <rich:calendar id="to" value="#{userList.dateCreatedRange.end}"/> 
+  </h:panelGrid> 
+</ui:composition>

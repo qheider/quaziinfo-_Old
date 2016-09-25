@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+    <h:panelGroup id="passprotectComponent">
+    <s:validateAll> 
+      <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{passProtectAction.load(passProtectId )  }"> 
+      <h:outputText value="#{msg.passProtect_employee}  " rendered="false"/>
+        <h:selectOneMenu id="employee" label="#{msg.passProtect_employee}" value="#{passProtectAction.passProtect.employee}" required="false" rendered="false">
+          <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Please Select..."/>
+          <rich:ajaxValidator event="onsubmit"/>
+          <s:convertEntity/>
+        </h:selectOneMenu>
+      <rich:message styleClass="error errors" for="employee" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'passProtectEdit')}"/>
+        
+          <h:outputText value="#{msg.passProtect_companyName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}"/>
+        <h:inputText id="companyName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}" label="#{msg.passProtect_companyName}" required="false" value="#{passProtectAction.passProtect.companyName}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="companyName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}"/>  
+        <h:outputText value="#{msg.passProtect_companyUserName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}"/>  
+        <h:inputText id="companyUserName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}" label="#{msg.passProtect_companyUserName}" required="false" value="#{passProtectAction.passProtect.companyUserName}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="companyUserName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}"/>  
+        <h:outputText value="#{msg.passProtect_companyPassword}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}"/>  
+        <h:inputText id="companyPassword#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}" label="#{msg.passProtect_companyPassword}" required="false" value="#{passProtectAction.passProtect.companyPassword}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="companyPassword" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}"/>  
+        <h:outputText value="#{msg.passProtect_note}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}"/>  
+        <rich:editor useSeamText="true" id="note#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}" label="#{msg.passProtect_note}" required="false" value="#{passProtectAction.passProtect.note}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </rich:editor>  
+        <rich:message styleClass="error errors" for="note" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}"/> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

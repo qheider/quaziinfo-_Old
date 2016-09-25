@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <h:panelGrid columns="6"> 
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_minPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillEdit')}"/>  
+      <br/>  
+      <h:inputText id="minPayment_begin" value="#{userBillList.minPaymentRange.begin}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText>  
+      <h:inputText id="minPayment_end" value="#{userBillList.minPaymentRange.end}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_minPaymentDueDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}"/>  
+      <br/>  
+      <h:outputText value="From"/>  
+      <br/>  
+      <rich:calendar value="#{userBillList.minPaymentDueDateRange.begin}"/> To
+      <br/>  
+      <rich:calendar value="#{userBillList.minPaymentDueDateRange.end}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_currentBalance}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('currentBalance', 'userBillEdit')}"/>  
+      <br/>  
+      <h:inputText id="currentBalance_begin" value="#{userBillList.currentBalanceRange.begin}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText>  
+      <h:inputText id="currentBalance_end" value="#{userBillList.currentBalanceRange.end}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_amountPaid}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('amountPaid', 'userBillEdit')}"/>  
+      <br/>  
+      <h:inputText id="amountPaid_begin" value="#{userBillList.amountPaidRange.begin}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText>  
+      <h:inputText id="amountPaid_end" value="#{userBillList.amountPaidRange.end}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_previousPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousPayment', 'userBillEdit')}"/>  
+      <br/>  
+      <h:inputText id="previousPayment_begin" value="#{userBillList.previousPaymentRange.begin}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText>  
+      <h:inputText id="previousPayment_end" value="#{userBillList.previousPaymentRange.end}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_statementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('statementDate', 'userBillEdit')}"/>  
+      <br/>  
+      <h:outputText value="From"/>  
+      <br/>  
+      <rich:calendar value="#{userBillList.statementDateRange.begin}"/> To
+      <br/>  
+      <rich:calendar value="#{userBillList.statementDateRange.end}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_previousStatementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousStatementDate', 'userBillEdit')}"/>  
+      <br/>  
+      <h:outputText value="From"/>  
+      <br/>  
+      <rich:calendar value="#{userBillList.previousStatementDateRange.begin}"/> To
+      <br/>  
+      <rich:calendar value="#{userBillList.previousStatementDateRange.end}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_comment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillEdit')}"/>  
+      <br/>  
+      <h:inputText id="comment" value="#{userBillList.userBill.comment}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_billingCompany}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('billingCompany', 'userBillEdit')}"/>  
+      <br/>  
+      <h:selectOneMenu id="billingCompany" value="#{ userBillList.userBill.billingCompany}"> 
+        <s:selectItems value="#{billingCompanyList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Any..."/>  
+        <s:convertEntity/>  
+        <f:selectItem itemLabel="--None--" itemValue=""/> 
+      </h:selectOneMenu> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.userBill_employee} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'userBillEdit')}"/>  
+      <br/>  
+      <h:selectOneMenu id="employee" value="#{ userBillList.userBill.employee}"> 
+        <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Any..."/>  
+        <s:convertEntity/> 
+      </h:selectOneMenu> 
+    </h:panelGroup> 
+  </h:panelGrid>  
+  <h:panelGrid columns="2"> 
+    <h:outputText value="Creation Date From"/>  
+    <h:outputText value="Creation Date To"/>  
+    <rich:calendar id="from" value="#{userBillList.dateCreatedRange.begin}"/>  
+    <rich:calendar id="to" value="#{userBillList.dateCreatedRange.end}"/> 
+  </h:panelGrid> 
+</ui:composition>

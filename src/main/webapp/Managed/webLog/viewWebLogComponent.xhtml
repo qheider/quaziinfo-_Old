@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+   
+    <s:div styleClass="viewWebLogHeader">
+        
+        <h:outputText id="heading#{entityId}" style="font-size: x-large" value="#{webLogAction.webLog.heading}" ></h:outputText>
+        <s:link style="position: absolute;left: 90%" value="#{webLogAction.webLog.employee.displayName}" 
+        view="/admin/entities/domain/employee/viewEmployee.xhtml" propagation="none">
+          <f:param name="employeeId" value="1"/>
+          <f:param name="from" value="#{request.servletPath}"/>
+        </s:link>
+    </s:div>
+        <s:div styleClass="viewWebLogPic">
+
+        <c:choose>
+          <c:when test="${webLogAction.webLog.tagFile.contentType.startsWith('image')}">
+            <s:graphicImage value="#{webLogAction.webLog.tagFile.data}"/>
+          </c:when>
+          <c:otherwise>
+            <s:link value="#{webLogAction.webLog.tagFile.name}" action="#{webLogAction.downloadTagFile(null)}" propagation="none">
+              <f:param name="currentEntityId" value="#{webLogAction.instance.id}"/>
+            </s:link>
+          </c:otherwise>
+        </c:choose>
+    </s:div>
+    <s:div styleClass="viewWebLogBody" style="overflow: scroll">
+        <s:formattedText value="#{webLogAction.webLog.body}" />
+    </s:div>
+  
+
+<!--    <h:panelGroup>
+    <s:validateAll> 
+      <h:panelGrid columns="6" styleClass="viewInfo" columnClasses="leftCol, rightCol" onload="#{webLogAction.load(webLogId )  }"> 
+        <h:outputText value="#{msg.id}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('id', 'webLogView')}"/>
+        <h:outputText value="#{webLogAction.webLog.id}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('id', 'webLogView')}"/>
+
+        <h:outputText value="#{msg.webLog_employee}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogView')}"/>
+          
+        <h:outputText value="#{msg.webLog_heading}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogView')}"/>  
+        
+
+        <h:outputText value="#{msg.webLog_body}  "          />
+        
+
+        <h:outputText value="#{msg.webLog_tag}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogView')}"/>
+        <h:outputText id="tag#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogView')}" value="#{webLogAction.webLog.tag}"></h:outputText>  
+        <h:outputText value="#{msg.webLog_type}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogView')}"/>  
+        <h:outputText id="type#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogView')}" value="#{webLogAction.webLog.type}"></h:outputText>  
+        <h:outputText value="#{msg.webLog_tagFile}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tagFile', 'webLogView')}"/>  
+         
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> -->
+</ui:composition>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view contentType="text/html"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:a="http://richfaces.org/a4j"
+        xmlns:rich="http://richfaces.org/rich"
+        xmlns:s="http://jboss.com/products/seam/taglib">
+    <html>
+        <head>
+
+
+
+            <link rel="stylesheet" href="#{request.contextPath}/css/default.css" type="text/css" media="screen" />
+            <link rel="stylesheet" href="#{request.contextPath}/css/nivo-slider.css" type="text/css" media="screen" />
+            <link rel="stylesheet" href="#{request.contextPath}/css/style.css" type="text/css" media="screen" />
+            <link rel="stylesheet" href="#{request.contextPath}/css/screen.css" type="text/css" media="screen" />
+
+            <script type="text/javascript" src="#{request.contextPath}/js/commons.js"></script>
+            <!--
+            -->
+            <script type="text/javascript" src="#{request.contextPath}/js/jquery-1.7.1.min.js"></script>
+            <script type="text/javascript" src="#{request.contextPath}/js/jquery.nivo.slider.js"></script>
+
+            <script type="text/javascript">
+                    $(window).load(function() {
+                        $('#slider').nivoSlider();
+                    });
+            </script>
+
+        </head>
+
+        <body>
+            <ui:insert name="header" />
+            
+            <div id="content" style="left: 143px;top: 237px;height: 520px;">
+                <ui:insert name="content" />
+                <div id="footer" >
+                    <h:graphicImage value="images/logoFinal2.png" style="position: absolute;left: 85%;top:-20px"/>
+        </div>
+            </div>
+            <div id="wrapper" >
+                <div class="slider-wrapper theme-default">
+                    <div id="slider" class="nivoSlider" style="left: 148px; position: absolute;width: 76%;">
+                        <img src="#{request.contextPath}/images/banner/1.JPG" data-thumb="#{request.contextPath}/images/banner/1.JPG" alt="" />
+                        <a href="http://dev7studios.com"><img src="#{request.contextPath}/images/banner/2.JPG" data-thumb="#{request.contextPath}/images/banner/1.JPG" alt="" title="wellcome to quazi.info" /></a>
+                        <img src="#{request.contextPath}/images/banner/1.JPG" data-thumb="#{request.contextPath}/images/banner/1.JPG" alt="" title="Home for Enterprise Java with a twist " data-transition="slideInLeft" />
+                        <img src="#{request.contextPath}/images/banner/2.JPG" data-thumb="#{request.contextPath}/images/banner/2.JPG" alt="" title="MagicDraw with witchcraft sorcery" />
+                        <img src="#{request.contextPath}/images/banner/3.png" data-thumb="#{request.contextPath}/images/banner/3.png" alt="" title="JPA ..HIbernate" data-transition="slideInLeft" />
+                        <img src="#{request.contextPath}/images/banner/4.png" data-thumb="#{request.contextPath}/images/banner/4.png" alt="" title="Seam..Richface..primefaces..jbpm. ireport" />
+                    </div>
+                    <div id="htmlcaption" class="nivo-html-caption">
+                        <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
+                    </div>
+                </div>
+
+            </div>
+        </body>
+
+        
+    </html>
+</f:view>

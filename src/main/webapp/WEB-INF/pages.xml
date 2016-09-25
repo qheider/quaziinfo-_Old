@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages xmlns="http://jboss.com/products/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd" no-conversation-view-id="/admin/home.xhtml" login-view-id="/login.xhtml">  
+  <!--PROTECTED REGION ID(USER_EDITABLE_PAGESROOT) ENABLED START-->  
+  <page view-id="/admin/*"> 
+    <restrict>#{identity.loggedIn}</restrict> 
+  </page>  
+  <page view-id="/admin/tasks/viewTask.xhtml"> 
+    <param name="taskId" value="#{jbpmProcessAction.taskId}"/>  
+    <navigation> 
+      <rule if-outcome="next"> 
+        <redirect view-id="/admin/tasks/tasks.xhtml"/> 
+      </rule> 
+    </navigation> 
+  </page>  
+  <!--PROTECTED REGION END-->  
+  <page view-id="/adminLogin.xhtml"> 
+    <navigation from-action="#{identity.login}"> 
+      <redirect view-id="/admin/entities/summary.xhtml"/> 
+    </navigation> 
+  </page>  
+  <page view-id="*"> 
+    <!--PROTECTED REGION ID(USER_EDITABLE_PAGESROOT_BLKT_ACTION) ENABLED START-->  
+    <navigation from-action="#{identity.logout}"> 
+      <end-conversation before-redirect="true"/>  
+      <redirect view-id="/login.xhtml"/> 
+    </navigation>  
+    <navigation from-action="login"> 
+      <redirect view-id="/login.xhtml"/> 
+    </navigation>  
+    <navigation from-action="#{identity.login}"> 
+      <end-conversation before-redirect="true"/>  
+      <redirect view-id="/admin/home.xhtml"/> 
+    </navigation>  
+    <!--PROTECTED REGION END-->  
+    <navigation> 
+      <!--PROTECTED REGION ID(USER_EDITABLE_PAGESROOT_BLKT) ENABLED START-->  
+      <rule if-outcome="textSearch"> 
+        <redirect view-id="/admin/textSearchResults.xhtml"/> 
+      </rule>  
+      <rule if-outcome="home"> 
+        <redirect view-id="/admin/home.xhtml"/> 
+      </rule>  
+      <!--PROTECTED REGION END-->  
+      <rule if-outcome="passProtect"> 
+        <redirect view-id="/admin/entities/domain/passProtect/listPassProtect.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewPassProtect"> 
+        <redirect view-id="/admin/entities/domain/passProtect/viewPassProtect.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editPassProtect"> 
+        <redirect view-id="/admin/entities/domain/passProtect/editPassProtect.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="role"> 
+        <redirect view-id="/admin/entities/users/role/listRole.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewRole"> 
+        <redirect view-id="/admin/entities/users/role/viewRole.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editRole"> 
+        <redirect view-id="/admin/entities/users/role/editRole.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="user"> 
+        <redirect view-id="/admin/entities/users/user/listUser.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewUser"> 
+        <redirect view-id="/admin/entities/users/user/viewUser.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editUser"> 
+        <redirect view-id="/admin/entities/users/user/editUser.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="billingCompany"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/listBillingCompany.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewBillingCompany"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editBillingCompany"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/editBillingCompany.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="userBill"> 
+        <redirect view-id="/admin/entities/userBill/userBill/listUserBill.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewUserBill"> 
+        <redirect view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editUserBill"> 
+        <redirect view-id="/admin/entities/userBill/userBill/editUserBill.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="employee"> 
+        <redirect view-id="/admin/entities/domain/employee/listEmployee.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewEmployee"> 
+        <redirect view-id="/admin/entities/domain/employee/viewEmployee.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editEmployee"> 
+        <redirect view-id="/admin/entities/domain/employee/editEmployee.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="webLog"> 
+        <redirect view-id="/admin/entities/domain/webLog/listWebLog.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="viewWebLog"> 
+        <redirect view-id="/admin/entities/domain/webLog/viewWebLog.xhtml"/>  
+        <end-conversation/> 
+      </rule>  
+      <rule if-outcome="editWebLog"> 
+        <redirect view-id="/admin/entities/domain/webLog/editWebLog.xhtml"/>  
+        <end-conversation/> 
+      </rule> 
+    </navigation> 
+  </page>  
+  <page view-id="/admin/entities/domain/passProtect/editPassProtect.xhtml"> 
+    <!-- <description>Edit PassProtect: #{passProtect.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/domain/passProtect/viewPassProtect.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/passProtect/listPassProtect.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="passProtectId" value="#{passProtectAction.passProtectId}"/>  
+    <param name="employeeId" value="#{passProtectAction.employeeId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/passProtect/viewPassProtect.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View PassProtect: #{passProtect.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/passProtect/editPassProtect.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/passProtect/listPassProtect.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="passProtectId" value="#{passProtectAction.passProtectId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/passProtect/listPassProtect.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewPassProtect"> 
+        <redirect view-id="/admin/entities/domain/passProtect/viewPassProtect.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/passProtect/editPassProtect.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{passProtectList.firstResult}"/>  
+    <param name="sort" value="#{passProtectList.orderColumn}"/>  
+    <param name="dir" value="#{passProtectList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{passProtectList.passProtect.id}"/>  
+    <param name="employee" value="#{passProtectList.passProtect.employee.id}" validateModel="false"/>  
+    <param name="companyName" value="#{passProtectList.passProtect.companyName}" validateModel="false"/>  
+    <param name="companyUserName" value="#{passProtectList.passProtect.companyUserName}" validateModel="false"/>  
+    <param name="companyPassword" value="#{passProtectList.passProtect.companyPassword}" validateModel="false"/>  
+    <param name="note" value="#{passProtectList.passProtect.note}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/users/role/editRole.xhtml"> 
+    <!-- <description>Edit Role: #{role.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/users/role/viewRole.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/users/role/listRole.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="roleId" value="#{roleAction.roleId}"/> 
+  </page>  
+  <page view-id="/admin/entities/users/role/viewRole.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View Role: #{role.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/users/role/editRole.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/users/role/listRole.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="roleId" value="#{roleAction.roleId}"/> 
+  </page>  
+  <page view-id="/admin/entities/users/role/listRole.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewRole"> 
+        <redirect view-id="/admin/entities/users/role/viewRole.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/users/role/editRole.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{roleList.firstResult}"/>  
+    <param name="sort" value="#{roleList.orderColumn}"/>  
+    <param name="dir" value="#{roleList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{roleList.role.id}"/>  
+    <param name="name" value="#{roleList.role.name}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/users/user/editUser.xhtml"> 
+    <!-- <description>Edit User: #{user.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/users/user/viewUser.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/users/user/listUser.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="userId" value="#{userAction.userId}"/> 
+  </page>  
+  <page view-id="/admin/entities/users/user/viewUser.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View User: #{user.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/users/user/editUser.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/users/user/listUser.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="userId" value="#{userAction.userId}"/> 
+  </page>  
+  <page view-id="/admin/entities/users/user/listUser.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewUser"> 
+        <redirect view-id="/admin/entities/users/user/viewUser.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/users/user/editUser.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{userList.firstResult}"/>  
+    <param name="sort" value="#{userList.orderColumn}"/>  
+    <param name="dir" value="#{userList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{userList.user.id}"/>  
+    <param name="userName" value="#{userList.user.userName}" validateModel="false"/>  
+    <param name="enabled" value="#{userList.user.enabled}" validateModel="false"/>  
+    <param name="email" value="#{userList.user.email}" validateModel="false"/>  
+    <param name="lastLogin" value="#{userList.user.lastLogin}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/billingCompany/editBillingCompany.xhtml"> 
+    <!-- <description>Edit BillingCompany: #{billingCompany.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/listBillingCompany.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="billingCompanyId" value="#{billingCompanyAction.billingCompanyId}"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View BillingCompany: #{billingCompany.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/editBillingCompany.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/listBillingCompany.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="billingCompanyId" value="#{billingCompanyAction.billingCompanyId}"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/billingCompany/listBillingCompany.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewBillingCompany"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/userBill/billingCompany/editBillingCompany.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{billingCompanyList.firstResult}"/>  
+    <param name="sort" value="#{billingCompanyList.orderColumn}"/>  
+    <param name="dir" value="#{billingCompanyList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{billingCompanyList.billingCompany.id}"/>  
+    <param name="brand" value="#{billingCompanyList.billingCompany.brand}" validateModel="false"/>  
+    <param name="companyType" value="#{billingCompanyList.billingCompany.companyType}" validateModel="false"/>  
+    <param name="rate" value="#{billingCompanyList.billingCompany.rate}" validateModel="false"/>  
+    <param name="primaryPhone" value="#{billingCompanyList.billingCompany.primaryPhone}" validateModel="false"/>  
+    <param name="email" value="#{billingCompanyList.billingCompany.email}" validateModel="false"/>  
+    <param name="address_unitNumber" value="#{billingCompanyList.billingCompany.address.unitNumber}" validateModel="false"/>  
+    <param name="address_streetNumber" value="#{billingCompanyList.billingCompany.address.streetNumber}" validateModel="false"/>  
+    <param name="address_streetName" value="#{billingCompanyList.billingCompany.address.streetName}" validateModel="false"/>  
+    <param name="address_streetDirection" value="#{billingCompanyList.billingCompany.address.streetDirection}" validateModel="false"/>  
+    <param name="address_streetType" value="#{billingCompanyList.billingCompany.address.streetType}" validateModel="false"/>  
+    <param name="address_province" value="#{billingCompanyList.billingCompany.address.province}" validateModel="false"/>  
+    <param name="address_postalCode" value="#{billingCompanyList.billingCompany.address.postalCode}" validateModel="false"/>  
+    <param name="address_city" value="#{billingCompanyList.billingCompany.address.city}" validateModel="false"/>  
+    <param name="address_country" value="#{billingCompanyList.billingCompany.address.country}" validateModel="false"/>  
+    <param name="poBox" value="#{billingCompanyList.billingCompany.poBox}" validateModel="false"/>  
+    <param name="name" value="#{billingCompanyList.billingCompany.name}" validateModel="false"/>  
+    <param name="webUrl" value="#{billingCompanyList.billingCompany.webUrl}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/userBill/editUserBill.xhtml"> 
+    <!-- <description>Edit UserBill: #{userBill.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/userBill/userBill/listUserBill.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="userBillId" value="#{userBillAction.userBillId}"/>  
+    <param name="billingCompanyId" value="#{userBillAction.billingCompanyId}"/>  
+    <param name="employeeId" value="#{userBillAction.employeeId}"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View UserBill: #{userBill.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/userBill/userBill/editUserBill.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/userBill/userBill/listUserBill.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="userBillId" value="#{userBillAction.userBillId}"/> 
+  </page>  
+  <page view-id="/admin/entities/userBill/userBill/listUserBill.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewUserBill"> 
+        <redirect view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/userBill/userBill/editUserBill.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{userBillList.firstResult}"/>  
+    <param name="sort" value="#{userBillList.orderColumn}"/>  
+    <param name="dir" value="#{userBillList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{userBillList.userBill.id}"/>  
+    <param name="minPayment" value="#{userBillList.userBill.minPayment}" validateModel="false"/>  
+    <param name="minPaymentDueDate" value="#{userBillList.userBill.minPaymentDueDate}" validateModel="false"/>  
+    <param name="currentBalance" value="#{userBillList.userBill.currentBalance}" validateModel="false"/>  
+    <param name="amountPaid" value="#{userBillList.userBill.amountPaid}" validateModel="false"/>  
+    <param name="previousPayment" value="#{userBillList.userBill.previousPayment}" validateModel="false"/>  
+    <param name="statementDate" value="#{userBillList.userBill.statementDate}" validateModel="false"/>  
+    <param name="previousStatementDate" value="#{userBillList.userBill.previousStatementDate}" validateModel="false"/>  
+    <param name="comment" value="#{userBillList.userBill.comment}" validateModel="false"/>  
+    <param name="billingCompany" value="#{userBillList.userBill.billingCompany.id}" validateModel="false"/>  
+    <param name="employee" value="#{userBillList.userBill.employee.id}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/employee/editEmployee.xhtml"> 
+    <!-- <description>Edit Employee: #{employee.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/domain/employee/viewEmployee.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/employee/listEmployee.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="employeeId" value="#{employeeAction.employeeId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/employee/viewEmployee.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View Employee: #{employee.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/employee/editEmployee.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/employee/listEmployee.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="employeeId" value="#{employeeAction.realId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/employee/listEmployee.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewEmployee"> 
+        <redirect view-id="/admin/entities/domain/employee/viewEmployee.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/employee/editEmployee.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{employeeList.firstResult}"/>  
+    <param name="sort" value="#{employeeList.orderColumn}"/>  
+    <param name="dir" value="#{employeeList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{employeeList.employee.id}"/>  
+    <param name="firstName" value="#{employeeList.employee.firstName}" validateModel="false"/>  
+    <param name="lastName" value="#{employeeList.employee.lastName}" validateModel="false"/>  
+    <param name="contactDetails_phone" value="#{employeeList.employee.contactDetails.phone}" validateModel="false"/>  
+    <param name="contactDetails_secondaryPhone" value="#{employeeList.employee.contactDetails.secondaryPhone}" validateModel="false"/>  
+    <param name="contactDetails_city" value="#{employeeList.employee.contactDetails.city}" validateModel="false"/>  
+    <param name="user_userName" value="#{employeeList.employee.user.userName}" validateModel="false"/>  
+    <param name="user_enabled" value="#{employeeList.employee.user.enabled}" validateModel="false"/>  
+    <param name="user_email" value="#{employeeList.employee.user.email}" validateModel="false"/>  
+    <param name="user_lastLogin" value="#{employeeList.employee.user.lastLogin}" validateModel="false"/>  
+    <param name="employeeNumber" value="#{employeeList.employee.employeeNumber}" validateModel="false"/>  
+    <param name="employeeType" value="#{employeeList.employee.employeeType}" validateModel="false"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/webLog/editWebLog.xhtml"> 
+    <!-- <description>Edit WebLog: #{webLog.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="save"> 
+        <redirect view-id="/admin/entities/domain/webLog/viewWebLog.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/webLog/listWebLog.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="webLogId" value="#{webLogAction.webLogId}"/>  
+    <param name="employeeId" value="#{webLogAction.employeeId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/webLog/viewWebLog.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <!-- <description>View WebLog: #{webLog.displayName}</description> -->  
+    <navigation> 
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/webLog/editWebLog.xhtml"/> 
+      </rule>  
+      <rule if-outcome="cancel"> 
+        <redirect view-id="/admin/entities/domain/webLog/listWebLog.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="webLogId" value="#{webLogAction.webLogId}"/> 
+  </page>  
+  <page view-id="/admin/entities/domain/webLog/listWebLog.xhtml" action="#{redirect.captureCurrentView()}"> 
+    <navigation> 
+      <rule if-outcome="viewWebLog"> 
+        <redirect view-id="/admin/entities/domain/webLog/viewWebLog.xhtml"/> 
+      </rule>  
+      <rule if-outcome="edit"> 
+        <redirect view-id="/admin/entities/domain/webLog/editWebLog.xhtml"/> 
+      </rule> 
+    </navigation>  
+    <param name="firstResult" value="#{webLogList.firstResult}"/>  
+    <param name="sort" value="#{webLogList.orderColumn}"/>  
+    <param name="dir" value="#{webLogList.orderDirection}"/>  
+    <param name="from"/>  
+    <param name="id" value="#{webLogList.webLog.id}"/>  
+    <param name="heading" value="#{webLogList.webLog.heading}" validateModel="false"/>  
+    <param name="headingDesc" value="#{webLogList.webLog.headingDesc}" validateModel="false"/>  
+    <param name="body" value="#{webLogList.webLog.body}" validateModel="false"/>  
+    <param name="employee" value="#{webLogList.webLog.employee.id}" validateModel="false"/>  
+    <param name="tag" value="#{webLogList.webLog.tag}" validateModel="false"/>  
+    <param name="type" value="#{webLogList.webLog.type}" validateModel="false"/> 
+  </page>  
+  <!--PROTECTED REGION ID(USER_EDITABLE_XCPT) ENABLED START-->  
+  <exception class="org.jboss.seam.framework.EntityNotFoundException"> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="warn">Record not found</message> 
+    </redirect> 
+  </exception>  
+  <exception class="javax.persistence.EntityNotFoundException"> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="warn">Record not found</message> 
+    </redirect> 
+  </exception>  
+  <exception class="javax.persistence.EntityExistsException"> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="warn">Duplicate record</message> 
+    </redirect> 
+  </exception>  
+  <exception class="javax.persistence.OptimisticLockException"> 
+    <end-conversation/>  
+    <redirect view-id="/error.xhtml"> 
+      <message severity="warn">Another user changed the same data, please try again</message> 
+    </redirect> 
+  </exception>  
+  <exception class="org.jboss.seam.security.AuthorizationException"> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="error">You don't have permission to access this resource</message> 
+    </redirect> 
+  </exception>  
+  <exception class="org.jboss.seam.security.NotLoggedInException"> 
+    <redirect view-id="/index.xhtml"> 
+      <message severity="warn">#{messages['org.jboss.seam.NotLoggedIn']}</message> 
+    </redirect> 
+  </exception>  
+  <exception class="javax.faces.application.ViewExpiredException"> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="warn">Your session has timed out, please try again</message> 
+    </redirect> 
+  </exception>  
+  <exception class="org.jboss.seam.ConcurrentRequestTimeoutException" log-level="trace"> 
+    <http-error error-code="503"/> 
+  </exception>  
+  <exception> 
+    <redirect view-id="/error.xhtml"> 
+      <message severity="error">Unexpected error, please try again</message> 
+    </redirect> 
+  </exception>  
+  <!--PROTECTED REGION END--> 
+</pages>

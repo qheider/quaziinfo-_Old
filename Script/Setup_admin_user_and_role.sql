@@ -1,0 +1,3 @@
+INSERT INTO `quaziinfodb`.`user`(`archived`,`date_created`,`date_updated`,`email`,`enabled`,`lastLogin`,`password`,`userName`,`created_by_user_id`) VALUES ( '\0',NULL,NULL,'admin@quazi.info','\1',NULL,'admin','admin',NULL);
+INSERT INTO `quaziinfodb`.`role`(`archived`,`date_created`,`date_updated`,`name`,`created_by_user_id`) VALUES (  '\0',NULL,NULL,'admin',NULL);
+INSERT INTO `quaziinfodb`.`users_roles`(`users_ID`,`roles_ID`) VALUES ( '1','1');

@@ -1,0 +1,34 @@
+
+<ui:composition 
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	template = "/admin/template.xhtml" >	
+	<ui:define name="content">
+	<h:form>
+	
+	<!-- 
+	<ui:repeat var="issue" value="#{issueList.entityList}">
+		${issue.title}
+		<br/>
+		${issue.description}
+		<hr/>
+	</ui:repeat>
+	 -->
+	
+	 <ui:include src="/admin/entities/issues/issue/listIssueComponent.xhtml"> 
+      <ui:param name="records" value="#{issueList.entityList}"/> 
+    </ui:include>  
+	
+	
+	</h:form>
+	</ui:define> 
+</ui:composition>
+	

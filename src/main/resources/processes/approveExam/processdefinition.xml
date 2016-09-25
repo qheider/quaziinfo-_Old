@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition name="approveExam">  
+  <!--PROTECTED REGION ID(USER_EDITABLE_RGN_approveExam) ENABLED START-->  
+  <!--PROTECTED REGION END-->  
+  <swimlane name="initiator"> 
+    <assignment actor-id="#{exam.createdByUser.userName}"/> 
+  </swimlane>  
+  <swimlane name="decisionMaker"> 
+    <assignment pooled-actors="manager"/> 
+  </swimlane>  
+  <start-state name=""> 
+    <task name="" swimlane="initiator"></task>  
+    <transition to="reviewExam" name="createExam"></transition> 
+  </start-state>  
+  <task-node name="reviewExam"> 
+    <task name="reviewExam" swimlane="decisionMaker" notify="false"></task>  
+    <transition to="revise" name="askForChanges"></transition>  
+    <transition to="approve" name="proceedToApprove"></transition>  
+    <transition to="reject" name="proceedToReject"></transition> 
+  </task-node>  
+  <task-node name="revise"> 
+    <task name="revise" swimlane="initiator" notify="false"></task>  
+    <transition to="reviewExam" name="proceedToReviewExam"></transition> 
+  </task-node>  
+  <end-state name="approve"/>  
+  <end-state name="reject"/> 
+</process-definition>

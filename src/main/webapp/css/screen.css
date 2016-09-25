@@ -1,0 +1,270 @@
+/* Setup defaults since variable in browsers
+----------------------------------------------- */
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-image: url(../images/wood-wallpaper_12801.jpg);
+    font-size: small;
+    line-height: 1.25em;
+    color: #362F2D;
+    position: relative;
+    height: 100%;
+    margin:0 auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.odd {background-color: gainsboro;}
+.even {background-color: white;}
+
+/* Layout
+----------------------------------------------- */
+
+
+#header {
+    width: 90%;
+    height: 30px;
+}
+
+#status {
+    float:right;
+}
+
+
+
+
+#content{
+    position: absolute;
+    top: 100px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-right-radius: 20px;
+    left:13%;
+    width: 75%;
+    
+    padding: 10px;
+    z-index: 5
+}
+
+#leftcol {
+
+    float: left;
+    width: 12%;
+    height: 500px;
+}
+
+#rightcol {
+
+    float: left;
+    width: 10%;
+    height: 500px;
+}
+
+#footer {
+    clear: both;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
+     border-radius: 10px;
+    -moz-border-radius: 10px;
+    clear: both;
+    height: 21%;
+    left: 0%;
+    position: absolute;
+    top: 99%;
+    width: 100%;
+
+}
+.contentFooter{
+    clear: both;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    -moz-border-radius-bottomleft: 20px;
+    border-bottom-left-radius: 20px;
+    -moz-border-radius-bottomight: 20px;
+    border-bottom-right-radius: 20px;
+   height: 100px;
+
+
+
+
+}
+
+.rich-panelforLogIn {
+    border-width: 1px;
+    padding: 1px;
+    height: 400px;
+    background-color: red;
+    border-color: #C4C0B9;
+}
+.rich-panel-index-one{
+   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    height: 62%;
+    left: 4%;
+    margin: 10px;
+    padding: 25px;
+    position: absolute;
+    top: 90px;
+    width: 21%;
+}
+.rich-panel-index-two{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    height: 62%;
+    left: 37%;
+    margin: 10px;
+    padding: 25px;
+    position: absolute;
+    top: 90px;
+    width: 21%;
+}
+.rich-panel-index-three{
+     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    height: 62%;
+    left: 69%;
+    margin: 10px;
+    padding: 25px;
+    position: absolute;
+    top: 90px;
+    width: 21%;
+}
+
+.rich-toolbar {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    border: 0px solid #C4C0B9;
+    padding: 5;
+}
+.div_wrap_header{
+    position: absolute;
+    top: 15px;
+    left: 13%;
+    border: 0px solid #CCC;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 5px;
+    width: 75.5%;
+    height: 50px;
+
+}
+.div_wrap_outer{
+    border: 0px solid #CCC;
+/*    background-color: #f9f9f9;*/
+   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px;
+}
+.div_wrap_inner{
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+
+.div_wrap_userPicture_inner{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border: 1px solid #CCC;
+}
+.div_wrap_userPicture_outer{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border: 0px solid #CCC;
+}
+.div_index_inner{
+    position: absolute;
+    top:98px;left: 159px;
+    background-color: #C4C0B9;
+    width: 580px;
+    height: 253px;
+    margin: 10px;
+    padding: 10px
+
+}
+.div_wrap_bannerPic{
+    border: 1px solid #CCC;
+    background-color: #f9f9f9;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+.rich-tabpanel-content {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    border-bottom-color: #C4C0B9;
+    border-left-color: #C4C0B9;
+    border-right-color: #C4C0B9;
+    color: white;
+    font-family: Arial,Verdana,sans-serif;
+    font-size: 11px;
+}
+
+.div_wrap_weblog_heading{
+    border: none;
+    background-color: floralwhite;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 25px;
+    height: 185px;
+}
+
+
+.rich-table-cell {
+    border-bottom: 0 none;
+    border-right: 0 none;
+    color: #000000;
+    font-family: Arial,Verdana,sans-serif;
+    font-size: 11px;
+    padding: 4px;
+}
+.viewWebLogHeader{
+   position: relative;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    top:1%;left: 1%;
+    background-color: #C4C0B9;
+    width: 94%;
+    height: 100px;
+    margin: 10px;
+    padding: 10px
+
+}
+.viewWebLogPic{
+    position: relative;
+     top:1%;left: 1%;
+    text-align: center;
+   margin: 10px;
+    padding: 10px
+
+}
+.viewWebLogBody{
+   position: relative;
+   border-radius: 10px;
+    -moz-border-radius: 10px;
+    top:1%;left: 1%;
+    background-color: #C4C0B9;
+    width: 94%;
+    margin: 10px;
+    padding: 10px
+
+}
+
+.rich-panel-body {
+    color: #000000;
+    font-family: Arial,Verdana,sans-serif;
+    font-size: 11px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+

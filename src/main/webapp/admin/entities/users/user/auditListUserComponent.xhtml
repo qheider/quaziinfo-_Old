@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:form> 
+    <rich:datascroller align="left" for="dataAudit" maxPages="20" renderIfSinglePage="false"/>  
+    <br/>  
+    <rich:dataTable id="dataAudit" var="_log" value="#{userAction.auditLog}" rows="30" rowClasses="odd, even" styleClass="dataTable"> 
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Date"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.dateCreated}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Action"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.action}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="User"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.username}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Id"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entityId}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.user_userName}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.userName}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.user_enabled}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.enabled}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.user_email}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.email}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.user_lastLogin}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.lastLogin}"/> 
+      </rich:column> 
+    </rich:dataTable> 
+  </h:form> 
+</html>

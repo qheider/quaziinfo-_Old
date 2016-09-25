@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="6" styleClass="viewInfo" columnClasses="leftCol, rightCol" onload="#{passProtectAction.load(passProtectId )  }"> 
+        <h:outputText value="#{msg.id}"/>  
+        <h:outputText value="#{passProtectAction.passProtect.id}"/>  
+        <h:outputText value="#{msg.passProtect_employee}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'passProtectView')}"/>  
+        <s:link value="#{passProtectAction.passProtect.employee.displayName}" view="/admin/entities/domain/employee/viewEmployee.xhtml" propagation="none"> 
+          <f:param name="employeeId" value="#{passProtectAction.passProtect.employee.id}"/>  
+          <f:param name="from" value="#{request.servletPath}"/> 
+        </s:link>  
+        <h:outputText value="#{msg.passProtect_companyName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectView')}"/>  
+        <h:outputText id="companyName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectView')}" value="#{passProtectAction.passProtect.companyName}"></h:outputText>  
+        <h:outputText value="#{msg.passProtect_companyUserName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectView')}"/>  
+        <h:outputText id="companyUserName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectView')}" value="#{passProtectAction.passProtect.companyUserName}"></h:outputText>  
+        <h:outputText value="#{msg.passProtect_companyPassword}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectView')}"/>  
+        <h:outputText id="companyPassword#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectView')}" value="#{passProtectAction.passProtect.companyPassword}"></h:outputText>  
+        <h:outputText value="#{msg.passProtect_note}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectView')}"/>  
+        <h:outputText escape="false" id="note#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectView')}" value="#{passProtectAction.passProtect.note}"></h:outputText> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

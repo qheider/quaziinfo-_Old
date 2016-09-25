@@ -1,0 +1,79 @@
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:q="http://java.sun.com/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    template = "/admin/template.xhtml"
+    >
+    <!--        xmlns:p="http://primefaces.org/ui"-->
+
+    <ui:define name="userPicture">
+        <s:div styleClass="div_wrap_userPicture_inner" style="width:160px; height:160px;">
+
+        <q:if test="${employeeAction.getCurrentLoggedInEmployee().getEmpPicture().getData() != null}">
+            <a:mediaOutput element="img" styleClass="div_wrap_inner"
+                           createContent="#{paintAction.paint}"
+                           style="width:150px; height:150px;"
+                           cacheable="false"
+                           mimeType="image/png"  />
+        </q:if>
+        </s:div>
+       
+       
+
+    </ui:define>
+
+    <ui:define name="content">
+        <f:subview>
+        <s:div id="content" styleClass="div_wrap_outer">
+
+        
+            <rich:tabPanel switchType="ajax" >
+                <rich:tab id="tab1" label="web BLog">
+                    <ui:include src="/Managed/webLog/manageWebLogComponent.xhtml" />
+                </rich:tab>
+                
+                <rich:tab id="tab4" label="Personal web BLog">
+                    <ui:include src="/Managed/webLog/personalManageWebLogComponent.xhtml" />
+                </rich:tab>
+                
+                 <rich:tab id="tab5" label="NRS BLog">
+                    <ui:include src="/Managed/webLog/nrsWebLogComponent.xhtml" />
+                </rich:tab>
+
+
+                <rich:tab id="tab2" label="Pass Manage">
+                 <ui:include src="/Managed/passManager/passManage.xhtml" />
+                 </rich:tab>
+                 
+                <rich:tab id="tab3" label="Bill Manage">
+                    <ui:include src="/Managed/billManage/manageUserBillComponent.xhtml" /><br/>
+                </rich:tab>
+                <!--  
+                <rich:tab id="tab6" label="Web Service">
+                    <ui:include src="/Managed/ws/webserviceClient.xhtml" /><br/>
+                </rich:tab>
+                -->
+
+
+            </rich:tabPanel>
+
+
+        
+        </s:div>
+        </f:subview>
+ </ui:define>
+    <ui:define name="footer">
+        <s:div styleClass= "contentFooter">
+            <h:outputText style="position: relative;text-align: center; left: 44%; font-size:xx-small;font-weight: lighter;color: yellow" value="Quazi info inc, Toronto,Canada" />
+        </s:div>
+    </ui:define>
+</ui:composition>

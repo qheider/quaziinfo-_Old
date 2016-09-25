@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram model-entity="SeamPagesDiagram">
+ <item ID="#Managed#webLog#viewWebLog.xhtml"
+  NAME="#xManaged#xwebLog#xviewWebLog.xhtml"
+  PATH="/Managed/webLog/viewWebLog.xhtml" SHAPE="24,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/admin/entities/domain/webLog/editWebLog.xhtml"
+   NAME="output" PATH="/admin/entities/domain/webLog/editWebLog.xhtml"
+   TARGET="#xadmin#xentities#xdomain#xwebLog#xeditWebLog.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/home.xhtml" NAME="output1" PATH="/admin/home.xhtml"
+   TARGET="#xadmin#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#Managed#billManage#editUserBill.xhtml"
+  NAME="#xManaged#xbillManage#xeditUserBill.xhtml"
+  PATH="/Managed/billManage/editUserBill.xhtml" SHAPE="24,145,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/admin/entities/userBill/userBill/viewUserBill.xhtml"
+   NAME="output"
+   PATH="/admin/entities/userBill/userBill/viewUserBill.xhtml"
+   TARGET="#xadmin#xentities#xuserBill#xuserBill#xviewUserBill.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/home.xhtml" NAME="output1" PATH="/admin/home.xhtml"
+   TARGET="#xadmin#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#admin#entities#userBill#userBill#viewUserBill.xhtml"
+  NAME="#xadmin#xentities#xuserBill#xuserBill#xviewUserBill.xhtml"
+  PATH="/admin/entities/userBill/userBill/viewUserBill.xhtml"
+  SHAPE="376,145,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/admin/entities/userBill/userBill/editUserBill.xhtml"
+   NAME="output"
+   PATH="/admin/entities/userBill/userBill/editUserBill.xhtml"
+   TARGET="#xadmin#xentities#xuserBill#xuserBill#xeditUserBill.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/home.xhtml" NAME="output1" PATH="/admin/home.xhtml"
+   TARGET="#xadmin#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.witchcraft.exceptions.CreateReportException"
+  NAME="exception:org.witchcraft.exceptions.CreateReportException"
+  PATH="org.witchcraft.exceptions.CreateReportException"
+  SHAPE="24,273,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/error.xhtml" NAME="output" PATH="/error.xhtml"
+   TARGET="#xerror.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.witchcraft.exceptions.ContractViolationException"
+  NAME="exception:org.witchcraft.exceptions.ContractViolationException"
+  PATH="org.witchcraft.exceptions.ContractViolationException"
+  SHAPE="24,377,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/error.xhtml" NAME="output" PATH="/error.xhtml"
+   TARGET="#xerror.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.NotLoggedInException"
+  NAME="exception:org.jboss.seam.security.NotLoggedInException"
+  PATH="org.jboss.seam.security.NotLoggedInException" SHAPE="24,793,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/index.xhtml" NAME="output" PATH="/index.xhtml"
+   TARGET="#xindex.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.AuthorizationException"
+  NAME="exception:org.jboss.seam.security.AuthorizationException"
+  PATH="org.jboss.seam.security.AuthorizationException"
+  SHAPE="24,481,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/error.xhtml" NAME="output" PATH="/error.xhtml"
+   TARGET="#xerror.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.servlet.ServletException"
+  NAME="exception:javax.servlet.ServletException"
+  PATH="javax.servlet.ServletException" SHAPE="24,585,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/error.xhtml" NAME="output" PATH="/error.xhtml"
+   TARGET="#xerror.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.faces.application.ViewExpiredException"
+  NAME="exception:javax.faces.application.ViewExpiredException"
+  PATH="javax.faces.application.ViewExpiredException" SHAPE="24,689,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/error.xhtml" NAME="output" PATH="/error.xhtml"
+   TARGET="#xerror.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xindex.xhtml" PATH="/index.xhtml" SHAPE="344,793,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xerror.xhtml" PATH="/error.xhtml" SHAPE="472,273,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xadmin#xhome.xhtml" PATH="/admin/home.xhtml"
+  SHAPE="792,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#admin#entities#domain#webLog#editWebLog.xhtml"
+  NAME="#xadmin#xentities#xdomain#xwebLog#xeditWebLog.xhtml"
+  PATH="/admin/entities/domain/webLog/editWebLog.xhtml"
+  SHAPE="376,377,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/Managed/webLog/viewWebLog.xhtml" NAME="output"
+   PATH="/Managed/webLog/viewWebLog.xhtml"
+   TARGET="#xManaged#xwebLog#xviewWebLog.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/home.xhtml" NAME="output1" PATH="/admin/home.xhtml"
+   TARGET="#xadmin#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="#admin#entities#userBill#userBill#editUserBill.xhtml"
+  NAME="#xadmin#xentities#xuserBill#xuserBill#xeditUserBill.xhtml"
+  PATH="/admin/entities/userBill/userBill/editUserBill.xhtml"
+  SHAPE="792,145,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/admin/entities/userBill/userBill/viewUserBill.xhtml"
+   NAME="output"
+   PATH="/admin/entities/userBill/userBill/viewUserBill.xhtml"
+   TARGET="#xadmin#xentities#xuserBill#xuserBill#xviewUserBill.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+  <output ID="/admin/home.xhtml" NAME="output1" PATH="/admin/home.xhtml"
+   TARGET="#xadmin#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+</diagram>

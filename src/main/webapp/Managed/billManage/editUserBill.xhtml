@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" template="/admin/template.xhtml">  
+  <ui:define name="content"> 
+   
+       
+
+        
+            <rich:tabPanel switchType="ajax" >
+               
+                 
+                <rich:tab id="tab3" label="Bill Manage test">
+                    
+                </rich:tab>
+
+
+            </rich:tabPanel>
+
+
+       
+       
+    <rich:panel> 
+      <f:facet name="header"> 
+        <h:outputText value="UserBill"/> 
+      </f:facet>  
+      <h:form> 
+        <ui:include src="/Managed/billManage/editUserBillComponent.xhtml"/>  
+        <div class="buttonBox"> 
+          <h:commandButton value="Save" action="#{userBillAction.save}"></h:commandButton>  
+          <h:outputText value=" "/>  
+          <h:commandButton value="Cancel" immediate="true" action="#{userBillAction.cancel}"></h:commandButton> 
+        </div> 
+      </h:form> 
+    </rich:panel> 
+  </ui:define> 
+  <ui:define name="footer">
+        <s:div styleClass= "contentFooter">
+            <h:outputText style="position: relative;text-align: center; left: 42%; font-size:xx-small;font-weight: lighter;color: yellow" value="Quazi info inc, Toronto,Canada" />
+        </s:div>
+    </ui:define>
+</ui:composition>

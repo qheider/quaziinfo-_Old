@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:a="http://richfaces.org/a4j"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+
+ <style>
+  .rich-mpnl-mask-div{
+ filter: alpha(opacity=0);
+ opacity:0;
+ }
+
+
+ .rich-mpnl-panel{
+   filter: alpha(opacity=0);
+ opacity:0;
+
+
+}
+
+ </style>
+  
+
+
+
+    <rich:modalPanel id="LoadingModalPanel" width="55" height="55" moveable="false" resizeable="false"  zindex="2500">
+        <!--        <f:facet name="header">
+                    <h:outputText value="Processing"/>
+                </f:facet>-->
+
+        <h:graphicImage  value="/images/loading2.gif"/>
+    </rich:modalPanel>
+</ui:composition>

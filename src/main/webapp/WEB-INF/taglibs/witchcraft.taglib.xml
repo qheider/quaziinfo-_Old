@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+<facelet-taglib>
+      <namespace>http://witchcraft.sourceforge.net/jsf</namespace>
+	<tag>
+		<tag-name>comments</tag-name>
+		<source>wccomponents/comments.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>dynamicField</tag-name>
+		<source>wccomponents/dynamicField.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>calendar</tag-name>
+		<source>wccomponents/calendar.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>dateRange</tag-name>
+		<source>wccomponents/dateRange.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>field</tag-name>
+		<source>wccomponents/field.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>messages</tag-name>
+		<source>wccomponents/messages.xhtml</source>
+	</tag>
+	
+	<tag>
+		<tag-name>message</tag-name>
+		<source>wccomponents/message.xhtml</source>
+	</tag>
+	
+	
+	<tag>
+		<tag-name>submitCancelButtons</tag-name>
+		<source>wccomponents/submitCancelButtons.xhtml</source>
+	</tag>	
+	
+	<tag>
+		<tag-name>modalDialog</tag-name>
+		<source>wccomponents/modalDialog.xhtml</source>
+	</tag>	
+	
+	<tag>
+		<tag-name>login</tag-name>
+		<source>wccomponents/login.xhtml</source>
+	</tag>	
+	
+	<!--  
+	<library-class>
+           com.arcmind.jsfquickstart.tags.JsfCoreLibrary
+     </library-class>
+	 -->    
+
+</facelet-taglib>

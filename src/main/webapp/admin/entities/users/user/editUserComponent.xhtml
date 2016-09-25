@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{userAction.load(userId )  }"> 
+        <h:outputText value="#{msg.user_userName} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'userEdit')}"/>  
+        <h:inputText id="userName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'userEdit')}" label="#{msg.user_userName}" required="true" value="#{userAction.user.userName}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="userName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'userEdit')}"/>  
+        <h:outputText value="#{msg.user_password} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('password', 'userEdit')}"/>  
+        <h:inputSecret redisplay="true" id="password#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('password', 'userEdit')}" label="#{msg.user_password}" required="true" value="#{userAction.user.password}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputSecret>  
+        <rich:message styleClass="error errors" for="password" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('password', 'userEdit')}"/>  
+        <h:outputText value="#{msg.user_enabled}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'userEdit')}"/>  
+        <h:selectBooleanCheckbox id="enabled#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'userEdit')}" label="#{msg.user_enabled}" required="false" value="#{userAction.user.enabled}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:selectBooleanCheckbox>  
+        <rich:message styleClass="error errors" for="enabled" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'userEdit')}"/>  
+        <h:outputText value="#{msg.user_email} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'userEdit')}"/>  
+        <h:inputText id="email#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'userEdit')}" label="#{msg.user_email}" required="true" value="#{userAction.user.email}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="email" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'userEdit')}"/> 
+      </h:panelGrid>  
+      <br/>  
+      <rich:simpleTogglePanel label="#{msg.user_roles}" switchType="client" id="roles"> 
+        <rich:listShuttle sourceValue="#{userAction.listAvailableRoles}" targetValue="#{userAction.listRoles}" var="item"> 
+          <s:convertEntity/>  
+          <rich:column>#{item.displayName}</rich:column> 
+        </rich:listShuttle> 
+      </rich:simpleTogglePanel> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

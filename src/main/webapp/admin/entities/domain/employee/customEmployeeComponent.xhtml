@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <s:validateAll> 
+    <h:panelGrid columns="3" styleClass="summarywrap"> 
+      <h:panelGroup> 
+        <h:outputText value="#{msg.person_firstName} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('firstName', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="firstName" value="#{employeeAction.employee.firstName}"/>  
+        <rich:message styleClass="error errors" for="firstName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('firstName', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.person_lastName} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastName', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="lastName" value="#{employeeAction.employee.lastName}"/>  
+        <rich:message styleClass="error errors" for="lastName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastName', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.contactDetails_phone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('phone', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="contactDetails_phone" value="#{employeeAction.employee.contactDetails.phone}"/>  
+        <rich:message styleClass="error errors" for="contactDetails_phone" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('phone', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.contactDetails_secondaryPhone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('secondaryPhone', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="contactDetails_secondaryPhone" value="#{employeeAction.employee.contactDetails.secondaryPhone}"/>  
+        <rich:message styleClass="error errors" for="contactDetails_secondaryPhone" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('secondaryPhone', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.contactDetails_city}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="contactDetails_city" value="#{employeeAction.employee.contactDetails.city}"/>  
+        <rich:message styleClass="error errors" for="contactDetails_city" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.user_userName} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="user_userName" value="#{employeeAction.employee.user.userName}"/>  
+        <rich:message styleClass="error errors" for="user_userName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.user_enabled}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'employeeEdit')}"/>  
+        <br/>  
+        <h:selectBooleanCheckbox id="user_enabled" value="#{employeeAction.employee.user.enabled}"/>  
+        <rich:message styleClass="error errors" for="user_enabled" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.user_email} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="user_email" value="#{employeeAction.employee.user.email}"/>  
+        <rich:message styleClass="error errors" for="user_email" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.user_lastLogin}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastLogin', 'employeeEdit')}"/>  
+        <br/>  
+        <rich:calendar id="user_lastLogin" value="#{employeeAction.employee.user.lastLogin}"/>  
+        <rich:message styleClass="error errors" for="user_lastLogin" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastLogin', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.employee_employeeNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeNumber', 'employeeEdit')}"/>  
+        <br/>  
+        <h:inputText id="employeeNumber" value="#{employeeAction.employee.employeeNumber}"/>  
+        <rich:message styleClass="error errors" for="employeeNumber" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeNumber', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.employee_employeeType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeType', 'employeeEdit')}"/>  
+        <br/>  
+        <h:selectOneMenu id="employeeType" value="#{employeeAction.employee.employeeType}" required="false"> 
+          <f:selectItem itemLabel="Please Select..." itemValue=""/>  
+          <f:selectItem itemValue="FULL_TIME" itemLabel="Full_time"/>  
+          <f:selectItem itemValue="CONTRACT" itemLabel="Contract"/>  
+          <f:selectItem itemValue="PART_TIME" itemLabel="Part_time"/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="employeeType" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeType', 'employeeEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.employee_empPicture}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('empPicture', 'employeeEdit')}"/>  
+        <br/> 
+      </h:panelGroup> 
+    </h:panelGrid> 
+  </s:validateAll> 
+</ui:composition>

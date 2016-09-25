@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" template="/admin/template.xhtml">
+  <ui:define name="content">
+    <h:form>
+        <rich:panel>
+      
+          <ui:include src="/Managed/webLog/viewWebLogComponent.xhtml"/><br/>
+          <div class="buttonBox">
+            <h:commandButton value="Edit" rendered="#{s:hasPermission('webLog', 'edit', webLogAction.instance)}" action="edit"></h:commandButton>
+            <h:outputText value=" "/>
+            <h:commandButton value="Back To Listing" action="#{webLogAction.cancel}">
+              <s:conversationPropagation type="end"/>
+            </h:commandButton>
+          </div>
+        
+        
+      </rich:panel>
+    </h:form>
+    <br/>
+    
+    <br/>
+    
+      
+        <wc:comments backingAction="#{webLogAction}"/>
+      
+    
+  </ui:define>
+</ui:composition>

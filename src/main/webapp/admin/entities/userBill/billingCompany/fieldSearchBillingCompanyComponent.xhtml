@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <h:panelGrid columns="6"> 
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_brand}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="brand" value="#{billingCompanyList.billingCompany.brand}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_companyType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="companyType" value="#{billingCompanyList.billingCompany.companyType}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_rate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="rate_begin" value="#{billingCompanyList.rateRange.begin}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText>  
+      <h:inputText id="rate_end" value="#{billingCompanyList.rateRange.end}"> 
+        <f:converter converterId="javax.faces.Double"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_primaryPhone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="primaryPhone" value="#{billingCompanyList.billingCompany.primaryPhone}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_email}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="email" value="#{billingCompanyList.billingCompany.email}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_unitNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_unitNumber_begin" value="#{billingCompanyList.address_unitNumberRange.begin}"> 
+        <f:converter converterId="javax.faces.Integer"/> 
+      </h:inputText>  
+      <h:inputText id="address_unitNumber_end" value="#{billingCompanyList.address_unitNumberRange.end}"> 
+        <f:converter converterId="javax.faces.Integer"/> 
+      </h:inputText> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_streetNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_streetNumber" value="#{billingCompanyList.billingCompany.address.streetNumber}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_streetName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_streetName" value="#{billingCompanyList.billingCompany.address.streetName}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_streetDirection}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_streetDirection" value="#{billingCompanyList.billingCompany.address.streetDirection}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_streetType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_streetType" value="#{billingCompanyList.billingCompany.address.streetType}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_province}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_province" value="#{billingCompanyList.billingCompany.address.province}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_postalCode}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_postalCode" value="#{billingCompanyList.billingCompany.address.postalCode}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_city}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_city" value="#{billingCompanyList.billingCompany.address.city}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.address_country}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="address_country" value="#{billingCompanyList.billingCompany.address.country}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.company_poBox}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="poBox" value="#{billingCompanyList.billingCompany.poBox}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.billingCompany_name} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="name" value="#{billingCompanyList.billingCompany.name}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.billingCompany_webUrl}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyEdit')}"/>  
+      <br/>  
+      <h:inputText id="webUrl" value="#{billingCompanyList.billingCompany.webUrl}"/> 
+    </h:panelGroup> 
+  </h:panelGrid>  
+  <h:panelGrid columns="2"> 
+    <h:outputText value="Creation Date From"/>  
+    <h:outputText value="Creation Date To"/>  
+    <rich:calendar id="from" value="#{billingCompanyList.dateCreatedRange.begin}"/>  
+    <rich:calendar id="to" value="#{billingCompanyList.dateCreatedRange.end}"/> 
+  </h:panelGrid> 
+</ui:composition>

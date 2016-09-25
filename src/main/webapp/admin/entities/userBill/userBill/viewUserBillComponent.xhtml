@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="6" styleClass="viewInfo" columnClasses="leftCol, rightCol" onload="#{userBillAction.load(userBillId )  }"> 
+        <h:outputText value="#{msg.id}"/>  
+        <h:outputText value="#{userBillAction.userBill.id}"/>  
+        <h:outputText value="#{msg.userBill_billingCompany}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('billingCompany', 'userBillView')}"/>  
+        <s:link value="#{userBillAction.userBill.billingCompany.displayName}" view="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml" propagation="none"> 
+          <f:param name="billingCompanyId" value="#{userBillAction.userBill.billingCompany.id}"/>  
+          <f:param name="from" value="#{request.servletPath}"/> 
+        </s:link>  
+        <h:outputText value="#{msg.userBill_employee}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'userBillView')}"/>  
+        <s:link value="#{userBillAction.userBill.employee.displayName}" view="/admin/entities/domain/employee/viewEmployee.xhtml" propagation="none"> 
+          <f:param name="employeeId" value="#{userBillAction.userBill.employee.id}"/>  
+          <f:param name="from" value="#{request.servletPath}"/> 
+        </s:link>  
+        <h:outputText value="#{msg.userBill_minPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillView')}"/>  
+        <h:outputText id="minPayment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillView')}" value="#{userBillAction.userBill.minPayment}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_minPaymentDueDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillView')}"/>  
+        <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="minPaymentDueDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillView')}" value="#{userBillAction.userBill.minPaymentDueDate}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_currentBalance}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('currentBalance', 'userBillView')}"/>  
+        <h:outputText id="currentBalance#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('currentBalance', 'userBillView')}" value="#{userBillAction.userBill.currentBalance}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_amountPaid}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('amountPaid', 'userBillView')}"/>  
+        <h:outputText id="amountPaid#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('amountPaid', 'userBillView')}" value="#{userBillAction.userBill.amountPaid}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_previousPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousPayment', 'userBillView')}"/>  
+        <h:outputText id="previousPayment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousPayment', 'userBillView')}" value="#{userBillAction.userBill.previousPayment}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_statementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('statementDate', 'userBillView')}"/>  
+        <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="statementDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('statementDate', 'userBillView')}" value="#{userBillAction.userBill.statementDate}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_previousStatementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousStatementDate', 'userBillView')}"/>  
+        <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="previousStatementDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousStatementDate', 'userBillView')}" value="#{userBillAction.userBill.previousStatementDate}"></h:outputText>  
+        <h:outputText value="#{msg.userBill_comment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillView')}"/>  
+        <h:outputText escape="false" id="comment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillView')}" value="#{userBillAction.userBill.comment}"></h:outputText> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:form> 
+    <rich:datascroller align="left" for="dataAudit" maxPages="20" renderIfSinglePage="false"/>  
+    <br/>  
+    <rich:dataTable id="dataAudit" var="_log" value="#{userBillAction.auditLog}" rows="30" rowClasses="odd, even" styleClass="dataTable"> 
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Date"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.dateCreated}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Action"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.action}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="User"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.username}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Id"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entityId}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_minPayment}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.minPayment}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_minPaymentDueDate}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.minPaymentDueDate}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_currentBalance}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.currentBalance}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_amountPaid}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.amountPaid}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_previousPayment}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.previousPayment}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_statementDate}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.statementDate}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_previousStatementDate}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.previousStatementDate}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_comment}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.comment}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_billingCompany}"/> 
+        </f:facet>  
+        <s:link value="#{_log.entity.billingCompany.displayName}" view="/admin/entities/userBill/billingCompany/viewBillingCompany.xhtml"> 
+          <f:param name="id" value="#{_entity.billingCompany.id}"/>  
+          <f:param name="from" value="#{request.servletPath}"/> 
+        </s:link> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.userBill_employee}"/> 
+        </f:facet>  
+        <s:link value="#{_log.entity.employee.displayName}" view="/admin/entities/domain/employee/viewEmployee.xhtml"> 
+          <f:param name="id" value="#{_entity.employee.id}"/>  
+          <f:param name="from" value="#{request.servletPath}"/> 
+        </s:link> 
+      </rich:column> 
+    </rich:dataTable> 
+  </h:form> 
+</html>

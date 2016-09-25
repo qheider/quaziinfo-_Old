@@ -1,0 +1,57 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/webtemplate/template.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="Process Transitions definitions for #{processName}_#{processVersion} with process definition Id: #{processDefinitionId}" />
+
+			<rich:datascroller for="processInstancesTab" maxPages="30" />
+			<rich:spacer height="30" />
+			<rich:dataTable id="processInstancesTab" var="n" rows="20"
+				value="#{jbpmContext.graphSession.getProcessDefinition(processDefinitionId).nodes}" 
+				 rowClasses="odd, even" styleClass="dataTable" >
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Node Id" />
+					</f:facet>
+					<h:outputText value="#{n.id}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Name" />
+					</f:facet>
+					<h:outputText value="#{n.name}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Entering Transitions" />
+					</f:facet>
+					<rich:dataTable value="#{n.arrivingTransitions}" var="at">
+						<h:outputText value="#{at.name}" />
+					</rich:dataTable>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Leaving Transitions" />
+					</f:facet>
+					<rich:dataTable value="#{n.leavingingTransitions}" var="at">
+						<h:outputText value="#{at.name}" />
+					</rich:dataTable>
+				</rich:column>
+
+			</rich:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

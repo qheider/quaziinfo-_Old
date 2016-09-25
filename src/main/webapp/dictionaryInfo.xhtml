@@ -1,0 +1,85 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/admin/template.xhtml">
+
+<ui:define name="content">
+
+    <h:form id="dictionaryInfoForm">
+
+        <rich:panel>
+            <f:facet name="header">quazi dictionaryInfo</f:facet>
+
+            <s:decorate id="symbolicnameField" template="layout/edit.xhtml">
+                <ui:define name="label">Symbolic Name</ui:define>
+                <h:inputText id="symboliName" required="true"
+                             value="#{dictionaryInfoHome.instance.symbolicName}"/>
+            </s:decorate>
+            <br/>
+            <s:decorate id="componentNameField" template="layout/edit.xhtml">
+                <ui:define name="label">Component Name</ui:define>
+                <h:inputText id="componentName" required="true"
+                             value="#{dictionaryInfoHome.instance.componentName}"/>
+            </s:decorate>
+            <br/>
+            <s:decorate id="databaseNameField" template="layout/edit.xhtml">
+                <ui:define name="label">Database Name</ui:define>
+                <h:inputText id="databaseName" required="true"
+                             value="#{dictionaryInfoHome.instance.databaseName}"/>
+            </s:decorate>
+            <br/>
+            <s:decorate id="descriptionField" template="layout/edit.xhtml">
+                <ui:define name="label">Description</ui:define>
+                <h:inputText id="Description" required="true"
+                             value="#{dictionaryInfoHome.instance.description}"/>
+            </s:decorate>
+            
+            <br/>
+            <s:decorate id="marsDefField" template="layout/edit.xhtml">
+                <ui:define name="label">MARS Definition</ui:define>
+                <h:inputText id="marsDef" required="true"
+                             value="#{dictionaryInfoHome.instance.marsDef}"/>
+            </s:decorate>
+            
+            <br/>
+            <s:decorate id="bwDefField" template="layout/edit.xhtml">
+                <ui:define name="label">BW Definition</ui:define>
+                <h:inputText id="bwDef" required="true"
+                             value="#{dictionaryInfoHome.instance.bwDef}"/>
+            </s:decorate>
+            
+
+            <div style="clear:both"/>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{dictionaryInfoHome.persist}"
+                       rendered="#{!dictionaryInfoHome.managed}"/>
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{dictionaryInfoHome.update}"
+                       rendered="#{dictionaryInfoHome.managed}"/>
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{dictionaryInfoHome.remove}"
+                      immediate="true"
+                       rendered="#{dictionaryInfoHome.managed}"/>
+            <s:button propagation="end"
+                               id="cancel"
+                            value="Cancel"
+                             view="/dictionaryInfoList.xhtml"/>
+        </div>
+
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

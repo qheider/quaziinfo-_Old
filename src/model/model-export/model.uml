@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_xqN0wBhmEeWeg8kZCqW8Kg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:wcprofile="http:///schemas/wcprofile/_xqKxcBhmEeWeg8kZCqW8Kg/0" xsi:schemaLocation="http:///schemas/MagicDrawProfile/_xqN0wBhmEeWeg8kZCqW8Kg/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_x3yXMRhmEeWeg8kZCqW8Kg http:///schemas/wcprofile/_xqKxcBhmEeWeg8kZCqW8Kg/0 wcprofile.profile.uml#_x3v6chhmEeWeg8kZCqW8Kg">
+  <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" viewpoint="">
+    <ownedComment xmi:id="_14_0_8e50284_1230678218627_368095_98" body="Author:jsingh.&#xA;Created:12/30/08 6:03 PM.&#xA;Title:.&#xA;Comment:.&#xA;" annotatedElement="eee_1045467100313_135436_1"/>
+    <packageImport xmi:id="_0primitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0javaPrimitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="magicdraw_uml_standard_profile_v_0001" name="UML Standard Profile">
+      <ownedComment xmi:id="_be00301_1078843546940_242228_131" body="UML Standard Profile contains UML metamodel (metaclasses without properties and associations), StandardProfileL2 and StandardProfileL3 from UML specification, Standard UML stereotypes defined in annex C of UML specification.&#xA;Profile also includes validation suites for UML model correctness and completeness checking, and stereotypes used by MagicDraw internally." annotatedElement="magicdraw_uml_standard_profile_v_0001"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_14_0_8e50284_1244334181684_890826_566" name="com.oreon.kg">
+      <packagedElement xmi:type="uml:Package" xmi:id="_14_0_8e50284_1296271817871_188225_1861" name="reports">
+        <packagedElement xmi:type="uml:Realization" xmi:id="_14_0_8e50284_1296585847611_636907_2459" name="" supplier="_14_0_8e50284_1296585767269_673716_2431" client="_14_0_8e50284_1296585843102_743368_2454"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_14_0_8e50284_1296585767269_673716_2431" name="EmployeesByDepartment">
+          <ownedAttribute xmi:id="_14_0_8e50284_1296585843102_743368_2454" name="firstName" visibility="private" clientDependency="_14_0_8e50284_1296585847611_636907_2459">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1296585866272_363297_2474" name="lastName" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1296585870712_879835_2476" name="type" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1296585986227_428602_2482" name="department.name" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_14_0_8e50284_1242786811112_76705_358" name="domain">
+        <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1335675624432_836947_2055" name="WebLog">
+          <ownedAttribute xmi:id="_16_9_5ee020b_1335675721981_162004_2094" name="heading" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1364109111214_302120_1787" name="headingDesc" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1335675755209_56891_2096" name="body" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_16_9_5ee020b_1356285833960_614012_1790"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1335710957388_441196_2103" name="" visibility="private" type="_14_0_8e50284_1242786997496_528918_451" association="_16_9_5ee020b_1335710957388_284411_2101">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335710957388_763049_2106" name="" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335710957388_571131_2107" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1338724757751_173954_1724" name="tag" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1345898698741_458254_1753" name="type" visibility="private" type="_16_9_5ee020b_1345898528591_499480_1732"/>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1339127770875_81505_2093" name="tagFile" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_594827_7952"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_9_1f7204ca_1434925428514_589174_1779" name="Esc">
+          <packagedElement xmi:type="uml:Association" xmi:id="_16_9_1f7204ca_1434926207524_747431_1990" name="" memberEnd="_16_9_1f7204ca_1434926207524_753741_1991 _16_9_1f7204ca_1434926207524_464509_1992"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_1f7204ca_1434925986615_708208_1932" name="ESCBatch">
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434926005926_918119_1960" name="BatFileName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434926090360_463389_1968" name="ClientId" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434926124151_706492_1974" name="BatchDate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434926207524_753741_1991" name="" visibility="private" type="_16_9_1f7204ca_1434925489961_670134_1810" aggregation="composite" association="_16_9_1f7204ca_1434926207524_747431_1990">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_1f7204ca_1434926211455_372666_2006" name="" value="*"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_1f7204ca_1434926211455_969600_2005" name=""/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_1f7204ca_1434925489961_670134_1810" name="tempo">
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925557188_278044_1836" name="TD_DET_TYPE" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925607771_911001_1842" name="TD_UNIQUE_IDENTIFIER" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925620832_282953_1848" name="TD_BRANCH_NUM" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925649308_766357_1854" name="TD_CUST_BUSINESS_TYPE" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925671114_216439_1860" name="TD_CUST_INC_NUMBER" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925692986_943332_1866" name="TD_CUST_INC_PROV" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925722628_106878_1872" name="TD_CUST_INC_COUNTRY" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925741626_319265_1878" name="TD_CUST_SINCE_DATE" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925761214_490639_1884" name="TD_FNAME_LINE1" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925777911_202848_1890" name="TD_FNAME_LINE2" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925797737_146495_1896" name="TD_FNAME_LINE3" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925812097_406420_1902" name="TDfilename" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434925828741_630808_1908" name="TDDate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_1f7204ca_1434926207524_464509_1992" name="" visibility="private" type="_16_9_1f7204ca_1434925986615_708208_1932" association="_16_9_1f7204ca_1434926207524_747431_1990">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_1f7204ca_1434926215895_715627_2010" name="" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_1f7204ca_1434926215895_105949_2009" name=""/>
+            </ownedAttribute>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_9_5ee020b_1346419746300_503193_2052" name="userBill">
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1346421978214_54648_2291" name="BillingCompany">
+            <generalization xmi:id="_16_9_5ee020b_1346423385250_529450_2445" isSubstitutable="true" general="_16_9_5ee020b_1346422070676_47200_2317"/>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346421978214_577864_2293" name="name" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_273606_7954"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346461522792_629408_2575" name="" visibility="private" type="_16_9_5ee020b_1346423628377_431464_2498" association="_16_9_5ee020b_1346461522792_517241_2574">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1346461538346_590528_2600" name="" value="*"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1346461538346_993786_2599" name=""/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1347203846610_610659_2322" name="webUrl" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1346423628377_431464_2498" name="UserBill">
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_858338_2501" name="minPayment" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077239_193715_7951"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_432600_2505" name="minPaymentDueDate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_465300_2500" name="currentBalance" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077239_193715_7951"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_70999_2502" name="amountPaid" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077239_193715_7951"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_29039_2503" name="previousPayment" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077239_193715_7951"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628377_963767_2504" name="statementDate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628392_180853_2506" name="previousStatementDate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423628392_820928_2507" name="comment" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_879467_7953"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346461522792_398336_2576" name="" visibility="private" type="_16_9_5ee020b_1346421978214_54648_2291" association="_16_9_5ee020b_1346461522792_517241_2574">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1346461529095_634634_2592" name="" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1346461529095_257530_2591" name=""/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346466535724_933933_1838" name="" visibility="private" type="_14_0_8e50284_1242786997496_528918_451" association="_16_9_5ee020b_1346466535724_841085_1836"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1346422156897_309618_2329" name="Address">
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_224209_2336" name="unitNumber" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_924956_2331" name="streetNumber" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_408450_2332" name="streetName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_306511_2330" name="streetDirection" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_980424_2334" name="streetType" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_304892_2333" name="province" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_502765_2335" name="postalCode" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_841440_2337" name="city" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_169699_2338" name="country" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422156897_694103_2339" name="displayAdr" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1346461522792_517241_2574" name="" memberEnd="_16_9_5ee020b_1346461522792_629408_2575 _16_9_5ee020b_1346461522792_398336_2576"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1346422070676_47200_2317" name="Company" isAbstract="true">
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422070676_520567_2318" name="brand" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422070676_343445_2319" name="companyType" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422070691_453021_2321" name="rate" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077239_193715_7951"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422070691_428439_2322" name="primaryPhone" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346422070691_385230_2323" name="email" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1346423418931_463039_2464" name="" visibility="private" type="_16_9_5ee020b_1346422156897_309618_2329" association="_16_9_5ee020b_1346423418931_259085_2463">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1346423423595_560175_2473" name="" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1346423423595_287658_2472" name="" value="1"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1351650238693_813060_2009" name="poBox" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1346423418931_259085_2463" name="" memberEnd="_16_9_5ee020b_1346423418931_927473_2465 _16_9_5ee020b_1346423418931_463039_2464">
+            <ownedEnd xmi:id="_16_9_5ee020b_1346423418931_927473_2465" name="" visibility="private" type="_16_9_5ee020b_1346422070676_47200_2317" association="_16_9_5ee020b_1346423418931_259085_2463">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1346423426450_521264_2477" name="" value="1"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1346423426434_152422_2476" name="" value="1"/>
+            </ownedEnd>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_16_9_5ee020b_1345898528591_499480_1732" name="WebLogType">
+          <ownedLiteral xmi:id="_16_9_5ee020b_1345898586031_208599_1749" name="Public"/>
+          <ownedLiteral xmi:id="_16_9_5ee020b_1345898630803_63474_1751" name="Private"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1335534600525_262349_1986" name="" memberEnd="_16_9_5ee020b_1335534600525_554695_1988 _16_9_5ee020b_1335534600525_577873_1987">
+          <ownedEnd xmi:id="_16_9_5ee020b_1335534600525_554695_1988" name="" visibility="private" type="_14_0_8e50284_1242786932476_666519_405" association="_16_9_5ee020b_1335534600525_262349_1986">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335534607530_218417_1996" name="" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335534607530_193877_1995" name="" value="1"/>
+          </ownedEnd>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1337828818175_709167_1724" name="PassProtect">
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828818206_412852_1728" name="" visibility="private" type="_14_0_8e50284_1242786997496_528918_451" association="_16_9_5ee020b_1337828818206_170197_1726">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1337828983889_748057_1744" name="" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1337828983889_998123_1743" name=""/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828868872_628258_1735" name="companyName" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828902817_571881_1737" name="companyUserName" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828930944_777484_1739" name="companyPassword" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828954500_101207_1741" name="note" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_879467_7953"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_14_0_8e50284_1237220470811_909282_725" name="ContactDetails">
+          <ownedAttribute xmi:id="_14_0_8e50284_1237220481901_982789_744" name="phone" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1237220491550_261865_746" name="secondaryPhone" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1237220499059_137874_748" name="city" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_14_0_8e50284_1242786932476_666519_405" name="Person" isAbstract="true">
+          <ownedAttribute xmi:id="_14_0_8e50284_1242786932478_503346_407" name="firstName" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1242786932478_507705_408" name="lastName" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_8e50284_1294093207885_214103_11349" name="" visibility="private" type="_14_0_8e50284_1237220470811_909282_725" association="_14_0_8e50284_1294093207885_839089_11348">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_14_0_8e50284_1296272028074_176168_2342" name="" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_14_0_8e50284_1296272028074_491254_2341" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1335534600525_577873_1987" name="" visibility="private" type="_16_9_5ee020b_1335532691357_844832_1696" association="_16_9_5ee020b_1335534600525_262349_1986">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335534612958_784929_2000" name="" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335534612958_274179_1999" name="" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1337828818206_170197_1726" name="" memberEnd="_16_9_5ee020b_1337828818206_313631_1727 _16_9_5ee020b_1337828818206_412852_1728"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_14_0_8e50284_1294093207885_839089_11348" name="" memberEnd="_14_0_8e50284_1294093207885_959921_11350 _14_0_8e50284_1294093207885_214103_11349">
+          <ownedEnd xmi:id="_14_0_8e50284_1294093207885_959921_11350" name="" visibility="private" type="_14_0_8e50284_1242786932476_666519_405" association="_14_0_8e50284_1294093207885_839089_11348"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_14_0_8e50284_1242787392961_336187_808" name="EmployeeType">
+          <ownedLiteral xmi:id="_14_0_8e50284_1242787408147_238753_827" name="FULL_TIME"/>
+          <ownedLiteral xmi:id="_14_0_8e50284_1242787411743_741974_829" name="CONTRACT"/>
+          <ownedLiteral xmi:id="_14_0_238c0518_1272550563013_656554_1019" name="PART_TIME"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_16_9_5ee020b_1335532691357_694341_1695" name="users">
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1335532691357_844832_1696" name="User">
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_133244_1739" name="userName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_273606_7954"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_774720_1740" name="password" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_699287_1741" name="enabled" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_16_9_5ee020b_1335532691450_950388_1764" name="" value="true"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_71104_1742" name="" visibility="private" type="_16_9_5ee020b_1335532691357_947271_1697" aggregation="shared" association="_16_9_5ee020b_1335532691372_436467_1698">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335532691481_890155_1765" name="" value="*"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335532691481_614408_1766" name=""/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_847563_1743" name="email" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_273606_7954"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_168120_1744" name="lastLogin" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077238_258196_7950"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1335532691372_436467_1698" name="" memberEnd="_16_9_5ee020b_1335532691450_71104_1742 _16_9_5ee020b_1335532691450_835681_1747"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_16_9_5ee020b_1335532691357_947271_1697" name="Role">
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_168092_1746" name="name" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_273606_7954"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_16_9_5ee020b_1335532691450_835681_1747" name="" visibility="private" type="_16_9_5ee020b_1335532691357_844832_1696" association="_16_9_5ee020b_1335532691372_436467_1698">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335532691481_936802_1770" name="" value="*"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335532691481_604031_1771" name=""/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_16_9_5ee020b_1339126024116_303602_2086" name="findByName" visibility="public">
+              <ownedParameter xmi:id="_16_9_5ee020b_1339126212645_31347_2091" name="" visibility="public" type="_16_9_5ee020b_1335532691357_947271_1697" direction="return"/>
+              <ownedParameter xmi:id="_16_9_5ee020b_1339127275036_866258_2092" name="name" visibility="public" direction="inout">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1346466535724_841085_1836" name="" memberEnd="_16_9_5ee020b_1346466535724_933933_1838 _16_9_5ee020b_1346466535724_755776_1837"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_16_9_5ee020b_1335710957388_284411_2101" name="" memberEnd="_16_9_5ee020b_1335710957388_441196_2103 _16_9_5ee020b_1335710957388_66400_2102"/>
+        <packagedElement xmi:type="uml:Enumeration" xmi:id="_14_0_8e50284_1294092077332_730395_7998" name="Gender">
+          <ownedLiteral xmi:id="_14_0_8e50284_1294092077420_980672_9972" name="F"/>
+          <ownedLiteral xmi:id="_14_0_8e50284_1294092077420_255224_9973" name="M"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_14_0_8e50284_1242786997496_528918_451" name="Employee">
+          <generalization xmi:id="_14_0_8e50284_1242787073934_906523_548" isSubstitutable="false" general="_14_0_8e50284_1242786932476_666519_405"/>
+          <ownedAttribute xmi:id="_14_0_238c0518_1272550489224_310380_1015" name="employeeNumber" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_14_0_238c0518_1272550599517_673884_1021" name="employeeType" visibility="private" type="_14_0_8e50284_1242787392961_336187_808"/>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1335710957388_66400_2102" name="" visibility="private" type="_16_9_5ee020b_1335675624432_836947_2055" aggregation="composite" association="_16_9_5ee020b_1335710957388_284411_2101">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1335710957388_124246_2104" name="" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1335710957388_609216_2105" name=""/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1336292798133_12569_2108" name="empPicture" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="wcprofile.profile.uml#_14_0_8e50284_1294092077240_594827_7952"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1337828818206_313631_1727" name="" visibility="private" type="_16_9_5ee020b_1337828818175_709167_1724" aggregation="composite" association="_16_9_5ee020b_1337828818206_170197_1726">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1337828988226_575811_1748" name="" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1337828988226_593494_1747" name=""/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_16_9_5ee020b_1346466535724_755776_1837" name="" visibility="private" type="_16_9_5ee020b_1346423628377_431464_2498" aggregation="composite" association="_16_9_5ee020b_1346466535724_841085_1836">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_9_5ee020b_1346466563524_120392_1862" name="" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_9_5ee020b_1346466563524_411015_1861" name=""/>
+          </ownedAttribute>
+          <ownedOperation xmi:id="_14_0_8e50284_1296320300275_106637_662" name="register" visibility="public">
+            <ownedParameter xmi:id="_14_0_8e50284_1296322773984_480631_666" name="" visibility="public" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_14_0_8e50284_1296323421134_776643_861" name="login" visibility="public">
+            <ownedParameter xmi:id="_14_0_8e50284_1296323438575_83023_863" name="" visibility="public" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:id="_14_0_8e50284_1296499318248_667745_2320" name="findByPhone" visibility="public">
+            <ownedComment xmi:id="_14_0_8e50284_1296499409000_971327_2324" body="This function will return a unique Candidate by phone" annotatedElement="_14_0_8e50284_1296499318248_667745_2320"/>
+            <ownedParameter xmi:id="_14_0_8e50284_1296499352128_210259_2322" name="phone" visibility="public" direction="inout">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:id="_14_0_8e50284_1296499352129_144747_2323" name="" visibility="public" type="_14_0_8e50284_1242786997496_528918_451" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_14_0_8e50284_1296339403889_10284_1021" name="retrieveCredentials" visibility="public">
+            <ownedParameter xmi:id="_14_0_8e50284_1296339422889_175504_1023" name="" visibility="public" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_14_0_8e50284_1296322947247_200287_667" name="navigationUsecases">
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_14_0_8e50284_1296322963453_640518_668" name="registerAndAuthenticate">
+          <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_14_0_8e50284_1296322993068_766790_671" name="reg">
+            <region xmi:id="_14_0_8e50284_1296322993134_489898_672" name="" visibility="public">
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296323008107_693397_692" name="index" visibility="public" outgoing="_14_0_8e50284_1296323232298_105814_789 _14_0_8e50284_1296323330774_557275_840 _14_0_8e50284_1296339056624_605575_942"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296323019314_571648_706" name="welcome" visibility="public" incoming="_14_0_8e50284_1296323101167_114035_767 _14_0_8e50284_1296323240184_491151_806"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296323029246_959835_720" name="doLogin" visibility="public" outgoing="_14_0_8e50284_1296323240184_491151_806" incoming="_14_0_8e50284_1296323232298_105814_789"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296323046365_162208_734" name="doRegister" visibility="public" outgoing="_14_0_8e50284_1296323101167_114035_767" incoming="_14_0_8e50284_1296323299631_814264_837"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296323272411_764662_822" name="registerForm" visibility="public" outgoing="_14_0_8e50284_1296323299631_814264_837" incoming="_14_0_8e50284_1296323330774_557275_840"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296339034175_396862_870" name="enterEmail" visibility="public" outgoing="_14_0_8e50284_1296339546247_943119_1038" incoming="_14_0_8e50284_1296339056624_605575_942"/>
+              <subvertex xmi:type="uml:FinalState" xmi:id="_14_0_8e50284_1296339097156_490935_960" name="" visibility="public" incoming="_14_0_8e50284_1296339192884_490204_1000"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296339138838_626388_985" name="credentialsEmailed" visibility="public" outgoing="_14_0_8e50284_1296339192884_490204_1000" incoming="_14_0_8e50284_1296339560818_267195_1041"/>
+              <subvertex xmi:type="uml:State" xmi:id="_14_0_8e50284_1296339519128_21196_1025" name="doRetrieve" visibility="public" outgoing="_14_0_8e50284_1296339560818_267195_1041" incoming="_14_0_8e50284_1296339546247_943119_1038"/>
+              <transition xmi:id="_14_0_8e50284_1296323101167_114035_767" name="" visibility="public" target="_14_0_8e50284_1296323019314_571648_706" guard="_14_0_8e50284_1296323191170_91365_786" source="_14_0_8e50284_1296323046365_162208_734">
+                <ownedRule xmi:id="_14_0_8e50284_1296323191170_91365_786" name="unnamed1">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_14_0_8e50284_1296323191171_340514_787" name="">
+                    <language>English</language>
+                    <body>success</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296323232298_105814_789" name="" visibility="public" target="_14_0_8e50284_1296323029246_959835_720" source="_14_0_8e50284_1296323008107_693397_692">
+                <trigger xmi:id="_14_0_8e50284_1296323491444_718254_867" name="" visibility="public" event="_14_0_8e50284_1296323491444_576022_866"/>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296323240184_491151_806" name="success" visibility="public" target="_14_0_8e50284_1296323019314_571648_706" guard="_14_0_8e50284_1296323475219_737610_864" source="_14_0_8e50284_1296323029246_959835_720">
+                <ownedRule xmi:id="_14_0_8e50284_1296323475219_737610_864" name="unnamed3">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_14_0_8e50284_1296323475219_659542_865" name="">
+                    <language>English</language>
+                    <body>success</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296323299631_814264_837" name="register" visibility="public" target="_14_0_8e50284_1296323046365_162208_734" source="_14_0_8e50284_1296323272411_764662_822">
+                <trigger xmi:id="_14_0_8e50284_1296323299632_699486_838" name="" visibility="public" event="_14_0_8e50284_1296323146536_454104_784"/>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296323330774_557275_840" name="" visibility="public" target="_14_0_8e50284_1296323272411_764662_822" guard="_14_0_8e50284_1296323343879_713192_855" source="_14_0_8e50284_1296323008107_693397_692">
+                <ownedRule xmi:id="_14_0_8e50284_1296323343879_713192_855" name="unnamed2">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_14_0_8e50284_1296323343879_293750_856" name="">
+                    <language>English</language>
+                    <body>register</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296339056624_605575_942" name="" visibility="public" target="_14_0_8e50284_1296339034175_396862_870" guard="_14_0_8e50284_1296339078945_930267_957" source="_14_0_8e50284_1296323008107_693397_692">
+                <ownedRule xmi:id="_14_0_8e50284_1296339078945_930267_957" name="unnamed4">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_14_0_8e50284_1296339078945_416563_958" name="">
+                    <language>English</language>
+                    <body>forgotCredentials</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296339192884_490204_1000" name="" visibility="public" target="_14_0_8e50284_1296339097156_490935_960" source="_14_0_8e50284_1296339138838_626388_985"/>
+              <transition xmi:id="_14_0_8e50284_1296339546247_943119_1038" name="" visibility="public" target="_14_0_8e50284_1296339519128_21196_1025" source="_14_0_8e50284_1296339034175_396862_870">
+                <trigger xmi:id="_14_0_8e50284_1296339546247_682002_1039" name="" visibility="public" event="_14_0_8e50284_1296339269444_887583_1015"/>
+              </transition>
+              <transition xmi:id="_14_0_8e50284_1296339560818_267195_1041" name="" visibility="public" target="_14_0_8e50284_1296339138838_626388_985" guard="_14_0_8e50284_1296339633267_120914_1057" source="_14_0_8e50284_1296339519128_21196_1025">
+                <ownedRule xmi:id="_14_0_8e50284_1296339633267_120914_1057" name="unnamed5">
+                  <specification xmi:type="uml:OpaqueExpression" xmi:id="_14_0_8e50284_1296339633267_616667_1058" name="">
+                    <language>English</language>
+                    <body>success</body>
+                  </specification>
+                </ownedRule>
+              </transition>
+            </region>
+          </ownedBehavior>
+        </packagedElement>
+        <packagedElement xmi:type="uml:CallEvent" xmi:id="_14_0_8e50284_1296323146536_454104_784" name="" operation="_14_0_8e50284_1296320300275_106637_662"/>
+        <packagedElement xmi:type="uml:CallEvent" xmi:id="_14_0_8e50284_1296323491444_576022_866" name="" operation="_14_0_8e50284_1296323421134_776643_861"/>
+        <packagedElement xmi:type="uml:CallEvent" xmi:id="_14_0_8e50284_1296339269444_887583_1015" name="" operation="_14_0_8e50284_1296339403889_10284_1021"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_14_0_8e50284_1296053343472_124615_1335" name="workflows"/>
+    </packagedElement>
+    <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
+      <eAnnotations xmi:id="_x30zrBhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_x3xJXBhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
+    </profileApplication>
+    <profileApplication xmi:id="_14_0_8e50284_1294092077182_713178_5251profileApplicationData">
+      <eAnnotations xmi:id="_x32BERhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="wcprofile.profile.uml#_x3v6chhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="wcprofile.profile.uml#_14_0_8e50284_1294092077182_713178_5251"/>
+    </profileApplication>
+    <profileApplication xmi:id="_16_6_8f90291_1254846042821_86742_517profileApplicationData">
+      <eAnnotations xmi:id="_x33PMRhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_x3xIoRhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_16_6_8f90291_1254846042821_86742_517"/>
+    </profileApplication>
+    <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
+      <eAnnotations xmi:id="_x34dURhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_x3yXMRhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
+    </profileApplication>
+    <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
+      <eAnnotations xmi:id="_x35rcRhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL2.profile.uml#_x3zlVRhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.StandardProfileL2.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
+    </profileApplication>
+    <profileApplication xmi:id="_16_8beta_62a020a_1256807755193_508228_378profileApplicationData">
+      <eAnnotations xmi:id="_x365kRhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.StandardProfileL3.profile.uml#_x3zlQxhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.StandardProfileL3.profile.uml#_16_8beta_62a020a_1256807755193_508228_378"/>
+    </profileApplication>
+    <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
+      <eAnnotations xmi:id="_x38HsRhmEeWeg8kZCqW8Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_x30L4hhmEeWeg8kZCqW8Kg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
+    </profileApplication>
+  </uml:Model>
+  <wcprofile:Entity xmi:id="_x8M8oBhmEeWeg8kZCqW8Kg" base_Class="_16_9_5ee020b_1335532691357_947271_1697"/>
+  <wcprofile:Entity xmi:id="_x8M8oRhmEeWeg8kZCqW8Kg" base_Class="_16_9_5ee020b_1335532691357_844832_1696"/>
+  <wcprofile:Entity xmi:id="_x8NjsBhmEeWeg8kZCqW8Kg" base_Class="_16_9_5ee020b_1346421978214_54648_2291" displayName="name"/>
+  <wcprofile:ViewState xmi:id="_x8PY4BhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296323008107_693397_692"/>
+  <wcprofile:ViewState xmi:id="_x8PY4RhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296323019314_571648_706"/>
+  <wcprofile:ViewState xmi:id="_x8PY4hhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296323272411_764662_822" component="editEmployee"/>
+  <wcprofile:ActionState xmi:id="_x8PY4xhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296323029246_959835_720"/>
+  <wcprofile:ActionState xmi:id="_x8PY5BhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296323046365_162208_734"/>
+  <wcprofile:ActionState xmi:id="_x8PY5RhmEeWeg8kZCqW8Kg" base_State="_14_0_8e50284_1296339519128_21196_1025"/>
+  <wcprofile:SystemUser xmi:id="_x8PY5hhmEeWeg8kZCqW8Kg" base_Class="_14_0_8e50284_1242786997496_528918_451"/>
+  <wcprofile:Column xmi:id="_x8P_8BhmEeWeg8kZCqW8Kg" base_Property="_14_0_8e50284_1242786932478_503346_407" notNull="true"/>
+  <wcprofile:Column xmi:id="_x8QnARhmEeWeg8kZCqW8Kg" base_Property="_14_0_8e50284_1242786932478_507705_408" notNull="true"/>
+  <wcprofile:Column xmi:id="_x8QnAxhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1346422156897_694103_2339" derivedProperty="(unitNumber == null ? &quot;&quot; : unitNumber + &quot; - &quot;) + streetNumber + &quot; &quot; + streetName+ &quot; &quot;+(streetType == null ? &quot;&quot; : streetType) + &quot; &quot; + (streetDirection == null ? &quot;&quot; : streetDirection + &quot; &quot;) + city + &quot; &quot; + province"/>
+  <wcprofile:Column xmi:id="_x8ROEBhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335532691450_133244_1739" uniqueProperty="true"/>
+  <wcprofile:Column xmi:id="_x8ROERhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335675721981_162004_2094" textSize="155"/>
+  <wcprofile:Column xmi:id="_x8ROEhhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335532691450_71104_1742" leadingInManyToMany="true"/>
+  <wcprofile:Column xmi:id="_x8ROExhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335532691450_774720_1740" notNull="true" secret="true" repeat="true"/>
+  <wcprofile:Column xmi:id="_x8ROFBhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335532691450_168120_1744" systemModifyOnly="true"/>
+  <wcprofile:Column xmi:id="_x8ROFRhmEeWeg8kZCqW8Kg" base_Property="_16_9_5ee020b_1335532691450_168092_1746" uniqueProperty="true"/>
+  <wcprofile:Report xmi:id="_x8ROFhhmEeWeg8kZCqW8Kg" base_Class="_14_0_8e50284_1296585767269_673716_2431" query="select emp from Employee emp order by emp.department, emp.lastName"/>
+  <wcprofile:NamedQueryOp xmi:id="_x8ROFxhmEeWeg8kZCqW8Kg" base_Operation="_14_0_8e50284_1296499318248_667745_2320" query="select employee from Employee employee where employee.contactDetails.phone = ?1"/>
+  <wcprofile:NamedQueryOp xmi:id="_x8ROGBhmEeWeg8kZCqW8Kg" base_Operation="_16_9_5ee020b_1339126024116_303602_2086" query="select r from Role r where r.name = ?1"/>
+  <wcprofile:ContainedAssociation xmi:id="_x8ROGRhmEeWeg8kZCqW8Kg" base_Association="_16_9_5ee020b_1335534600525_262349_1986"/>
+  <wcprofile:ContainedAssociation xmi:id="_x8ROGhhmEeWeg8kZCqW8Kg" base_Association="_16_9_5ee020b_1346423418931_259085_2463"/>
+  <wcprofile:MappedSuperClass xmi:id="_x8R1IBhmEeWeg8kZCqW8Kg" base_Class="_16_9_5ee020b_1346422070676_47200_2317"/>
+  <wcprofile:MappedSuperClass xmi:id="_x8R1IRhmEeWeg8kZCqW8Kg" base_Class="_14_0_8e50284_1242786932476_666519_405" displayName="lastName + &quot;,&quot; + firstName" popupInfo="contactDetails.city + &quot; &quot; + contactDetails.phone"/>
+  <wcprofile:Embeddable xmi:id="_x8WGkBhmEeWeg8kZCqW8Kg" base_Class="_14_0_8e50284_1237220470811_909282_725"/>
+  <wcprofile:Embeddable xmi:id="_x8WGkRhmEeWeg8kZCqW8Kg" base_Class="_16_9_5ee020b_1346422156897_309618_2329" displayName="getDisplayAdr()"/>
+  <wcprofile:ReportGroup xmi:id="_x8WGkhhmEeWeg8kZCqW8Kg" summaryFields="COUNT" base_Property="_14_0_8e50284_1296585986227_428602_2482" fieldExpr="department.name"/>
+  <wcprofile:EntitiesPackage xmi:id="_x8WGlBhmEeWeg8kZCqW8Kg" base_Package="_16_9_5ee020b_1335532691357_694341_1695"/>
+  <wcprofile:EntitiesPackage xmi:id="_x8WGlRhmEeWeg8kZCqW8Kg" base_Package="_14_0_8e50284_1244334181684_890826_566"/>
+  <wcprofile:ViewStateMachine xmi:id="_x8WGlhhmEeWeg8kZCqW8Kg" base_StateMachine="_14_0_8e50284_1296322993068_766790_671"/>
+  <wcprofile:ReportField xmi:id="_x8WtoBhmEeWeg8kZCqW8Kg" base_Property="_14_0_8e50284_1296585870712_879835_2476" fieldExpression="employeeType.name"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_x8WtoRhmEeWeg8kZCqW8Kg" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+</xmi:XMI>

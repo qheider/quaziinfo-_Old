@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGrid columns="1" styleClass="summarywrap"> 
+    <p:panel id="pnlWebLogs" header="WebLogs" toggleable="true" closable="true"> 
+      <h:panelGrid columns="2"> 
+        <p:pieChart value="#{employeeList.resultList}" var="dep" categoryField="#{dep.displayName}" dataField="#{dep.webLogsCount}"/>  
+        <p:barChart value="#{employeeList.resultList}" var="dep" yfield="#{dep.displayName}"> 
+          <p:chartSeries label="Incidents" value="#{dep.webLogsCount}"/> 
+        </p:barChart> 
+      </h:panelGrid> 
+    </p:panel>  
+    <p:panel id="pnlPassProtects" header="PassProtects" toggleable="true" closable="true"> 
+      <h:panelGrid columns="2"> 
+        <p:pieChart value="#{employeeList.resultList}" var="dep" categoryField="#{dep.displayName}" dataField="#{dep.passProtectsCount}"/>  
+        <p:barChart value="#{employeeList.resultList}" var="dep" yfield="#{dep.displayName}"> 
+          <p:chartSeries label="Incidents" value="#{dep.passProtectsCount}"/> 
+        </p:barChart> 
+      </h:panelGrid> 
+    </p:panel>  
+    <p:panel id="pnlUserBills" header="UserBills" toggleable="true" closable="true"> 
+      <h:panelGrid columns="2"> 
+        <p:pieChart value="#{employeeList.resultList}" var="dep" categoryField="#{dep.displayName}" dataField="#{dep.userBillsCount}"/>  
+        <p:barChart value="#{employeeList.resultList}" var="dep" yfield="#{dep.displayName}"> 
+          <p:chartSeries label="Incidents" value="#{dep.userBillsCount}"/> 
+        </p:barChart> 
+      </h:panelGrid> 
+    </p:panel> 
+  </h:panelGrid> 
+</ui:composition>

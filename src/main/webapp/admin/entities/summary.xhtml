@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" template="/admin/template.xhtml">  
+  <ui:define name="content"> 
+    <h:form> 
+      <ul> 
+        <li>
+          <h:commandLink value="PassProtect" action="passProtect"/> 
+        </li>  
+        <li>
+          <h:commandLink value="Role" action="role"/> 
+        </li>  
+        <li>
+          <h:commandLink value="User" action="user"/> 
+        </li>  
+        <li>
+          <h:commandLink value="BillingCompany" action="billingCompany"/> 
+        </li>  
+        <li>
+          <h:commandLink value="UserBill" action="userBill"/> 
+        </li>  
+        <li>
+          <h:commandLink value="Employee" action="employee"/> 
+        </li>  
+        <li>
+          <h:commandLink value="WebLog" action="webLog"/> 
+        </li> 
+      </ul> 
+    </h:form> 
+  </ui:define> 
+</ui:composition>

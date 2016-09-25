@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="6" styleClass="viewInfo" columnClasses="leftCol, rightCol" onload="#{billingCompanyAction.load(billingCompanyId )  }"> 
+        <h:outputText value="#{msg.id}"/>  
+        <h:outputText value="#{billingCompanyAction.billingCompany.id}"/>  
+        <h:outputText value="#{msg.address_unitNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyView')}"/>  
+        <h:outputText id="address_unitNumber#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.unitNumber}"></h:outputText>  
+        <h:outputText value="#{msg.address_streetNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyView')}"/>  
+        <h:outputText id="address_streetNumber#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.streetNumber}"></h:outputText>  
+        <h:outputText value="#{msg.address_streetName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyView')}"/>  
+        <h:outputText id="address_streetName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.streetName}"></h:outputText>  
+        <h:outputText value="#{msg.address_streetDirection}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyView')}"/>  
+        <h:outputText id="address_streetDirection#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.streetDirection}"></h:outputText>  
+        <h:outputText value="#{msg.address_streetType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyView')}"/>  
+        <h:outputText id="address_streetType#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.streetType}"></h:outputText>  
+        <h:outputText value="#{msg.address_province}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyView')}"/>  
+        <h:outputText id="address_province#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.province}"></h:outputText>  
+        <h:outputText value="#{msg.address_postalCode}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyView')}"/>  
+        <h:outputText id="address_postalCode#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.postalCode}"></h:outputText>  
+        <h:outputText value="#{msg.address_city}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyView')}"/>  
+        <h:outputText id="address_city#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.city}"></h:outputText>  
+        <h:outputText value="#{msg.address_country}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyView')}"/>  
+        <h:outputText id="address_country#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.country}"></h:outputText>  
+        <h:outputText value="#{msg.address_displayAdr}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('displayAdr', 'billingCompanyView')}"/>  
+        <h:outputText id="address_displayAdr#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('displayAdr', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.address.displayAdr}"></h:outputText>  
+        <h:outputText value="#{msg.company_brand}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyView')}"/>  
+        <h:outputText id="brand#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.brand}"></h:outputText>  
+        <h:outputText value="#{msg.company_companyType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyView')}"/>  
+        <h:outputText id="companyType#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.companyType}"></h:outputText>  
+        <h:outputText value="#{msg.company_rate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyView')}"/>  
+        <h:outputText id="rate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.rate}"></h:outputText>  
+        <h:outputText value="#{msg.company_primaryPhone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyView')}"/>  
+        <h:outputText id="primaryPhone#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.primaryPhone}"></h:outputText>  
+        <h:outputText value="#{msg.company_email}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyView')}"/>  
+        <h:outputText id="email#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.email}"></h:outputText>  
+        <h:outputText value="#{msg.company_poBox}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyView')}"/>  
+        <h:outputText id="poBox#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.poBox}"></h:outputText>  
+        <h:outputText value="#{msg.billingCompany_name}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyView')}"/>  
+        <h:outputText id="name#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.name}"></h:outputText>  
+        <h:outputText value="#{msg.billingCompany_webUrl}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyView')}"/>  
+        <h:outputText id="webUrl#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyView')}" value="#{billingCompanyAction.billingCompany.webUrl}"></h:outputText> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

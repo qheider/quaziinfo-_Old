@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<ui:composition>
+
+	<ice:panelPopup draggable="false" modal="true"
+                visible="#{backingAction.deleteDialogRendered}"
+                autoCentre="true" styleClass="corePopup"
+                style="z-index:999; top: 400px; left: 400px; width: 380px; height: 150px; position:absolute; background: #FFFFFF;">
+    <f:facet name="header">
+        <ice:panelGroup styleClass="popupHeaderWrapper">
+          #{title}
+        </ice:panelGroup>
+    </f:facet>
+	<f:facet name="body">
+		<h:panelGrid id="popupBody2" width="100%" cellpadding="0"
+			cellspacing="0" columns="1">
+			<h:column>
+				<h:outputText
+					value="Are you sure you want to delete #{backingEntity.displayName}?" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton id="archive"
+					action="#{backingAction.archiveAndClose}" value="Delete"
+					style="z-index:2;" />
+				<h:commandButton id="closeModal"
+					action="#{backingAction.closeModal}" value="Cancel"
+					style="z-index:2;" />
+			</h:column>
+
+		</h:panelGrid>
+	</f:facet>
+
+	</ice:panelPopup>
+</ui:composition>
+
+</html>

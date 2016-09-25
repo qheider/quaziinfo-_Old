@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:a="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+
+    <a:status id="loadingStatus"
+              onstart="Richfaces.showModalPanel('LoadingModalPanel',{width:80, top:200})"
+              onstop="Richfaces.hideModalPanel('LoadingModalPanel')">
+
+    </a:status>
+    <rich:modalPanel id="LoadingModalPanel" width="55" height="55" moveable="false" resizeable="true" shadowOpacity="5" zindex="2500">
+        <h:graphicImage  value="/images/loading2.gif"/>
+    </rich:modalPanel>
+    
+ 
+    <h:form>
+
+        <rich:toolBar height="34" itemSeparator="line">
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="edit" value="/images/icons/bricks.png" />
+                <s:link view="/admin/home.xhtml" value="Home" />
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="find" value="/images/icons/clock.png" />
+                <a href="http://www.facebook.com/">facebook</a>
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="filter" value="/images/icons/chart_bar.png" />
+                <a href="http://www.flickr.com/">flickr</a>
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage  value="/images/icons/eye.png" />
+                <a href="http://picasa.google.com/">picasa</a>
+            </rich:toolBarGroup>
+
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="issues" value="/images/icons/add.png" />
+                <s:link action="editIssue"
+                        value="local others" >
+                    <f:param name="issueId" value="0"/>
+                </s:link>
+            </rich:toolBarGroup>
+            
+            
+
+
+
+            <rich:toolBarGroup location="right">
+                <s:link action="#{identity.logout}" view="/login.xhtml"
+                        value="Logout #{identity.credentials.username}" propagation="none" rendered="#{identity.loggedIn}" />
+            </rich:toolBarGroup>
+            <rich:toolBarGroup location="right">
+                <a:commandLink action="login" value="Login" ajaxSingle="true"
+                               rendered="#{!identity.loggedIn}" />
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup location="right">
+                <h:selectOneMenu value="#{localeSelector.localeString}">
+                    <a:support event="onchange" action="#{localeSelector.select}"
+                               ajaxSingle="true" />
+                    <f:selectItems value="#{localeSelector.supportedLocales}" />
+                </h:selectOneMenu>
+            </rich:toolBarGroup>
+
+
+            <rich:toolBarGroup location="right">
+
+                <h:inputText styleClass="barsearch" value="#{issueList.textToSearch}" required="true" />
+                <h:commandButton styleClass="barsearchbutton"
+                                 action="#{issueList.textSearch}" value="Search" >
+                    <s:conversationPropagation type="join"></s:conversationPropagation>
+                </h:commandButton>
+
+            </rich:toolBarGroup>
+
+        </rich:toolBar>
+<!--        <h:graphicImage id="headerpng" value="/images/header.png" width="100%"  height="250px" />-->
+       
+
+    </h:form>
+
+</ui:composition>

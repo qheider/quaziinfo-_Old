@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <c:if test="${empty modalId}"> 
+    <c:set var="modalId" value="UserBillModalPanel"/> 
+  </c:if>  
+  <c:if test="${empty listTitle}"> 
+    <c:set var="listTitle" value="UserBill Search Results (#{empty records ? 0 : (userBillList.paginated ? userBillList.resultCount : records.size)})"/> 
+  </c:if>  
+  <rich:panel> 
+    <f:facet name="header">${listTitle}</f:facet>  
+    <a:form> 
+      <rich:dataTable var="_userBill" value="#{records}" id="userBillList" rowClasses="odd, even" styleClass="dataTable" onRowMouseOver="this.style.backgroundColor='#F8F8F8'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"> 
+        <rich:column rendered="#{s:hasPermission('id', 'userBillView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.id}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.id}"></h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.minPayment}" rendered="#{s:hasPermission('minPayment', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_minPayment}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.minPayment}"> 
+            <f:convertNumber pattern="$#,##0.00"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.minPaymentDueDate}" rendered="#{s:hasPermission('minPaymentDueDate', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_minPaymentDueDate}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.minPaymentDueDate}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.currentBalance}" rendered="#{s:hasPermission('currentBalance', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_currentBalance}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.currentBalance}"> 
+            <f:convertNumber pattern="$#,##0.00"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.amountPaid}" rendered="#{s:hasPermission('amountPaid', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_amountPaid}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.amountPaid}"> 
+            <f:convertNumber pattern="$#,##0.00"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.previousPayment}" rendered="#{s:hasPermission('previousPayment', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_previousPayment}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.previousPayment}"> 
+            <f:convertNumber pattern="$#,##0.00"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.statementDate}" rendered="#{s:hasPermission('statementDate', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_statementDate}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.statementDate}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.previousStatementDate}" rendered="#{s:hasPermission('previousStatementDate', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_previousStatementDate}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.previousStatementDate}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_userBill.comment}" rendered="#{s:hasPermission('comment', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_comment}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_userBill.comment.toString()) ?  msg[_userBill.comment.toString()] : _userBill.comment}" escape="false"/> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission('billingCompany', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_billingCompany}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.billingCompany.displayName}"/> 
+        </rich:column>  
+        <rich:column groupOn="#{userBill.employee.displayName}" rendered="#{s:hasPermission('employee', 'userBillView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.userBill_employee}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.employee.displayName}"/> 
+        </rich:column>  
+        <rich:column sortdBy="#{_userBill.dateCreated}" rendered="#{s:hasPermission('creationDate', 'userBillView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.app_creation_date}"/> 
+          </f:facet>  
+          <h:outputText value="#{_userBill.dateCreated}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_userBill, 'view')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/userBill/userBill/viewUserBill.xhtml" rendered="#{s:hasPermission(_userBill, 'view')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/eye.png" style="border: 0px" alt="view"/>  
+            <f:param name="userBillId" value="#{_userBill.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_userBill, 'edit')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/userBill/userBill/editUserBill.xhtml" rendered="#{s:hasPermission(_userBill, 'edit')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/edit.png" style="border: 0px" alt="edit"/>  
+            <f:param name="userBillId" value="#{_userBill.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission('com.nas.recovery.web.action.userBill', 'archive')}" propagation="none"> 
+          <f:facet name="header"> 
+            <h:outputText value=""/> 
+          </f:facet>  
+          <a:commandLink action="#{userBillAction.setUserBillIdForModalDlg(_userBill.id)}" onclick="#{rich:component('confirmPane_userBill')}.show()"> 
+            <h:graphicImage value="/images/icons/delete.png" style="border: 0px" alt="archive"/> 
+          </a:commandLink> 
+        </rich:column>  
+        <rich:column> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <a:commandLink action="#{userBillAction.setUserBillIdForModalDlg(_userBill.id)}" rendered="#{s:hasPermission(_userBill, 'quickEdit')}" oncomplete="Richfaces.showModalPanel('${modalId}',{});" reRender="${modalId}"> 
+            <h:graphicImage value="/images/icons/editQuick.png" style="border: 0px" alt="Quick Edit"/>  
+            <s:conversationPropagation type="join"/> 
+          </a:commandLink> 
+        </rich:column> 
+      </rich:dataTable> 
+    </a:form> 
+  </rich:panel>  
+  <div class="tableControl"> 
+    <s:link view="#{request.servletPath}" rendered="#{userBillList.previousExists}" value="#{messages.left}#{messages.left} First Page"> 
+      <f:param name="firstResult" value="0"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{userBillList.previousExists}" value="#{messages.left} Previous Page"> 
+      <f:param name="firstResult" value="#{userBillList.previousFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{userBillList.nextExists}" value="Next Page #{messages.right}"> 
+      <f:param name="firstResult" value="#{userBillList.nextFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{userBillList.nextExists}" value="Last Page #{messages.right}#{messages.right}"> 
+      <f:param name="firstResult" value="#{userBillList.lastFirstResult}"/> 
+    </s:link> 
+  </div>  
+  <rich:modalPanel id="confirmPane_userBill" autosized="true" width="260" height="140"> 
+    <br/>  
+    <h:graphicImage value="/img/Exclamation_mark.png" width="32" height="32"/>  
+    <h:outputText value="Are you sure you want to delete the row?"/>  
+    <br/>
+    <br/>  
+    <hr/>  
+    <a:form ajaxSubmit="true"> 
+      <a:commandButton value="Delete" action="#{userBillAction.archiveById}" oncomplete="#{rich:component('confirmPane_userBill')}.hide();" reRender="userBillList" styleClass="button"></a:commandButton>  
+      <a:commandButton value="Cancel" immediate="true" type="reset" styleClass="button" onclick="#{rich:component('confirmPane_userBill')}.hide(); return false;"/> 
+    </a:form> 
+  </rich:modalPanel> 
+</ui:composition>

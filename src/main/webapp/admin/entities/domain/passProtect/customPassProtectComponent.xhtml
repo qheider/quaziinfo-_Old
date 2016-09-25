@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <s:validateAll> 
+    <h:panelGrid columns="3" styleClass="summarywrap"> 
+      <h:panelGroup> 
+        <h:outputText value="#{msg.passProtect_employee}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'passProtectEdit')}"/>  
+        <br/>  
+        <h:selectOneMenu id="employee" value="#{passProtectAction.passProtect.employee}"> 
+          <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Select.."/>  
+          <s:convertEntity/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="employee" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'passProtectEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.passProtect_companyName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}"/>  
+        <br/>  
+        <h:inputText id="companyName" value="#{passProtectAction.passProtect.companyName}"/>  
+        <rich:message styleClass="error errors" for="companyName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.passProtect_companyUserName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}"/>  
+        <br/>  
+        <h:inputText id="companyUserName" value="#{passProtectAction.passProtect.companyUserName}"/>  
+        <rich:message styleClass="error errors" for="companyUserName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.passProtect_companyPassword}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}"/>  
+        <br/>  
+        <h:inputText id="companyPassword" value="#{passProtectAction.passProtect.companyPassword}"/>  
+        <rich:message styleClass="error errors" for="companyPassword" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.passProtect_note}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}"/>  
+        <br/>  
+        <rich:editor id="note" value="#{passProtectAction.passProtect.note}"/>  
+        <rich:message styleClass="error errors" for="note" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}"/> 
+      </h:panelGroup> 
+    </h:panelGrid> 
+  </s:validateAll> 
+</ui:composition>

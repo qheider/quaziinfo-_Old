@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="6" styleClass="viewInfo" columnClasses="leftCol, rightCol" onload="#{employeeAction.load(employeeId )  }"> 
+        <h:outputText value="#{msg.id}"/>  
+        <h:outputText value="#{employeeAction.employee.id}"/>  
+        <h:outputText value="#{msg.contactDetails_phone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('phone', 'employeeView')}"/>  
+        <h:outputText id="contactDetails_phone#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('phone', 'employeeView')}" value="#{employeeAction.employee.contactDetails.phone}"></h:outputText>  
+        <h:outputText value="#{msg.contactDetails_secondaryPhone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('secondaryPhone', 'employeeView')}"/>  
+        <h:outputText id="contactDetails_secondaryPhone#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('secondaryPhone', 'employeeView')}" value="#{employeeAction.employee.contactDetails.secondaryPhone}"></h:outputText>  
+        <h:outputText value="#{msg.contactDetails_city}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'employeeView')}"/>  
+        <h:outputText id="contactDetails_city#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'employeeView')}" value="#{employeeAction.employee.contactDetails.city}"></h:outputText>  
+        <h:outputText value="#{msg.user_userName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'employeeView')}"/>  
+        <h:outputText id="user_userName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('userName', 'employeeView')}" value="#{employeeAction.employee.user.userName}"></h:outputText>  
+        <h:outputText value="#{msg.user_enabled}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'employeeView')}"/>  
+        <h:outputText id="user_enabled#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('enabled', 'employeeView')}" value="#{employeeAction.employee.user.enabled}"></h:outputText>  
+        <h:outputText value="#{msg.user_email}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'employeeView')}"/>  
+        <h:outputText id="user_email#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'employeeView')}" value="#{employeeAction.employee.user.email}"></h:outputText>  
+        <h:outputText value="#{msg.user_lastLogin}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastLogin', 'employeeView')}"/>  
+        <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="user_lastLogin#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastLogin', 'employeeView')}" value="#{employeeAction.employee.user.lastLogin}"></h:outputText>  
+        <h:outputText value="#{msg.person_firstName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('firstName', 'employeeView')}"/>  
+        <h:outputText id="firstName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('firstName', 'employeeView')}" value="#{employeeAction.employee.firstName}"></h:outputText>  
+        <h:outputText value="#{msg.person_lastName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastName', 'employeeView')}"/>  
+        <h:outputText id="lastName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('lastName', 'employeeView')}" value="#{employeeAction.employee.lastName}"></h:outputText>  
+        <h:outputText value="#{msg.employee_employeeNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeNumber', 'employeeView')}"/>  
+        <h:outputText id="employeeNumber#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeNumber', 'employeeView')}" value="#{employeeAction.employee.employeeNumber}"></h:outputText>  
+        <h:outputText value="#{msg.employee_employeeType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employeeType', 'employeeView')}"/>  
+        <h:outputText value="#{employeeAction.employee.employeeType}"/>  
+        <h:outputText value="#{msg.employee_empPicture}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('empPicture', 'employeeView')}"/>  
+        <c:choose> 
+          <c:when test="${employeeAction.employee.empPicture.contentType.startsWith('image')}"> 
+            <s:graphicImage value="#{employeeAction.employee.empPicture.data}"/> 
+          </c:when>  
+          <c:otherwise> 
+            <s:link value="#{employeeAction.employee.empPicture.name}" action="#{employeeAction.downloadEmpPicture(null)}" propagation="none"> 
+              <f:param name="currentEntityId" value="#{employeeAction.instance.id}"/> 
+            </s:link> 
+          </c:otherwise> 
+        </c:choose> 
+      </h:panelGrid>  
+      <rich:dataTable id="webLogs" var="_webLog" rendered="#{not empty employeeAction.listWebLogs and skipPermissionCheck == 'true' || s:hasPermission('webLogs', 'employeeView') }" value="#{employeeAction.listWebLogs}" rowKeyVar="rowIndex" rowClasses="odd, even" styleClass="dataTable" rules="all"> 
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_heading}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogView')}"/>
+          </f:facet>  
+          <h:outputText id="heading#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogView')}" value="#{_webLog.heading}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_headingDesc}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogView')}"/>
+          </f:facet>  
+          <h:outputText id="headingDesc#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogView')}" value="#{_webLog.headingDesc}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_body}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogView')}"/>
+          </f:facet>  
+          <h:outputText escape="false" id="body#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogView')}" value="#{_webLog.body}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_tag}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogView')}"/>
+          </f:facet>  
+          <h:outputText id="tag#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogView')}" value="#{_webLog.tag}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_type}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogView')}"/>
+          </f:facet>  
+          <h:outputText value="#{_webLog.type}"/> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.webLog_tagFile}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tagFile', 'webLogView')}"/>
+          </f:facet>  
+          <c:choose> 
+            <c:when test="${_webLog.tagFile.contentType.startsWith('image')}"> 
+              <s:graphicImage value="#{_webLog.tagFile.data}"/> 
+            </c:when>  
+            <c:otherwise> 
+              <s:link value="#{_webLog.tagFile.name}" action="#{webLogAction.downloadTagFile(null)}" propagation="none"> 
+                <f:param name="currentEntityId" value="#{webLogAction.instance.id}"/> 
+              </s:link> 
+            </c:otherwise> 
+          </c:choose> 
+        </h:column> 
+      </rich:dataTable>  
+      <rich:dataTable id="passProtects" var="_passProtect" rendered="#{not empty employeeAction.listPassProtects and skipPermissionCheck == 'true' || s:hasPermission('passProtects', 'webLogView') }" value="#{employeeAction.listPassProtects}" rowKeyVar="rowIndex" rowClasses="odd, even" styleClass="dataTable" rules="all"> 
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.passProtect_companyName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectView')}"/>
+          </f:facet>  
+          <h:outputText id="companyName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectView')}" value="#{_passProtect.companyName}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.passProtect_companyUserName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectView')}"/>
+          </f:facet>  
+          <h:outputText id="companyUserName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectView')}" value="#{_passProtect.companyUserName}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:left">
+          <f:facet name="header">
+            <h:outputText value="#{msg.passProtect_companyPassword}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectView')}"/>
+          </f:facet>  
+          <h:outputText id="companyPassword#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectView')}" value="#{_passProtect.companyPassword}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.passProtect_note}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectView')}"/>
+          </f:facet>  
+          <h:outputText escape="false" id="note#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectView')}" value="#{_passProtect.note}"></h:outputText> 
+        </h:column> 
+      </rich:dataTable>  
+      <rich:dataTable id="userBills" var="_userBill" rendered="#{not empty employeeAction.listUserBills and skipPermissionCheck == 'true' || s:hasPermission('userBills', 'passProtectView') }" value="#{employeeAction.listUserBills}" rowKeyVar="rowIndex" rowClasses="odd, even" styleClass="dataTable" rules="all"> 
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_minPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText id="minPayment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillView')}" value="#{_userBill.minPayment}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_minPaymentDueDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="minPaymentDueDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillView')}" value="#{_userBill.minPaymentDueDate}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_currentBalance}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('currentBalance', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText id="currentBalance#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('currentBalance', 'userBillView')}" value="#{_userBill.currentBalance}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_amountPaid}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('amountPaid', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText id="amountPaid#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('amountPaid', 'userBillView')}" value="#{_userBill.amountPaid}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_previousPayment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousPayment', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText id="previousPayment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousPayment', 'userBillView')}" value="#{_userBill.previousPayment}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_statementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('statementDate', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="statementDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('statementDate', 'userBillView')}" value="#{_userBill.statementDate}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_previousStatementDate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousStatementDate', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText direction="auto" datePattern="yyyy-MM-dd" id="previousStatementDate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('previousStatementDate', 'userBillView')}" value="#{_userBill.previousStatementDate}"></h:outputText> 
+        </h:column>  
+        <h:column style="text-align:right">
+          <f:facet name="header">
+            <h:outputText value="#{msg.userBill_comment}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillView')}"/>
+          </f:facet>  
+          <h:outputText escape="false" id="comment#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillView')}" value="#{_userBill.comment}"></h:outputText> 
+        </h:column> 
+      </rich:dataTable> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

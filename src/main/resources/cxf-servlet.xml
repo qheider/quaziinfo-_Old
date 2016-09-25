@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:simple="http://cxf.apache.org/simple"
+      xmlns:soap="http://cxf.apache.org/bindings/soap"
+      xmlns:jaxws="http://cxf.apache.org/jaxws"
+      xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd">
+
+	
+		<jaxws:endpoint id="passProtectWebSvc"  implementor="com.nas.recovery.websvc.domain.PassProtectWebServiceImpl"
+	 	address="/passProtectService" />
+	
+		<jaxws:endpoint id="roleWebSvc"  implementor="com.nas.recovery.websvc.users.RoleWebServiceImpl"
+	 	address="/roleService" />
+	
+		<jaxws:endpoint id="userWebSvc"  implementor="com.nas.recovery.websvc.users.UserWebServiceImpl"
+	 	address="/userService" />
+	 	
+	 	<jaxws:endpoint id="billingCompanyWebSvc"  implementor="com.nas.recovery.websvc.userBill.BillingCompanyWebServiceImpl"
+	 	address="/billingCompanyService" />
+	
+		<jaxws:endpoint id="userBillWebSvc"  implementor="com.nas.recovery.websvc.userBill.UserBillWebServiceImpl"
+	 	address="/userBillService" />
+	
+		<jaxws:endpoint id="employeeWebSvc"  implementor="com.nas.recovery.websvc.domain.EmployeeWebServiceImpl"
+	 	address="/employeeService" />
+	
+		<jaxws:endpoint id="webLogWebSvc"  implementor="com.nas.recovery.websvc.domain.WebLogWebServiceImpl"
+	 	address="/webLogService" />
+	 	
+	 	<jaxws:endpoint id="helloWorldWebSvc"  implementor="com.nas.recovery.websvc.hw.HelloWorldImpl"
+	 	address="/HelloWorldService" />
+	
+    
+</beans>
+	

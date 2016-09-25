@@ -1,0 +1,54 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/webtemplate/template.xhtml">
+
+	<ui:define name="content">
+	<h:form>
+			<rich:dataTable var="pd" value="#{processDefinitionStatistics.processDefinitions}" id="pdList"
+				rowClasses="odd, even" styleClass="dataTable">
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Process Name" />
+					</f:facet>
+
+					<h:outputText value="#{pd.name}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Count" />
+					</f:facet>
+					<h:outputText value="#{processDefinitionStatistics.processDefinitionCounts[pd.name]}"/>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Latest Version" />
+					</f:facet>
+					<h:outputText value="#{pd.version}"/>
+				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Details" />
+					</f:facet>
+					<s:link value="Details" action="#{processDefinitionStatistics.buildProcessDefinitionsStaticsByName(pd.name)}" view="/jbpm/processDefinitionVersions.xhtml">
+						<f:param name="processNameFromRequest" value="#{pd.name}"/>
+					</s:link>
+				</rich:column>
+			</rich:dataTable>
+				
+		<s:div>
+			<s:button value="refresh"/>
+		</s:div>
+	</h:form>
+	</ui:define>
+</ui:composition>

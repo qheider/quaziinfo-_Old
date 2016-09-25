@@ -1,0 +1,199 @@
+package permissions;
+
+import java.security.Principal;
+import org.jboss.seam.security.permission.PermissionCheck;
+import org.jboss.seam.security.Role;
+import  com.oreon.kg.domain.Employee;
+import org.witchcraft.base.entity.BusinessEntity;
+
+     
+rule "CanUserDeleteEntities"
+no-loop
+when
+  $c : PermissionCheck( )
+  $r : Role(name == "admin")
+then
+  $c.grant();
+end
+
+
+rule "AllowSave"
+no-loop
+when
+  $c : PermissionCheck( action == "save"  )
+  $r : Role(name != "investor")
+then
+  $c.grant();
+end
+
+rule "AllowComponentkView"
+no-loop
+when
+  $c : PermissionCheck(action in( "view"))
+  $r : Role()
+then
+  $c.grant();
+end
+
+rule "CanUserEditOwn"
+no-loop
+dialect "java"
+when
+  principal: Principal()
+  c : PermissionCheck( action == "edit")
+  eval ( c.getTarget() == null || (!c.isGranted() && c.getTarget() != null &&
+  			 c.getTarget() instanceof BusinessEntity && ((BusinessEntity)c.getTarget()).getCreatedByUser() != null &&
+  	 ((BusinessEntity)c.getTarget()).getCreatedByUser().getUserName().equals (principal.getName() ) )  )
+then
+  //System.out.println( c.getAction() + " created by id is : " +  " " + user.getId() );
+  c.grant();
+end
+
+
+rule "AllowViewEditPassProtectComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "passProtectEdit"  )
+  eval (c.getTarget().equals ("companyName") ||
+        c.getTarget().equals ("companyUserName") ||
+        c.getTarget().equals ("companyPassword") ||
+        c.getTarget().equals ("note")
+      )
+then
+  c.grant();
+end
+
+rule "AllowViewWebLogListComponent"
+no-loop
+when
+  principal: Principal()
+  c : PermissionCheck( action == "webLogView" )
+  eval
+(
+c.getTarget().equals ("heading")
+      )
+then
+  c.grant();
+end
+
+rule "AllowEditWebLogListComponent"
+dialect "java"
+when
+  principal: Principal()
+  c : PermissionCheck( action == "webLogEdit" )
+  eval (
+c.getTarget().equals ("heading") ||
+c.getTarget().equals ("tag") ||
+c.getTarget().equals ("type") ||
+c.getTarget().equals ("tagFile") ||
+c.getTarget().equals ("body")
+      )
+then
+  c.grant();
+end
+
+//s:hasPermission('billingCompany', 'userBillEdit')}
+
+rule "AllowEditBillManageComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "userBillEdit"  )
+  eval (c.getTarget().equals ("currentBalance") ||
+        c.getTarget().equals ("minPayment") ||
+        c.getTarget().equals ("billingCompany") ||
+        c.getTarget().equals ("amountPaid") ||
+        c.getTarget().equals ("statementDate") ||
+        c.getTarget().equals ("minPaymentDueDate") ||
+        c.getTarget().equals ("previousStatementDate") ||
+        c.getTarget().equals ("comment")
+      )
+then
+  c.grant();
+end
+
+rule "AllowViewBillManageComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "userBillView"  )
+  eval (
+        c.getTarget().equals ("minPayment") ||
+        c.getTarget().equals ("billingCompany") ||
+        c.getTarget().equals ("minPaymentDueDate") ||
+        c.getTarget().equals ("minPaymentDueDate") ||
+        c.getTarget().equals ("minPaymentDueDate") ||
+        c.getTarget().equals ("comment")
+      )
+then
+  c.grant();
+end
+
+rule "AllowEditBillingCompanyComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "billingCompanyEdit"  )
+  eval (c.getTarget().equals ("name") ||
+        c.getTarget().equals ("brand") ||
+        c.getTarget().equals ("email") ||
+        c.getTarget().equals ("streetDirection") ||
+        c.getTarget().equals ("streetNumber") ||
+        c.getTarget().equals ("streetName") ||
+        c.getTarget().equals ("province") ||
+        c.getTarget().equals ("postalCode") ||
+        c.getTarget().equals ("unitNumber") ||
+c.getTarget().equals ("webUrl") ||
+c.getTarget().equals ("poBox") ||
+        c.getTarget().equals ("city") ||
+        c.getTarget().equals ("country")
+      )
+then
+  c.grant();
+end
+
+rule "AllowEditEmployeeComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "employeeEdit"  )
+  eval (c.getTarget().equals ("phone") ||
+        c.getTarget().equals ("secondaryPhone") ||
+        c.getTarget().equals ("city") ||
+        c.getTarget().equals ("userName") ||
+        c.getTarget().equals ("password") ||
+        c.getTarget().equals ("email") ||
+        c.getTarget().equals ("firstName") ||
+        c.getTarget().equals ("lastName") ||
+        c.getTarget().equals ("employeeType")
+      )
+then
+  c.grant();
+end
+
+
+rule "AllowViewEmployeeComponent"
+dialect "java"
+when
+  principal: Principal()
+  r : Role(name in ("generalUser","moderator", "privilegedUser", "support", "admin" ))
+  c : PermissionCheck( action == "employeeView"  )
+  eval (c.getTarget().equals ("phone") ||
+        c.getTarget().equals ("secondaryPhone") ||
+        c.getTarget().equals ("city") ||
+        c.getTarget().equals ("userName") ||
+        c.getTarget().equals ("password") ||
+        c.getTarget().equals ("email") ||
+        c.getTarget().equals ("firstName") ||
+        c.getTarget().equals ("lastName") ||
+        c.getTarget().equals ("employeeType")
+      )
+then
+  c.grant();
+end

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <c:if test="${empty modalId}"> 
+    <c:set var="modalId" value="EmployeeModalPanel"/> 
+  </c:if>  
+  <c:if test="${empty listTitle}"> 
+    <c:set var="listTitle" value="Employee Search Results (#{empty records ? 0 : (employeeList.paginated ? employeeList.resultCount : records.size)})"/> 
+  </c:if>  
+  <rich:panel> 
+    <f:facet name="header">${listTitle}</f:facet>  
+    <a:form> 
+      <rich:dataTable var="_employee" value="#{records}" id="employeeList" rowClasses="odd, even" styleClass="dataTable" onRowMouseOver="this.style.backgroundColor='#F8F8F8'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"> 
+        <rich:column rendered="#{s:hasPermission('id', 'employeeView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.id}"/> 
+          </f:facet>  
+          <h:outputText value="#{_employee.id}"></h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.firstName}" rendered="#{s:hasPermission('firstName', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.person_firstName}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.firstName.toString()) ?  msg[_employee.firstName.toString()] : _employee.firstName}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.lastName}" rendered="#{s:hasPermission('lastName', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.person_lastName}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.lastName.toString()) ?  msg[_employee.lastName.toString()] : _employee.lastName}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.contactDetails.phone}" rendered="#{s:hasPermission('phone', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.contactDetails_phone}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.contactDetails.phone.toString()) ?  msg[_employee.contactDetails.phone.toString()] : _employee.contactDetails.phone}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.contactDetails.secondaryPhone}" rendered="#{s:hasPermission('secondaryPhone', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.contactDetails_secondaryPhone}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.contactDetails.secondaryPhone.toString()) ?  msg[_employee.contactDetails.secondaryPhone.toString()] : _employee.contactDetails.secondaryPhone}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.contactDetails.city}" rendered="#{s:hasPermission('city', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.contactDetails_city}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.contactDetails.city.toString()) ?  msg[_employee.contactDetails.city.toString()] : _employee.contactDetails.city}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.user.userName}" rendered="#{s:hasPermission('userName', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.user_userName}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.user.userName.toString()) ?  msg[_employee.user.userName.toString()] : _employee.user.userName}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.user.enabled}" rendered="#{s:hasPermission('enabled', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.user_enabled}"/> 
+          </f:facet>  
+          <h:outputText value="#{_employee.user.enabled? msg.yes : msg.no }"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.user.email}" rendered="#{s:hasPermission('email', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.user_email}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.user.email.toString()) ?  msg[_employee.user.email.toString()] : _employee.user.email}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.user.lastLogin}" rendered="#{s:hasPermission('lastLogin', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.user_lastLogin}"/> 
+          </f:facet>  
+          <h:outputText value="#{_employee.user.lastLogin}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.employeeNumber}" rendered="#{s:hasPermission('employeeNumber', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.employee_employeeNumber}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.employeeNumber.toString()) ?  msg[_employee.employeeNumber.toString()] : _employee.employeeNumber}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.employeeType}" rendered="#{s:hasPermission('employeeType', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.employee_employeeType}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_employee.employeeType.toString()) ?  msg[_employee.employeeType.toString()] : _employee.employeeType}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_employee.empPicture}" rendered="#{s:hasPermission('empPicture', 'employeeView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.employee_empPicture}"/> 
+          </f:facet>  
+          <s:link value="#{_employee.empPicture.name}" action="#{employeeAction.downloadEmpPicture(_employee.id)}" propagation="none"> 
+            <f:param name="currentEntityId" value="#{_employee.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column sortdBy="#{_employee.dateCreated}" rendered="#{s:hasPermission('creationDate', 'employeeView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.app_creation_date}"/> 
+          </f:facet>  
+          <h:outputText value="#{_employee.dateCreated}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_employee, 'view')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/domain/employee/viewEmployee.xhtml" rendered="#{s:hasPermission(_employee, 'view')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/eye.png" style="border: 0px" alt="view"/>  
+            <f:param name="employeeId" value="#{_employee.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_employee, 'edit')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/domain/employee/editEmployee.xhtml" rendered="#{s:hasPermission(_employee, 'edit')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/edit.png" style="border: 0px" alt="edit"/>  
+            <f:param name="employeeId" value="#{_employee.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission('com.nas.recovery.web.action.domain', 'archive')}" propagation="none"> 
+          <f:facet name="header"> 
+            <h:outputText value=""/> 
+          </f:facet>  
+          <a:commandLink action="#{employeeAction.setEmployeeIdForModalDlg(_employee.id)}" onclick="#{rich:component('confirmPane_employee')}.show()"> 
+            <h:graphicImage value="/images/icons/delete.png" style="border: 0px" alt="archive"/> 
+          </a:commandLink> 
+        </rich:column>  
+        <rich:column> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <a:commandLink action="#{employeeAction.setEmployeeIdForModalDlg(_employee.id)}" rendered="#{s:hasPermission(_employee, 'quickEdit')}" oncomplete="Richfaces.showModalPanel('${modalId}',{});" reRender="${modalId}"> 
+            <h:graphicImage value="/images/icons/editQuick.png" style="border: 0px" alt="Quick Edit"/>  
+            <s:conversationPropagation type="join"/> 
+          </a:commandLink> 
+        </rich:column> 
+      </rich:dataTable> 
+    </a:form> 
+  </rich:panel>  
+  <div class="tableControl"> 
+    <s:link view="#{request.servletPath}" rendered="#{employeeList.previousExists}" value="#{messages.left}#{messages.left} First Page"> 
+      <f:param name="firstResult" value="0"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{employeeList.previousExists}" value="#{messages.left} Previous Page"> 
+      <f:param name="firstResult" value="#{employeeList.previousFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{employeeList.nextExists}" value="Next Page #{messages.right}"> 
+      <f:param name="firstResult" value="#{employeeList.nextFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{employeeList.nextExists}" value="Last Page #{messages.right}#{messages.right}"> 
+      <f:param name="firstResult" value="#{employeeList.lastFirstResult}"/> 
+    </s:link> 
+  </div>  
+  <rich:modalPanel id="confirmPane_employee" autosized="true" width="260" height="140"> 
+    <br/>  
+    <h:graphicImage value="/img/Exclamation_mark.png" width="32" height="32"/>  
+    <h:outputText value="Are you sure you want to delete the row?"/>  
+    <br/>
+    <br/>  
+    <hr/>  
+    <a:form ajaxSubmit="true"> 
+      <a:commandButton value="Delete" action="#{employeeAction.archiveById}" oncomplete="#{rich:component('confirmPane_employee')}.hide();" reRender="employeeList" styleClass="button"></a:commandButton>  
+      <a:commandButton value="Cancel" immediate="true" type="reset" styleClass="button" onclick="#{rich:component('confirmPane_employee')}.hide(); return false;"/> 
+    </a:form> 
+  </rich:modalPanel> 
+</ui:composition>

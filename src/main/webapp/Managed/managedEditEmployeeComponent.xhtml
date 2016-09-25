@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <rich:togglePanel id="panel" initialState="panelA" switchType="client"
+
+                        stateOrder="panelA,panelB,panelC">
+
+        <f:facet name="panelA">
+
+            <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{employeeAction.load(employeeId )  }">
+
+	   <h:outputText value="#{msg.person_firstName} * "   />
+        <h:inputText id="firstName#{entityId}"    label="#{msg.person_firstName}" required="true" value="#{employeeAction.employee.firstName}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="firstName"   />
+        <h:outputText value="#{msg.person_lastName} * "   />
+        <h:inputText id="lastName#{entityId}"    label="#{msg.person_lastName}" required="true" value="#{employeeAction.employee.lastName}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="lastName"   />
+
+
+		<h:outputText value="#{msg.contactDetails_phone}  "  />
+        <h:inputText id="contactDetails_phone#{entityId}"   label="#{msg.contactDetails_phone}" required="false" value="#{employeeAction.employee.contactDetails.phone}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="contactDetails_phone"  />
+
+        <h:outputText value="#{msg.contactDetails_secondaryPhone}  "   />
+        <h:inputText id="contactDetails_secondaryPhone#{entityId}"    label="#{msg.contactDetails_secondaryPhone}" required="false" value="#{employeeAction.employee.contactDetails.secondaryPhone}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="contactDetails_secondaryPhone"   />
+
+        <h:outputText value="#{msg.contactDetails_city}  "   />
+        <h:inputText id="contactDetails_city#{entityId}"    label="#{msg.contactDetails_city}" required="false" value="#{employeeAction.employee.contactDetails.city}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="contactDetails_city"   />
+            </h:panelGrid>
+
+        </f:facet>
+
+        <f:facet name="panelB">
+<h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{employeeAction.load(employeeId )  }">
+           <h:outputText value="#{msg.user_userName} * "   />
+        <h:inputText id="user_userName#{entityId}"    label="#{msg.user_userName}" required="true" value="#{employeeAction.employee.user.userName}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="user_userName"   />
+        <h:outputText value="#{msg.user_password} * "   />
+        <h:inputSecret redisplay="true" id="user_password#{entityId}"    label="#{msg.user_password}" required="true" value="#{employeeAction.employee.user.password}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputSecret>
+        <rich:message styleClass="error errors" for="user_password"   />
+        <h:outputText value="#{msg.user_enabled}  "   />
+        <h:selectBooleanCheckbox id="user_enabled#{entityId}"    label="#{msg.user_enabled}" required="false" value="#{employeeAction.employee.user.enabled}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:selectBooleanCheckbox>
+        <rich:message styleClass="error errors" for="user_enabled"   />
+        <h:outputText value="#{msg.user_email} * "   />
+        <h:inputText id="user_email#{entityId}"    label="#{msg.user_email}" required="true" value="#{employeeAction.employee.user.email}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="user_email"   />
+        </h:panelGrid>
+
+        </f:facet>
+
+        <f:facet name="panelC">
+
+       <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{employeeAction.load(employeeId )  }">
+       <h:outputText value="#{msg.employee_employeeNumber}  "   />
+        <h:inputText id="employeeNumber#{entityId}"    label="#{msg.employee_employeeNumber}" required="false" value="#{employeeAction.employee.employeeNumber}">
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:inputText>
+        <rich:message styleClass="error errors" for="employeeNumber"   />
+        <h:outputText value="#{msg.employee_employeeType}  " />
+        <h:selectOneMenu id="employeeType"    value="#{employeeAction.employee.employeeType}" required="false" label="#{msg.employee_employeeType}">
+          <f:selectItem itemLabel="Please Select..." itemValue=""/>
+          <f:selectItem itemValue="FULL_TIME" itemLabel="#{msg.FULL_TIME}"/>
+          <f:selectItem itemValue="CONTRACT" itemLabel="#{msg.CONTRACT}"/>
+          <f:selectItem itemValue="PART_TIME" itemLabel="#{msg.PART_TIME}"/>
+          <rich:ajaxValidator event="onsubmit"/>
+        </h:selectOneMenu>
+        <rich:message styleClass="error errors" for="employeeType"   />
+         <h:outputText value="#{msg.employee_empPicture}  " />
+        <h:panelGroup>
+          <h:outputText value="Current File:"/>
+          <s:link value="#{employeeAction.employee.empPicture.name}" id="empPicture_file" action="#{employeeAction.downloadFile(null)}" propagation="none">
+            <f:param name="currentEntityId" value="#{employeeAction.instance.id}"/>
+           </s:link>
+          <rich:fileUpload fileUploadListener="#{employeeAction.empPictureUploadListener}" immediateUpload="true" ajaxSingle="true" autoclear="false" listHeight="50">
+            <s:conversationPropagation type="join"/>
+            <a:support event="onuploadcomplete" reRender="empPicture_file,commandButtorns"/>
+            </rich:fileUpload>
+        </h:panelGroup>
+        <rich:message styleClass="error errors" for="empPicture" />
+         </h:panelGrid>
+
+        </f:facet>
+
+</rich:togglePanel>
+
+<rich:toggleControl for="panel" value="next"/>
+</ui:composition>

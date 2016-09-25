@@ -1,0 +1,71 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/webtemplate/template.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="Process Instances for #{processName}_#{processVersion} with process definition Id: #{processDefinitionId}" />
+
+			<rich:datascroller for="processInstancesTab" maxPages="30" />
+			<rich:spacer height="30" />
+			<rich:dataTable id="processInstancesTab" var="p" rows="20"
+				value="#{jbpmContext.graphSession.findProcessInstances(processDefinitionId)}" 
+				 rowClasses="odd, even" styleClass="dataTable" >
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Process Id" />
+					</f:facet>
+					<h:outputText value="#{p.id}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Start Date" />
+					</f:facet>
+					<h:outputText value="#{p.start}" >
+						<s:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="End Date" />
+					</f:facet>
+					<h:outputText value="#{p.end}" >
+						<s:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Is Suspended" />
+					</f:facet>
+					<h:outputText value="#{p.suspended}" >
+					</h:outputText>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Tokens" />
+					</f:facet>
+					#{p.findAllTokens()}
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Tasks" />
+					</f:facet>
+					#{p.taskMgmtInstance.taskInstances}
+				</rich:column>
+
+			</rich:dataTable>
+
+			<s:button value="Return" view="/jbpm/jbpmProcessVersions.xhtml"/>
+		</h:form>
+	</ui:define>
+</ui:composition>

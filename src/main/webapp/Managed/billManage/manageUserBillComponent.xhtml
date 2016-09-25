@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+	
+	<c:set var="modalId" value="UserBillModalPanel-UserBill" />
+
+	<s:div styleClass="mortgage_status_formwrap2">
+
+
+		<a:keepAlive ajaxOnly="true" beanName="userBillAction"></a:keepAlive>
+
+		<br />
+		<a:form>
+			<rich:panel id="addBilling">
+				<ui:include
+					src="/admin/entities/userBill/userBill/editUserBillComponent.xhtml" />
+				<br />
+				<a:commandButton action="#{userBillAction.save}" styleClass="button"
+					reRender="addBilling" value="#{msg.save}">
+					<f:param name="conversationPropagation" value="end" />
+					<a:actionparam name="taskId" value="#{taskId}" />
+				</a:commandButton>
+				<rich:spacer />
+				<h:outputText value=" " />
+				<a:commandButton immediate="true" type="reset"
+					oncomplete="Richfaces.hideModalPanel('${modalId}');"
+					styleClass="button" value="#{msg.cancel}">
+					<f:param name="conversationPropagation" value="end" />
+				</a:commandButton>
+
+			</rich:panel>
+		</a:form>
+
+
+		<br />
+		<a:form>
+			<rich:toolBar>
+
+				<h:outputText value="Report:" style="color: lime" />
+
+				<br />
+
+				<rich:spacer width="50px" />
+			</rich:toolBar>
+			<rich:toolBar>
+				<h:outputText value="Bill From" style="color: yellow" />
+				<rich:calendar id="billFrom" direction="auto"
+					datePattern="yyyy-MM-dd" label="BIll From" popup="false"
+					required="false" value="#{userBillAction.dateFrom}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:calendar>
+				<rich:spacer width="50px" />
+
+				<h:outputText value="Bill To" style="color: yellow" />
+				<rich:calendar id="billTo" direction="auto" datePattern="yyyy-MM-dd"
+					label="BIll To" popup="false" required="false"
+					value="#{userBillAction.dateTo}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:calendar>
+
+				<a:commandButton value="Generate Payable" styleClass="button"
+					action="#{userBillAction.generatePayment}" reRender="userBillPanel" />
+				<rich:spacer width="50px" />
+				<a:commandButton value="Generate Paid-Complete Report"
+					styleClass="button" action="#{userBillAction.generatePaid}"
+					reRender="userBillPanel" />
+				<rich:spacer width="50px" />
+				<a:commandButton value="Generate All"
+					styleClass="button" action="#{userBillAction.generateAll}"
+					reRender="userBillPanel" />
+				
+			</rich:toolBar>
+
+		</a:form>
+		<br />
+		<rich:panel id="billList">
+		<ui:include src="/Managed/billManage/listUserBillComponent.xhtml">
+			<ui:param name="listTitle" value="${listTitle}" />
+			<ui:param name="records" value="#{userBillsByEmployee}" />
+		</ui:include>
+		</rich:panel>
+
+
+
+
+
+
+		<div style="position: absolute; top: 41px; left: 344px">
+			<a:form>
+				<s:button value="Add New Payee"
+					action="/Managed/billManage/editBillingCompany.xhtml"
+					propagation="none">
+					<f:param name="billingCompanyId" value="0" />
+					<s:conversationPropagation type="none" />
+				</s:button>
+
+			</a:form>
+		</div>
+
+
+
+
+		<ui:include
+			src="/admin/entities/userBill/userBill/modalDlgUserBillComponent.xhtml">
+			<ui:param name="modalId" value="${modalId}" />
+		</ui:include>
+		
+	</s:div>
+</ui:composition>

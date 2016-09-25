@@ -1,0 +1,171 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:a="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                  xmlns:q="http://java.sun.com/jstl/core"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+
+    <style>
+        .rich-mpnl-mask-div{
+            filter: alpha(opacity=0);
+            opacity:0;
+        }
+
+
+
+        .rich-mpnl-body {
+            background-color: aquamarine;
+        }
+        #popupForProfile{
+        position:absolute;
+        top:30px;
+        left:67%;
+        background-color: cyan;
+        color:black;
+        width:30%;
+        height:185%;
+        padding: 10px;
+        display: none;
+        -moz-border-radius-topleft: 10px;
+    	border-top-left-radius: 10px;
+    	-moz-border-radius-topright: 10px;
+    	border-top-right-radius: 10px;
+    	-moz-border-radius-bottomleft: 10px;
+   		 border-bottom-left-radius: 10px;
+    	-moz-border-radius-bottomright: 10px;
+    	border-bottom-right-radius: 10px;
+        }
+         
+    </style>
+    <script type="text/javascript">
+		function showPopUp(){
+	    var v=document.getElementById("popupForProfile");
+		v.style.display="block";
+		v.style.zIndex="2000"; 
+		
+	}
+		function hidePopUp(){
+			document.getElementById("popupForProfile").style.display="none";
+			}
+	</script> 
+    <c:set var="modalId" value="EmployeeModalPanel-Employee"/>
+    <a:status id="loadingStatus"
+              onstart="Richfaces.showModalPanel('LoadingModalPanel',{top:'200', left:'600',width:55,height:55})"
+              onstop="Richfaces.hideModalPanel('LoadingModalPanel')">
+
+    </a:status>
+    <rich:modalPanel id="LoadingModalPanel"  moveable="false">
+        <h:graphicImage  value="/images/loading2.gif"/>
+    </rich:modalPanel>
+
+
+    <h:form>
+
+        <rich:toolBar height="34"  itemSeparator="line">
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="edit" value="/images/icons/bricks.png" />
+                <s:link view="/admin/home.xhtml" value="Home" />
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="find" value="/images/icons/clock.png" />
+                <a href="http://www.facebook.com/">facebook</a>
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="filter" value="/images/icons/chart_bar.png" />
+                <a href="http://www.flickr.com/">flickr</a>
+            </rich:toolBarGroup>
+
+            <rich:toolBarGroup>
+                <h:graphicImage  value="/images/icons/eye.png" />
+                <a href="http://picasa.google.com/">picasa</a>
+            </rich:toolBarGroup>
+
+
+            <rich:toolBarGroup>
+                <h:graphicImage id="issues" value="/images/icons/add.png" />
+                <s:link action="editIssue"
+                        value="others" >
+                    <f:param name="issueId" value="0"/>
+                </s:link>
+            </rich:toolBarGroup>
+            
+            <rich:toolBarGroup id="jbpmAdmin"  styleClass="dr-toolbar-int" style="border:  none;">
+					<s:link id="jbpmAdminLink"	view="/jbpm/index.xhtml">
+						<h:outputText value="JbpmAdmin" styleClass="menutextoveride" />
+					</s:link>
+				</rich:toolBarGroup>
+
+
+
+            <rich:toolBarGroup location="right">
+                <div id="raisePopupForProfile" style="position:absolute; width: 75px;height: 40px;top:5px" onmouseover="showPopUp()" onmouseout="hidePopUp()">
+                   <a:commandLink value="#{identity.credentials.username}" style="color:yellow; text-decoration: none;" rendered="#{identity.loggedIn}" />
+              </div>
+              </rich:toolBarGroup>
+              
+            <rich:toolBarGroup location="right">
+                <a:commandLink action="login" value="Login" ajaxSingle="true"
+                               rendered="#{!identity.loggedIn}" />
+            </rich:toolBarGroup>
+
+            
+            
+                        <rich:toolBarGroup location="right">
+                            <rich:dropDownMenu value="Search" direction="bottom-left" jointPoint="br" styleClass="search" style="color:yellow">
+                                <rich:menuItem submitMode="none">
+                                    <h:inputText value="#{passProtectAction.searchString}" id="searchinput"/>
+                                    <a:commandButton value="search" action="#{passProtectAction.doSearch}" reRender="display" />
+                                </rich:menuItem>
+                                <rich:menuItem value="Enter your search criteria here" disabled="true"></rich:menuItem>
+                            </rich:dropDownMenu>
+                        </rich:toolBarGroup>
+                    
+
+        </rich:toolBar>
+        <!--        <h:graphicImage id="headerpng" value="/images/header.png" width="100%"  height="250px" styleClass="div_wrap_bannerPic" />-->
+
+
+    </h:form>
+    <div onmouseover="showPopUp()" onmouseout="hidePopUp()"> 
+    <s:div id="popupForProfile" rendered="#{identity.loggedIn}">
+    				<s:link action="#{identity.logout}" view="/login.xhtml"
+                        value="Logout" propagation="none" rendered="#{identity.loggedIn}" />
+                        <rich:spacer width="10px"/>|
+                        <rich:spacer width="10px"/>
+    
+    				<s:link 
+                    view="/admin/entities/domain/employee/editEmployee.xhtml" 
+                    value="update profile" 
+                    propagation="join" 
+                    rendered="#{identity.loggedIn}" 
+                    styleClass="menutextoveride2"> 
+            		<f:param name="employeeId" value="#{employeeAction.currentLoggedInEmployee.id}"/> 
+            		</s:link><br/>
+            		
+                        <br/>
+            		
+
+        <q:if test="${employeeAction.getCurrentLoggedInEmployee().getEmpPicture().getData() != null}">
+            <a:mediaOutput element="img" styleClass="div_wrap_inner"
+                           createContent="#{paintAction.paint}"
+                           style="width:70px; height:70px;"
+                           cacheable="false"
+                           mimeType="image/png"  />
+        </q:if>
+        </s:div>
+            		 
+            		</div>
+     
+    <ui:include src="/admin/entities/domain/employee/modalDlgEmployeeComponent.xhtml"> 
+      <ui:param name="modalId" value="${modalId}"/> 
+    </ui:include>
+
+</ui:composition>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{billingCompanyAction.load(billingCompanyId )  }"> 
+        <h:outputText value="#{msg.address_unitNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_unitNumber#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyEdit')}" label="#{msg.address_unitNumber}" required="false" value="#{billingCompanyAction.billingCompany.address.unitNumber}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_unitNumber" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('unitNumber', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_streetNumber}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_streetNumber#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyEdit')}" label="#{msg.address_streetNumber}" required="false" value="#{billingCompanyAction.billingCompany.address.streetNumber}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_streetNumber" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetNumber', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_streetName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_streetName#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyEdit')}" label="#{msg.address_streetName}" required="false" value="#{billingCompanyAction.billingCompany.address.streetName}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_streetName" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetName', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_streetDirection}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_streetDirection#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyEdit')}" label="#{msg.address_streetDirection}" required="false" value="#{billingCompanyAction.billingCompany.address.streetDirection}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_streetDirection" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetDirection', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_streetType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_streetType#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyEdit')}" label="#{msg.address_streetType}" required="false" value="#{billingCompanyAction.billingCompany.address.streetType}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_streetType" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('streetType', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_province}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_province#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyEdit')}" label="#{msg.address_province}" required="false" value="#{billingCompanyAction.billingCompany.address.province}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_province" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('province', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_postalCode}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_postalCode#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyEdit')}" label="#{msg.address_postalCode}" required="false" value="#{billingCompanyAction.billingCompany.address.postalCode}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_postalCode" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('postalCode', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_city}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_city#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyEdit')}" label="#{msg.address_city}" required="false" value="#{billingCompanyAction.billingCompany.address.city}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_city" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('city', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.address_country}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyEdit')}"/>  
+        <h:inputText id="address_country#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyEdit')}" label="#{msg.address_country}" required="false" value="#{billingCompanyAction.billingCompany.address.country}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="address_country" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('country', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_brand}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyEdit')}"/>  
+        <h:inputText id="brand#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyEdit')}" label="#{msg.company_brand}" required="false" value="#{billingCompanyAction.billingCompany.brand}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="brand" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('brand', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_companyType}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyEdit')}"/>  
+        <h:inputText id="companyType#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyEdit')}" label="#{msg.company_companyType}" required="false" value="#{billingCompanyAction.billingCompany.companyType}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="companyType" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyType', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_rate}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyEdit')}"/>  
+        <h:inputText id="rate#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyEdit')}" label="#{msg.company_rate}" required="false" value="#{billingCompanyAction.billingCompany.rate}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="rate" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('rate', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_primaryPhone}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyEdit')}"/>  
+        <h:inputText id="primaryPhone#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyEdit')}" label="#{msg.company_primaryPhone}" required="false" value="#{billingCompanyAction.billingCompany.primaryPhone}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="primaryPhone" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('primaryPhone', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_email}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyEdit')}"/>  
+        <h:inputText id="email#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyEdit')}" label="#{msg.company_email}" required="false" value="#{billingCompanyAction.billingCompany.email}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="email" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('email', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.company_poBox}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyEdit')}"/>  
+        <h:inputText id="poBox#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyEdit')}" label="#{msg.company_poBox}" required="false" value="#{billingCompanyAction.billingCompany.poBox}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="poBox" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('poBox', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.billingCompany_name} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyEdit')}"/>  
+        <h:inputText id="name#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyEdit')}" label="#{msg.billingCompany_name}" required="true" value="#{billingCompanyAction.billingCompany.name}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="name" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('name', 'billingCompanyEdit')}"/>  
+        <h:outputText value="#{msg.billingCompany_webUrl}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyEdit')}"/>  
+        <h:inputText id="webUrl#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyEdit')}" label="#{msg.billingCompany_webUrl}" required="false" value="#{billingCompanyAction.billingCompany.webUrl}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="webUrl" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('webUrl', 'billingCompanyEdit')}"/> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

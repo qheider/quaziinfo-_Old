@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" version="1.0">  
+  <description/>
+  <named-query name="commentsForRecord">
+  	<query>Select c from EntityComment c where c.entityId = ?1 and c.entityName = ?2 </query>
+  </named-query>
+  <named-query name="entityTemplate.templateEntityByName">
+  	<query>Select c from EntityTemplate c where c.entityName = ?1 and c.templateName = ?2 </query>
+  </named-query>
+  <named-query name="entityTemplates.templatesForEntity">
+  	<query>Select c from EntityTemplate c where c.entityName = ?1 order by c.templateName </query>
+  </named-query>  
+  <!--  PassProtect  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.PassProtect" name="PassProtect"> 
+    <table name="passprotect"></table> 
+  </entity>  
+  <!--  Role  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.users.Role" name="Role"> 
+    <table name="role"></table>  
+    <named-query name="findByName"> 
+      <query> <![CDATA[
+			select r from Role r where r.name = ?1
+			]]> </query> 
+    </named-query>  
+    <named-query name="role.findByUnqName"> 
+      <query> <![CDATA[
+			select u from Role u where u.name = ?1
+			]]> </query> 
+    </named-query> 
+  </entity>  
+  <!--  User  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.users.User" name="User"> 
+    <table name="user"></table>  
+    <named-query name="user.findByUnqUserName"> 
+      <query> <![CDATA[
+			select u from User u where u.userName = ?1
+			]]> </query> 
+    </named-query> 
+  </entity>  
+  <!--  BillingCompany  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.userBill.BillingCompany" name="BillingCompany"> 
+    <table name="billingcompany"></table> 
+  </entity>  
+  <!--  UserBill  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.userBill.UserBill" name="UserBill"> 
+    <table name="userbill"></table> 
+  </entity>  
+  <!--  Employee  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.Employee" name="Employee"> 
+    <table name="employee"></table>  
+    <named-query name="findByPhone"> 
+      <query> <![CDATA[
+			select employee from Employee employee where employee.contactDetails.phone = ?1
+			]]> </query> 
+    </named-query> 
+  </entity>  
+  <!--  WebLog  JPA Configurations -->  
+  <entity class="com.oreon.kg.domain.WebLog" name="WebLog"> 
+    <table name="weblog"></table> 
+  </entity> 
+</entity-mappings>

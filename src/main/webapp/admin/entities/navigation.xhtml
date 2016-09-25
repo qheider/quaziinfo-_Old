@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:form> 
+    <rich:panelMenu style="width:162px" mode="ajax" iconExpandedGroup="disc" iconCollapsedGroup="disc" iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right" iconCollapsedTopGroup="chevronDown" iconCollapsedTopPosition="right"> 
+      <rich:panelMenuGroup label="Domain" expanded="true"> 
+        <rich:panelMenuItem> 
+          <h:commandLink value="PassProtect" action="passProtect"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem>  
+        <rich:panelMenuItem> 
+          <h:commandLink value="Employee" action="employee"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem>  
+        <rich:panelMenuItem> 
+          <h:commandLink value="WebLog" action="webLog"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem> 
+      </rich:panelMenuGroup>  
+      <rich:panelMenuGroup label="Users" expanded="true"> 
+        <rich:panelMenuItem> 
+          <h:commandLink value="Role" action="role"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem>  
+        <rich:panelMenuItem> 
+          <h:commandLink value="User" action="user"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem> 
+      </rich:panelMenuGroup>  
+      <rich:panelMenuGroup label="UserBill" expanded="true"> 
+        <rich:panelMenuItem> 
+          <h:commandLink value="BillingCompany" action="billingCompany"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem>  
+        <rich:panelMenuItem> 
+          <h:commandLink value="UserBill" action="userBill"> 
+            <s:conversationPropagation type="none"/> 
+          </h:commandLink> 
+        </rich:panelMenuItem> 
+      </rich:panelMenuGroup> 
+    </rich:panelMenu> 
+  </h:form> 
+</ui:composition>

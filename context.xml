@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+
+	<!-- Default set of monitored resources -->
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+	<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
+	
+	
+	
+	******DEMO******			
+	 username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.174:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+	
+	******DEMO_UAT /DEV2 ******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.85:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
+	
+	
+	
+	******UAT******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.170:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+	
+	
+	******DEV3******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.81:3316/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+	
+	
+	******DEV2******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.68:3365/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
+	 
+	 ******DEMO_UAT******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.85:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
+	
+	 
+	 ******DEV1******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome"
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.18.68:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"  
+	
+	******Local******			
+	
+	maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+	
+	******unsecured******			
+		maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.100.12.174:3355/nrsdbdemo?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+
+	******POST******			
+	 maxActive="100" maxIdle="30" maxWait="10000" username="nrs_app" password="welcome" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://10.200.12.178:3355/newrecoverydb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
+	-->
+
+	<!-- /********************************************************************************************************/ 
+												Place desired datasource here 
+		/********************************************************************************************************/ -->
+	 <Resource name="jdbc/quaziinfods" auth="Container" type="javax.sql.DataSource" 
+	 maxActive="100" maxIdle="30" maxWait="10000" username="root" password="root" 
+	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/quaziinfodb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
+	
+	
+	
+	validationQuery="SELECT TRUE" connectionCachingEnabled="true" /> 
+		
+		
+
+	<!-- /********************************************************************************************************/ -->
+	
+	
+	
+
+
+</Context>

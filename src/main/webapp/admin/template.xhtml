@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:s="http://jboss.com/products/seam/taglib">
+
+    <head>
+        <ui:include src ="/admin/metaIncludes.xhtml" />
+    </head>
+
+    <body>
+        <f:loadBundle basename="messages" var="msg" />
+        <s:div id="headerDiv" styleClass="div_wrap_header">
+
+            <ui:insert name="header">
+                <ui:include src="/admin/header.xhtml"></ui:include>
+            </ui:insert>
+        </s:div>
+        <s:div id="userPicture" rendered="#{employeeAction.getCurrentLoggedInEmployee().getEmpPicture().getData() != null}"
+               styleClass="div_wrap_userPicture_outer" style="position: absolute; top: 45px; left: 83%; width: 150px; height: 170px;color: yellow">
+             <ui:insert name="userPicture">
+            </ui:insert>
+        </s:div>
+        <div id="topmenu"></div>
+        <div id="leftcol">
+
+            <s:div rendered="#{s:hasRole('admin')}" >
+                <ui:include src="entities/navigation.xhtml" />
+            </s:div>
+
+
+
+        </div>
+        <s:div id="content" styleClass="div_wrap_outer">
+            <s:div
+                style="border:1px solid #bbc; background-color:#eef"
+                rendered="#{facesContext.maximumSeverity != null}">
+                <h:messages globalOnly="true" errorStyle="color:red"
+                            warnStyle="color:blue" infoStyle="color:green" />
+            </s:div>
+            <ui:insert name="content" />
+            <ui:insert name="footer"/>
+        </s:div>
+        
+           
+    </body>
+
+
+
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:panelGroup> 
+    <s:validateAll> 
+      <h:panelGrid columns="3" styleClass="editInfo" columnClasses="leftCol, rightCol" onload="#{webLogAction.load(webLogId )  }"> 
+        <h:outputText value="#{msg.webLog_employee} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogEdit')}"/>  
+        <h:selectOneMenu id="employee" label="#{msg.webLog_employee}" value="#{webLogAction.webLog.employee}" required="true" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogEdit')}"> 
+          <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Please Select..."/>  
+          <rich:ajaxValidator event="onsubmit"/>  
+          <s:convertEntity/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="employee" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_heading}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogEdit')}"/>  
+        <h:inputText size="155" id="heading#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogEdit')}" label="#{msg.webLog_heading}" required="false" value="#{webLogAction.webLog.heading}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="heading" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_headingDesc}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogEdit')}"/>  
+        <h:inputText id="headingDesc#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogEdit')}" label="#{msg.webLog_headingDesc}" required="false" value="#{webLogAction.webLog.headingDesc}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="headingDesc" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_body}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogEdit')}"/>  
+        <rich:editor width="800" height="200" useSeamText="true" id="body#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogEdit')}" label="#{msg.webLog_body}" required="false" value="#{webLogAction.webLog.body}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </rich:editor>  
+        <rich:message styleClass="error errors" for="body" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_tag}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogEdit')}"/>  
+        <h:inputText id="tag#{entityId}" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogEdit')}" label="#{msg.webLog_tag}" required="false" value="#{webLogAction.webLog.tag}"> 
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:inputText>  
+        <rich:message styleClass="error errors" for="tag" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_type}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogEdit')}"/>  
+        <h:selectOneMenu id="type" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogEdit')}" value="#{webLogAction.webLog.type}" required="false" label="#{msg.webLog_type}"> 
+          <f:selectItem itemLabel="Please Select..." itemValue=""/>  
+          <f:selectItem itemValue="Public" itemLabel="#{msg.Public}"/>  
+          <f:selectItem itemValue="Private" itemLabel="#{msg.Private}"/>  
+          <rich:ajaxValidator event="onsubmit"/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="type" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogEdit')}"/>  
+        <h:outputText value="#{msg.webLog_tagFile}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tagFile', 'webLogEdit')}"/>  
+        <h:panelGroup> 
+          <h:outputText value="Current File:"/>  
+          <s:link value="#{webLogAction.webLog.tagFile.name}" id="tagFile_file" action="#{webLogAction.downloadFile(null)}" propagation="none"> 
+            <f:param name="currentEntityId" value="#{webLogAction.instance.id}"/> 
+          </s:link>  
+          <rich:fileUpload fileUploadListener="#{webLogAction.tagFileUploadListener}" immediateUpload="true" ajaxSingle="true" autoclear="false" listHeight="50"> 
+            <s:conversationPropagation type="join"/>  
+            <a:support event="onuploadcomplete" reRender="tagFile_file"/> 
+          </rich:fileUpload> 
+        </h:panelGroup>  
+        <rich:message styleClass="error errors" for="tagFile" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tagFile', 'webLogEdit')}"/> 
+      </h:panelGrid> 
+    </s:validateAll> 
+  </h:panelGroup> 
+</ui:composition>

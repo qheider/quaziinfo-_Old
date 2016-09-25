@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+	xmlns:core="http://jboss.com/products/seam/core" 
+	xmlns:drools="http://jboss.com/products/seam/drools"
+	xmlns:bpm="http://jboss.com/products/seam/bpm" 
+	xmlns:international="http://jboss.com/products/seam/international"
+	xmlns:security="http://jboss.com/products/seam/security" 
+	xmlns:web="http://jboss.com/products/seam/web"
+	xmlns:mail="http://jboss.com/products/seam/mail" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:async="http://jboss.com/products/seam/async" 
+	xmlns:persistence="http://jboss.com/products/seam/persistence"
+	xmlns:transaction="http://jboss.com/products/seam/transaction"
+	xmlns:navigation="http://jboss.com/products/seam/navigation"
+	xsi:schemaLocation=" http://jboss.com/products/seam/core
+        http://jboss.com/products/seam/core-2.2.xsd 
+        http://jboss.com/products/seam/components
+        http://jboss.com/products/seam/components-2.2.xsd
+		http://jboss.com/products/seam/transaction
+		http://jboss.com/products/seam/transaction-2.0.xsd
+		http://jboss.com/products/seam/security
+	http://jboss.com/products/seam/security-2.0.xsd
+ 					http://jboss.com/products/seam/web
+ 					http://jboss.com/products/seam/web-2.2.xsd
+ 					http://jboss.com/products/seam/navigation
+ 					http://jboss.com/products/seam/navigation-2.2.xsd 
+ 					http://jboss.com/products/seam/bpm
+ 			      	http://jboss.com/products/seam/bpm-2.2.xsd
+ 			      	http://jboss.com/products/seam/international
+ 			      	http://jboss.com/products/seam/international-2.2.xsd
+ 					http://jboss.com/products/seam/persistence
+ 					http://jboss.com/products/seam/persistence-2.2.xsd">
+
+	<core:init debug="false" jndi-pattern="newrecovery/#{ejbName}/local" />
+
+
+	<core:manager conversation-timeout="40000000"
+		parent-conversation-id-parameter="pid" />
+
+	<web:rewrite-filter view-mapping="*.seam"
+		class="com.nrs.security.web.NRSRewriteFilter" />
+
+	<async:quartz-dispatcher />
+	<navigation:pages>
+		<navigation:resources>
+			<value>/WEB-INF/pages.xml</value>
+			<value>/WEB-INF/applicationPages.xml</value>
+		</navigation:resources>
+	</navigation:pages>
+
+	<web:multipart-filter create-temp-files="true"
+		max-request-size="20000000" url-pattern="/*" />
+
+
+	<persistence:filter name="archivedFilter">
+		<persistence:name>archiveFilterDef</persistence:name>
+		<persistence:parameters>
+			<key>aArchived</key>
+			<value>#{'0'}</value>
+		</persistence:parameters>
+	</persistence:filter>
+	
+<!-- Create an  entity-manager-factory.  need persistence-unit-name from persistence.xml-->
+	<persistence:entity-manager-factory
+		name="entityManagerFactory" 
+		persistence-unit-name="appEntityManager" />
+
+<!-- Create a  Seam-managed persistence context.  need an entity-manager-factory-->
+	<persistence:managed-persistence-context
+		name="entityManager"
+		auto-create="true" 
+		persistence-unit-jndi-name="java:/nrsEntityManagerFactory"
+		entity-manager-factory="#{entityManagerFactory}">
+
+		<persistence:filters>
+			<value>#{archivedFilter}</value>
+		</persistence:filters>
+
+	</persistence:managed-persistence-context>
+	
+<!-- Entity transaction is managed by Seam Managed transaction-->
+	<transaction:entity-transaction
+		entity-manager="#{entityManager}" />
+
+	
+	
+	<mail:mail-session host="10.100.12.12" username="notifications.nrs"
+		password="monythgv254" ssl="false" port="25" />
+
+
+	 
+
+	
+
+	<security:identity authenticate-method="#{authenticator.authenticate}"
+		remember-me="false" />
+
+	
+
+	<drools:rule-base name="securityRules">
+		<drools:rule-files>
+			<value>/permissions/security.drl</value>
+		</drools:rule-files>
+	</drools:rule-base>
+	
+	<security:rule-based-permission-resolver security-rules="#{securityRules}" />
+
+
+    
+
+	 
+	<bpm:jbpm name="notused"></bpm:jbpm>
+	<component name="org.jboss.seam.bpm.jbpm" class="org.witchcraft.jbpm.JbpmImpl">
+		<property name="process-definitions">
+			<value>processes/reoWorkflow/processdefinition.xml</value>
+			 
+		</property>
+		<property name="schedulerEnabled">false</property>
+	</component>
+
+
+	<international:locale-selector
+		cookie-enabled="true" />
+
+	<component class="org.jboss.seam.web.MultipartFilter">
+		<property name="createTempFiles">true</property>
+		<property name="maxRequestSize">20000000</property>
+	</component>
+
+	<!--  <component name="org.jboss.seam.captcha.captcha" class="org.witchcraft.utils.NrsCaptcha" />
+-->
+</components>

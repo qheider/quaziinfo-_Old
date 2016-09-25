@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+	<h:panelGroup>
+		<s:validateAll>
+			<h:panelGrid columns="3" styleClass="editInfo"
+				columnClasses="leftCol, rightCol"
+				onload="#{userBillAction.load(userBillId )  }">
+				<h:outputText value="#{msg.userBill_billingCompany}  "
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('billingCompany', 'userBillEdit')}" />
+				<h:selectOneMenu id="billingCompany"
+					label="#{msg.userBill_billingCompany}"
+					value="#{userBillAction.userBill.billingCompany}" required="false"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('billingCompany', 'userBillEdit')}">
+					<s:selectItems value="#{billingCompanyList}" var="itemIter"
+						label="#{itemIter.displayName}"
+						noSelectionLabel="Please Select..." />
+					<rich:ajaxValidator event="onsubmit" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+				<rich:message styleClass="error errors" for="billingCompany"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('billingCompany', 'userBillEdit')}" />
+				<h:outputText value="#{msg.userBill_employee} * "
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'userBillEdit')}" />
+				<h:selectOneMenu id="employee" label="#{msg.userBill_employee}" disabled="true"
+					value="#{userBillAction.userBill.employee}" required="true"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'userBillEdit')}">
+					<s:selectItems value="#{employeeList}" var="itemIter"
+						label="#{itemIter.displayName}"
+						noSelectionLabel="Please Select..." />
+					<rich:ajaxValidator event="onsubmit" />
+					<s:convertEntity />
+				</h:selectOneMenu>
+				<rich:message styleClass="error errors" for="employee"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'userBillEdit')}" />
+				<h:outputText value="#{msg.userBill_minPayment}  "
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillEdit')}" />
+				<h:inputText id="minPayment#{entityId}" disabled="true"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillEdit')}"
+					label="#{msg.userBill_minPayment}" required="false"
+					value="#{userBillAction.userBill.minPayment}">
+					<rich:ajaxValidator event="onsubmit" />
+				</h:inputText>
+				<rich:message styleClass="error errors" for="minPayment"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPayment', 'userBillEdit')}" />
+				<h:outputText value="#{msg.userBill_minPaymentDueDate}  "
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}" />
+				<rich:calendar direction="auto" datePattern="yyyy-MM-dd" disabled="true"
+					id="minPaymentDueDate#{entityId}"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}"
+					label="#{msg.userBill_minPaymentDueDate}" required="false"
+					value="#{userBillAction.userBill.minPaymentDueDate}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:calendar>
+				<rich:message styleClass="error errors" for="minPaymentDueDate"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}" />
+				
+				<h:outputText value="#{msg.userBill_currentBalance}  "
+					rendered="false" />
+				<h:inputText id="currentBalance#{entityId}"
+					rendered="false"
+					label="#{msg.userBill_currentBalance}" required="false"
+					value="#{userBillAction.userBill.currentBalance}">
+					<rich:ajaxValidator event="onsubmit" />
+				</h:inputText>
+				<rich:message styleClass="error errors" for="currentBalance"
+					rendered="false" />
+					
+					
+				<h:outputText value="#{msg.userBill_amountPaid}  " style="color:red;font-size:large;white-space:nowrap;"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}" />
+				<h:inputText id="amountPaid#{entityId}"  style="color:red;font-size:large;white-space:nowrap;"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}"
+					label="#{msg.userBill_amountPaid}" required="false"
+					value="#{userBillAction.userBill.amountPaid}">
+					<rich:ajaxValidator event="onsubmit" />
+				</h:inputText>
+				<rich:message styleClass="error errors" for="amountPaid"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('minPaymentDueDate', 'userBillEdit')}" />
+					
+					
+				<h:outputText value="#{msg.userBill_previousPayment}  "
+					rendered="false" />
+				<h:inputText id="previousPayment#{entityId}"
+					rendered="false"
+					label="#{msg.userBill_previousPayment}" required="false"
+					value="#{userBillAction.userBill.previousPayment}">
+					<rich:ajaxValidator event="onsubmit" />
+				</h:inputText>
+				<rich:message styleClass="error errors" for="previousPayment"
+					rendered="false" />
+				<h:outputText value="#{msg.userBill_statementDate}  "
+					rendered="false" />
+				<rich:calendar direction="auto" datePattern="yyyy-MM-dd"
+					id="statementDate#{entityId}"
+					rendered="false"
+					label="#{msg.userBill_statementDate}" required="false"
+					value="#{userBillAction.userBill.statementDate}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:calendar>
+				<rich:message styleClass="error errors" for="statementDate"
+					rendered="false"/>
+				<h:outputText value="#{msg.userBill_previousStatementDate}  "
+					rendered="false" />
+				<rich:calendar direction="auto" datePattern="yyyy-MM-dd"
+					id="previousStatementDate#{entityId}"
+					rendered="false"
+					label="#{msg.userBill_previousStatementDate}" required="false"
+					value="#{userBillAction.userBill.previousStatementDate}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:calendar>
+				<rich:message styleClass="error errors" for="previousStatementDate"
+					rendered="false" />
+					
+					
+				<h:outputText value="#{msg.userBill_comment}  "
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillEdit')}" />
+				<rich:editor width="300" height="200" useSeamText="true"
+					id="comment#{entityId}"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillEdit')}"
+					label="#{msg.userBill_comment}" required="false"
+					value="#{userBillAction.userBill.comment}">
+					<rich:ajaxValidator event="onsubmit" />
+				</rich:editor>
+				<rich:message styleClass="error errors" for="comment"
+					rendered="#{skipPermissionCheck == 'true' || s:hasPermission('comment', 'userBillEdit')}" />
+			</h:panelGrid>
+		</s:validateAll>
+	</h:panelGroup>
+</ui:composition>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+
+<td>
+  <h:outputText value="${fld.formField.name}" />
+ <h:outputText value="*"
+		rendered="${fld.formField.required}" />
+</td>
+
+<td>
+	<h:inputText value="${fld.value}"
+		rendered="${fld.formField.type == 'TEXT'}"
+		label="${fld.formField.name}"
+		required="${fld.formField.required}"
+		id="${fld.formField.name}Text" />
+	<h:message styleClass="error errors" for="${fld.formField.name}Text"  rendered="${fld.formField.type == 'TEXT'}"/>
+	
+	<rich:editor value="${fld.value}"
+		rendered="${fld.formField.type == 'LARGE_TEXT'}"
+		required="${fld.formField.required}" 
+		label="${fld.formField.name}" 
+		id="${fld.formField.name}Editor" />
+	<h:message styleClass="error errors"
+		for="${fld.formField.name}Editor" rendered="${fld.formField.type == 'LARGE_TEXT'}" />
+	
+	<h:selectBooleanCheckbox rendered="${fld.formField.type == 'YES_NO'}"  label="${fld.formField.name}"
+		value="${fld.boolValue}" required="${fld.formField.required}" 
+		id="${fld.formField.name}CB" />
+		
+	<h:message styleClass="error errors" for="${fld.formField.name}CB" rendered="${fld.formField.type == 'YES_NO'}" />
+	
+	
+	<h:selectOneMenu  rendered="${fld.formField.type == 'CHOICE'}"  label="${fld.formField.name}"
+		value="${fld.value}" required="${fld.formField.required}" 
+		id="${fld.formField.name}Choice" >
+		
+		<s:selectItems value="${utilsAction.getChoiceValues(fld.formField.choiceValues)}" var="itemIter"
+						label="#{itemIter}"
+						noSelectionLabel="Please Select..." />
+	</h:selectOneMenu>
+	
+	<h:message styleClass="error errors" for="${fld.formField.name}Choice" rendered="${fld.formField.type == 'CHOICE'}" />
+	
+	<rich:calendar rendered="${fld.formField.type == 'DATE'}" 
+		value="${fld.value}" required="${fld.formField.required}" 
+		id="${fld.formField.name}CLDR" />
+		
+	<h:message styleClass="error errors" for="${fld.formField.name}CLDR" rendered="${fld.formField.type == 'DATE'}" />
+	
+	
+</td>
+</ui:composition>

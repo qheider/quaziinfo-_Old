@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" >  
+ 
+    
+        <br/>
+                <a:form>
+                    <rich:toolBar>
+                        <rich:toolBarGroup location="right">
+                            <rich:dropDownMenu value="Search" direction="bottom-left" jointPoint="br" styleClass="search" style="color:yellow">
+                                <rich:menuItem submitMode="none">
+                                    <h:inputText value="#{passProtectAction.searchString}" id="searchinput"/>
+                                    <a:commandButton value="search" action="#{passProtectAction.doSearch}" reRender="display" />
+                                </rich:menuItem>
+                                <rich:menuItem value="Enter your search criteria here" disabled="true"></rich:menuItem>
+                            </rich:dropDownMenu>
+                        </rich:toolBarGroup>
+                    </rich:toolBar>
+ </a:form>
+                    <ui:include src="/Managed/passManager/managedEditPassProtect.xhtml" /><br/>
+                    
+         <a:form>           
+                    <s:div id="display" style="  position:absolute;left: 50%; top: 15%;width: 25%;" >
+                        <rich:dataTable  var="val"
+                                         value="#{passProtectAction.searchResult}"
+                                         onRowMouseOver="this.style.backgroundColor='#F8F8F8'"
+                                         onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'" rendered="#{passProtectAction.searchResult!=null}">
+                            <rich:column rendered="#{not empty passProtectAction.searchResult}">
+                                <f:facet name="header">
+                                    <h:outputText value="company Name" rendered="#{not empty passProtectAction.searchResult}"/>
+                                </f:facet>
+                                <h:outputText value="#{val.companyName}"></h:outputText>
+                            </rich:column>
+                            <rich:column rendered="#{not empty passProtectAction.searchResult}">
+                                <f:facet name="header">
+                                    <h:outputText value="Userid" rendered="#{not empty passProtectAction.searchResult}"/>
+                                </f:facet>
+                                <h:outputText value="#{val.companyUserName}"></h:outputText>
+                            </rich:column>
+                            <rich:column rendered="#{not empty passProtectAction.searchResult}">
+                                <f:facet name="header">
+                                    <h:outputText value="Password" rendered="#{not empty passProtectAction.searchResult}"/>
+                                </f:facet>
+                                <h:outputText value="#{val.companyPassword}"></h:outputText>
+                            </rich:column>
+                            <rich:column rendered="#{empty passProtectAction.searchResult}">
+                                <f:facet name="header">
+                                    <h:outputText value="Sorry No Data Found !!" rendered="#{empty passProtectAction.searchResult}"/>
+                                </f:facet>
+                                <h:outputText value="#{val.companyPassword}"></h:outputText>
+                            </rich:column>
+
+                            <rich:column rendered="#{not empty passProtectAction.searchResult}" >
+                                <f:facet name="header">
+                                    <h:outputText value="view" rendered="#{not empty passProtectAction.searchResult}" />
+                                </f:facet>
+                                <a:commandLink action="#{passProtectAction.setPassProtectIdForModalDlg(val.id)}"  oncomplete="Richfaces.showModalPanel('PassProtectModalPanel-PassProtect',{});" reRender="PassProtectModalPanel-PassProtect">
+                                    <h:graphicImage value="/images/icons/editQuick.png" style="border: 0px" alt="Quick Edit"/>
+                                    <s:conversationPropagation type="join"/>
+                                </a:commandLink>
+
+                            </rich:column>
+                        </rich:dataTable>
+                    </s:div>
+                    </a:form>
+  
+   <ui:include src="/admin/entities/domain/passProtect/modalDlgPassProtectComponent.xhtml">
+            <ui:param name="modalId" value="PassProtectModalPanel-PassProtect"/>
+        </ui:include>
+</ui:composition>

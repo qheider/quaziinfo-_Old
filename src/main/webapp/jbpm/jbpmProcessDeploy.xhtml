@@ -1,0 +1,45 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/admin/template.xhtml">
+
+	<ui:define name="content">
+		<a:form ajaxSubmit="true">
+			<h:outputLabel value="Process definitions in this web application" />
+
+			<rich:datascroller for="processDefTab" maxPages="30" />
+			<rich:spacer height="30" />
+			<rich:dataTable id="processDefTab" var="pd" rows="20"
+				value="#{jbpm.processDefinitions}" 
+				 rowClasses="odd, even" styleClass="dataTable" >
+
+				<rich:column >
+					<f:facet name="header">
+						<h:outputLabel value="Process Definition" />
+					</f:facet>
+					<h:outputText value="#{pd}" style="align:left;"/>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputLabel value="Action" />
+					</f:facet>
+					<a:commandLink value="Deploy" action="#{processDeployer.deployProcess()}">
+						<f:param name="processDefinition" value="#{pd}" />
+					</a:commandLink>
+				</rich:column>
+
+			</rich:dataTable>
+			
+			
+
+		</a:form>
+	</ui:define>
+</ui:composition>

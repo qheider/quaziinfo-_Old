@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <h:panelGrid columns="6"> 
+    <h:panelGroup> 
+      <h:outputText value="#{msg.passProtect_employee}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'passProtectEdit')}"/>  
+      <br/>  
+      <h:selectOneMenu id="employee" value="#{ passProtectList.passProtect.employee}"> 
+        <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Any..."/>  
+        <s:convertEntity/>  
+        <f:selectItem itemLabel="--None--" itemValue=""/> 
+      </h:selectOneMenu> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.passProtect_companyName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyName', 'passProtectEdit')}"/>  
+      <br/>  
+      <h:inputText id="companyName" value="#{passProtectList.passProtect.companyName}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.passProtect_companyUserName}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyUserName', 'passProtectEdit')}"/>  
+      <br/>  
+      <h:inputText id="companyUserName" value="#{passProtectList.passProtect.companyUserName}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.passProtect_companyPassword}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('companyPassword', 'passProtectEdit')}"/>  
+      <br/>  
+      <h:inputText id="companyPassword" value="#{passProtectList.passProtect.companyPassword}"/> 
+    </h:panelGroup>  
+    <h:panelGroup> 
+      <h:outputText value="#{msg.passProtect_note}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('note', 'passProtectEdit')}"/>  
+      <br/>  
+      <h:inputText id="note" value="#{passProtectList.passProtect.note}"/> 
+    </h:panelGroup> 
+  </h:panelGrid>  
+  <h:panelGrid columns="2"> 
+    <h:outputText value="Creation Date From"/>  
+    <h:outputText value="Creation Date To"/>  
+    <rich:calendar id="from" value="#{passProtectList.dateCreatedRange.begin}"/>  
+    <rich:calendar id="to" value="#{passProtectList.dateCreatedRange.end}"/> 
+  </h:panelGrid> 
+</ui:composition>

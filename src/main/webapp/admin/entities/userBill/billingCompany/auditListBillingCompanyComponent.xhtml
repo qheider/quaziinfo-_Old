@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:form> 
+    <rich:datascroller align="left" for="dataAudit" maxPages="20" renderIfSinglePage="false"/>  
+    <br/>  
+    <rich:dataTable id="dataAudit" var="_log" value="#{billingCompanyAction.auditLog}" rows="30" rowClasses="odd, even" styleClass="dataTable"> 
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Date"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.dateCreated}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Action"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.action}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="User"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.username}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="Id"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entityId}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_brand}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.brand}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_companyType}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.companyType}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_rate}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.rate}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_primaryPhone}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.primaryPhone}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_email}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.email}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_unitNumber}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.unitNumber}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_streetNumber}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.streetNumber}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_streetName}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.streetName}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_streetDirection}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.streetDirection}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_streetType}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.streetType}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_province}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.province}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_postalCode}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.postalCode}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_city}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.city}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_country}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.country}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.address_displayAdr}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.displayAdr}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.company_poBox}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.poBox}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.billingCompany_name}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.name}"/> 
+      </rich:column>  
+      <rich:column> 
+        <f:facet name="header"> 
+          <h:outputText value="#{msg.billingCompany_webUrl}"/> 
+        </f:facet>  
+        <h:outputText value="#{_log.entity.address.webUrl}"/> 
+      </rich:column> 
+    </rich:dataTable> 
+  </h:form> 
+</html>

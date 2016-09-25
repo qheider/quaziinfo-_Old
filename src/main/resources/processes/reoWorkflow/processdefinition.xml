@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition name="reoWorkflow">  
+  <!--PROTECTED REGION ID(USER_EDITABLE_RGN_reoWorkflow) ENABLED START-->  
+  <event type="task-end"> 
+    <action expression="#{baseJbpmProcessAction.createEventLogEntry}"/> 
+  </event>  
+  <event type="node-enter"> 
+    <action expression="#{workflowMonitorAction.nodeDisplay}"/> 
+  </event>
+  <!--PROTECTED REGION END-->  
+  <swimlane name="lender"> 
+    <assignment class="com.nas.recovery.web.action.workflowmgt.ontarioWorkflow.assign.LenderAssignment"/> 
+  </swimlane>  
+  <swimlane name="realEstate"> 
+    <assignment class="com.nas.recovery.web.action.workflowmgt.newbrunswickWorkflow.assign.RealEstateAssignment"/> 
+  </swimlane>  
+  <swimlane name="legal"> 
+    <assignment class="com.nas.recovery.web.action.workflowmgt.ontarioWorkflow.assign.LegalAssignment"/> 
+  </swimlane>  
+  <swimlane name="propertyManager"> 
+    <assignment class="com.nas.recovery.web.action.workflowmgt.ontarioWorkflow.assign.PropertyManagerAssignment"/> 
+  </swimlane>  
+  <start-state name="startFile"> 
+    <task name="startFile" swimlane="lender"></task>  
+    <transition to="verifyAllocations" name="proceedToVerifyAllocations"></transition> 
+  </start-state>  
+  <task-node name="conflictCheck"> 
+    <task name="conflictCheck" swimlane="legal" duedate="2 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.sendAssignmentNotification}"/> 
+      </event> 
+    </task>  
+    <transition to="reassignLawyer" name="conflict"> 
+      <description>"2"</description> 
+    </transition>  
+    <transition to="join1" name="accept"></transition> 
+  </task-node>  
+  <fork name="fork1"> 
+    <transition to="conflictCheck" name="proceedToConflictCheck"> 
+      <action expression="#{loanDataAction.updateFork('mailFlag')}"/> 
+    </transition>  
+    <transition to="pmAcceptFile" name="proceedToPmAcceptFile"> 
+      <action expression="#{loanDataAction.updateFork('mailFlag')}"/> 
+    </transition>  
+    <transition to="reAcceptFile" name="proceedToReAcceptFile"> 
+      <action expression="#{loanDataAction.updateFork('mailFlag')}"/> 
+    </transition>  
+    <transition to="orderAppraisal" name="proceedToOrderAppraisal"></transition> 
+  </fork>  
+  <task-node name="pmAcceptFile"> 
+    <task name="pmAcceptFile" swimlane="propertyManager" duedate="1 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.sendAssignmentNotification}"/> 
+      </event> 
+    </task>  
+    <transition to="reassignPM" name="reject"></transition>  
+    <transition to="propertyCheckAndCreteQuote" name="accept"></transition> 
+  </task-node>  
+  <task-node name="reAcceptFile"> 
+    <task name="reAcceptFile" swimlane="realEstate" duedate="1 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.sendAssignmentNotification}"/> 
+      </event> 
+    </task>  
+    <transition to="orderFullCMA" name="accept"></transition>  
+    <transition to="reassignRealtor" name="reject"></transition> 
+  </task-node>  
+  <task-node name="reassignLawyer"> 
+    <task name="reassignLawyer" swimlane="lender" duedate="1 business days" notify="false"></task>  
+    <transition to="conflictCheck" name="legalReassign"></transition> 
+  </task-node>  
+  <task-node name="verifyAllocations"> 
+    <task name="verifyAllocations" swimlane="lender" duedate="0 business days" notify="false"></task>  
+    <transition to="fork1" name="complete"></transition> 
+  </task-node>  
+  <task-node name="orderAppraisal"> 
+    <task name="orderAppraisal" swimlane="lender" duedate="1 business days" notify="false"></task>  
+    <transition to="appraisalReceived" name="complete"></transition> 
+  </task-node>  
+  <task-node name="appraisalReceived"> 
+    <task name="appraisalReceived" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="join1" name="complete"> 
+      <action expression="#{reoEventObserverAction.raiseEventAndAddVariable('appraisalReceived','valuationReceived')}"/> 
+    </transition> 
+  </task-node>  
+  <join name="join1"> 
+    <transition to="closeFile" name="proceedToCloseFile"></transition> 
+  </join>  
+  <task-node name="reviewValuation"> 
+    <task name="reviewValuation" swimlane="lender" duedate="0 business days" notify="false"></task>  
+    <transition to="listProperty" name="reviewed"></transition> 
+  </task-node>  
+  <task-node name="orderFullCMA"> 
+    <task name="orderFullCMA" swimlane="realEstate" duedate="1 business days" notify="false"></task>  
+    <transition to="isValuationReceived" name="complete"></transition> 
+  </task-node>  
+  <decision name="isValuationReceived"> 
+    <handler class="com.nas.recovery.web.action.workflowmgt.reoWorkflow.decisions.IsValuationReceivedDecisionHandler"/>  
+    <transition to="reviewValuation" name="yes"></transition>  
+    <transition to="waitState1" name="no"></transition> 
+  </decision>  
+  <state name="waitState1"> 
+    <transition to="reviewValuation" name="gotoReviewValuation"></transition> 
+  </state>  
+  <task-node name="propertyCheckAndCreteQuote"> 
+    <task name="propertyCheckAndCreteQuote" swimlane="propertyManager" duedate="3 business days" notify="false"></task>  
+    <transition to="reviewQuoteForApproval" name="complete"></transition> 
+  </task-node>  
+  <task-node name="reviewQuoteForApproval"> 
+    <task name="reviewQuoteForApproval" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="reviewApprovedQuote" name="complete"></transition> 
+  </task-node>  
+  <task-node name="reviewApprovedQuote"> 
+    <task name="reviewApprovedQuote" swimlane="propertyManager" duedate="3 business days" notify="false"></task>  
+    <transition to="quoteWorkComplete" name="reviewed"></transition> 
+  </task-node>  
+  <task-node name="quoteWorkComplete"> 
+    <task name="quoteWorkComplete" swimlane="propertyManager" duedate="10 business days" notify="false"></task>  
+    <transition to="reviewQuoteworkComplete" name="complete"></transition> 
+  </task-node>  
+  <task-node name="reviewQuoteworkComplete"> 
+    <task name="reviewQuoteworkComplete" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="join1" name="complete"></transition> 
+  </task-node>  
+  <task-node name="listProperty"> 
+    <task name="listProperty" swimlane="realEstate" notify="false"></task>  
+    <transition to="fork2" name="listed"></transition> 
+  </task-node>  
+  <fork name="fork2"> 
+    <transition to="enterOfferDetails" name="proceedToEnterOfferDetails"></transition>  
+    <transition to="30DaysReport" name="proceedTo30DaysReport"></transition> 
+  </fork>  
+  <task-node name="enterOfferDetails"> 
+    <task name="enterOfferDetails" swimlane="realEstate" duedate="90 business days" notify="false"></task>  
+    <transition to="join2" name="noOffer"></transition>  
+    <transition to="checkConditionsWaived" name="offerEntered"></transition> 
+  </task-node>  
+  <task-node name="checkConditionsWaived"> 
+    <task name="checkConditionsWaived" swimlane="realEstate" duedate="2 business days" notify="false"></task>  
+    <transition to="join2" name="notWaived"></transition>  
+    <transition to="fork3" name="sold"></transition> 
+  </task-node>  
+  <task-node name="30DaysReport"> 
+    <task name="30DaysReport" swimlane="realEstate" duedate="30 business days" notify="false"></task>  
+    <transition to="review30DaysReport" name="uploaded"></transition>  
+    <transition to="join2" name="notRequired"></transition> 
+  </task-node>  
+  <task-node name="review30DaysReport"> 
+    <task name="review30DaysReport" swimlane="lender" duedate="1 business days" notify="false"></task>  
+    <transition to="reportConditionCheck" name="reviewed"></transition> 
+  </task-node>  
+  <join name="join2"> 
+    <transition to="relistStatusCheck" name="proceedToRelistStatusCheck"></transition> 
+  </join>  
+  <fork name="fork3"> 
+    <transition to="reviewSaleOfProperty" name="proceedToReviewSaleOfProperty"></transition>  
+    <transition to="uploadInvoices" name="proceedToUploadInvoices"></transition>  
+    <transition to="keysDelivered" name="proceedToKeysDelivered"></transition>  
+    <transition to="claimDecision" name="proceedToClaimDecision"></transition> 
+  </fork>  
+  <task-node name="reviewSaleOfProperty"> 
+    <task name="reviewSaleOfProperty" swimlane="legal" duedate="5 business days" notify="false"></task>  
+    <transition to="saleReviewed" name="reviewed"></transition> 
+  </task-node>  
+  <task-node name="saleReviewed"> 
+    <task name="saleReviewed" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="uploadClosingDocuments" name="complete"></transition> 
+  </task-node>  
+  <task-node name="uploadClosingDocuments"> 
+    <task name="uploadClosingDocuments" swimlane="legal" duedate="3 business days" notify="false"></task>  
+    <transition to="executeClosingDocuments" name="uploaded"></transition> 
+  </task-node>  
+  <task-node name="executeClosingDocuments"> 
+    <task name="executeClosingDocuments" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="trustLedger" name="complete"></transition> 
+  </task-node>  
+  <task-node name="trustLedger"> 
+    <task name="trustLedger" swimlane="legal" duedate="0 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.updateDueDate('sale','getClosingDate',0)}"/> 
+      </event> 
+    </task>  
+    <transition to="saleProceedDeposited" name="uploaded"></transition> 
+  </task-node>  
+  <task-node name="saleProceedDeposited"> 
+    <task name="saleProceedDeposited" swimlane="legal" duedate="5 business days" notify="false"></task>  
+    <transition to="uploadFinalInvoices" name="deposited"></transition>  
+    <transition to="saleProceedDeposited" name="extension"></transition> 
+  </task-node>  
+  <task-node name="uploadFinalInvoices"> 
+    <task name="uploadFinalInvoices" swimlane="legal" notify="false"></task>  
+    <transition to="join3" name="uploaded"></transition> 
+  </task-node>  
+  <join name="join3"> 
+    <transition to="join2" name="proceedToJoin2"></transition> 
+  </join>  
+  <task-node name="keysDelivered"> 
+    <task name="keysDelivered" swimlane="realEstate" duedate="0 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.updateDueDate('sale','getClosingDate',-9)}"/> 
+      </event> 
+    </task>  
+    <transition to="join3" name="complete"></transition> 
+  </task-node>  
+  <task-node name="uploadInvoices"> 
+    <task name="uploadInvoices" swimlane="propertyManager" notify="false"></task>  
+    <transition to="join3" name="uploaded"></transition> 
+  </task-node>  
+  <task-node name="closeFile"> 
+    <task name="closeFile" swimlane="lender" duedate="3 business days" notify="false"></task>  
+    <transition to="endState1" name="fileClose"></transition> 
+  </task-node>  
+  <end-state name="endState1"/>  
+  <task-node name="claimDecision"> 
+    <task name="claimDecision" swimlane="lender" duedate="7 business days" notify="false"></task>  
+    <transition to="join3" name="notRequired"></transition>  
+    <transition to="fileMainInsuranceClaim" name="proceed"></transition> 
+  </task-node>  
+  <task-node name="fileMainInsuranceClaim"> 
+    <task name="fileMainInsuranceClaim" swimlane="lender" duedate="0 business days" notify="false"> 
+      <event type="task-assign"> 
+        <action expression="#{loanDataAction.updateDueDate('sale','getClosingDate',42)}"/> 
+      </event> 
+    </task>  
+    <transition to="mainInsuranceClaimPaid" name="filed"></transition> 
+  </task-node>  
+  <task-node name="mainInsuranceClaimPaid"> 
+    <task name="mainInsuranceClaimPaid" swimlane="lender" duedate="30 business days" notify="false"></task>  
+    <transition to="join3" name="claimPaid"></transition> 
+  </task-node>  
+  <decision name="reportConditionCheck"> 
+    <handler class="com.nas.recovery.web.action.workflowmgt.reoWorkflow.decisions.ReportConditionCheckDecisionHandler"/>  
+    <transition to="join2" name="yes"></transition>  
+    <transition to="30DaysReport" name="no"></transition> 
+  </decision>  
+  <decision name="relistStatusCheck"> 
+    <handler class="com.nas.recovery.web.action.workflowmgt.reoWorkflow.decisions.RelistStatusCheckDecisionHandler"/>  
+    <transition to="listProperty" name="yes"></transition>  
+    <transition to="join1" name="no"></transition> 
+  </decision>  
+  <task-node name="reassignPM"> 
+    <task name="reassignPM" swimlane="lender" duedate="1 business days" notify="false"></task>  
+    <transition to="pmAcceptFile" name="pmReassign"></transition> 
+  </task-node>  
+  <task-node name="reassignRealtor"> 
+    <task name="reassignRealtor" swimlane="lender" duedate="1 business days" notify="false"></task>  
+    <transition to="reAcceptFile" name="reReassign"></transition> 
+  </task-node> 
+</process-definition>

@@ -1,0 +1,175 @@
+body {
+	background: #fff;
+	font-family: "Trebuchet MS", Verdana, serif
+}
+#container {
+	margin: 0 auto;
+	width: 90%;
+}
+
+#topBar{
+	margin: 0 auto;
+	width: 100%;
+	background-color: #eef;
+	height:28px;
+}
+
+#header {
+	width: 100%
+}
+#sub_header {
+	text-align: right;
+	font-weight: bold;
+	font-size: 20px;
+	color: #FFFFFF;
+	padding-right: 10px;
+	padding-bottom: 20px;
+}
+#main_content {
+	margin: 0 auto;
+	width: 100%;
+	background: #FFFFFF url('images/background_content.gif');
+	background-repeat: repeat-y
+} 
+#main_content_top {
+	height: 2px;
+	background: #FFFFFF url('images/background_top.gif');
+} 
+#main_content_bottom {
+	height: 10px;
+	background: #FFFFFF url('images/background_bottom.gif');
+}
+#footer {
+	text-align: center;
+	font-size: 12px;
+	margin: 10px auto
+}
+.content {
+	float: left;
+	width: 75%;
+	text-align: justify;
+	padding: 0 30px 0 30px;
+	font-size: 12px
+}
+.menu {
+	width: 150px;
+	float: right;
+	padding: 0 20px 0 20px;
+	border-left: #8C8484 1px solid;
+	font-size: 12px
+}
+.menu ul {
+	margin: 0;
+	padding: 10px 0 10px 15px
+}
+.menu il {
+	list-style-type: disc
+}
+#header h1 {
+	margin-bottom: 0px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #A40008
+}
+.content h2 {
+	margin-top: 0px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #A40008
+}
+#clear {
+	display: block;
+	clear: both;
+	width: 100%;
+	height:1px;
+	overflow:hidden;
+}
+.menu_title {
+	font-size: 18px;
+	font-weight: bold;
+	color: #A40008
+}
+.menu ul {
+	margin: 0;
+	padding: 10px 0 20px 15px
+}
+.menu li {
+	padding-top: 2px;
+	list-style-type: circle
+}
+a {
+	color: #A40008;
+	font-weight: bold;
+	text-decoration: none
+}
+a:hover {
+	color: #A40008;
+	font-weight: bold;
+	text-decoration: underline
+}
+a.menu_link {
+	color: #000000;
+	font-weight: bold;
+	text-decoration: underline
+}
+a.menu_link:hover {
+	color: #A40008;
+	font-weight: bold;
+	text-decoration: none
+}
+.quote {
+	margin: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic
+}
+
+.entry {
+	clear: both;
+	padding-top: 10px;
+}
+.entry .label {
+	float: left;
+	font-weight: bold;
+	width: 150px;
+	text-align: left;
+}
+.entry .output {
+	float: right;
+	width: 360px;
+	padding-top: 10px;
+	text-align: left;
+}
+.entry .input {
+	float: right;
+	
+	text-align: left;
+}
+.entry .error {
+	float: right;
+	width: 360px;
+	text-align: left;
+}
+
+.errors {
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+	color: #600;
+}
+.errors div {
+	text-align: left;
+}
+.errors span {
+	text-align: left;
+}
+.errors input {
+	border: 2px solid #e11;
+	background-color: #ffa;
+}
+.errors ul {
+	list-style: none;
+
+
+ }
+        

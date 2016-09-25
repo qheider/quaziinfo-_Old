@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages login-view-id="/login.xhtml" no-conversation-view-id="/login.xhtml"
+	xmlns="http://jboss.com/products/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+	
+    <page view-id="/Managed/webLog/viewWebLog.xhtml" action="#{redirect.captureCurrentView()}">
+    <!-- <description>View WebLog: #{webLog.displayName}</description> -->
+        <navigation>
+            <rule if-outcome="edit">
+                <redirect view-id="/admin/entities/domain/webLog/editWebLog.xhtml"/>
+            </rule>
+            <rule if-outcome="cancel">
+                <redirect view-id="/admin/home.xhtml"/>
+            </rule>
+        </navigation>
+        <param name="webLogId" value="#{webLogAction.webLogId}"/>
+    </page>
+
+     <page view-id="/admin/entities/domain/webLog/editWebLog.xhtml"><!-- <description>Edit WebLog: #{webLog.displayName}</description> -->
+    <navigation>
+      <rule if-outcome="save">
+        <redirect view-id="/Managed/webLog/viewWebLog.xhtml"/>
+      </rule>
+      <rule if-outcome="cancel">
+        <redirect view-id="/admin/home.xhtml"/>
+      </rule>
+    </navigation>
+    <param name="webLogId" value="#{webLogAction.webLogId}"/>
+    <param name="employeeId" value="#{webLogAction.employeeId}"/>
+  </page>
+
+  <page view-id="/admin/entities/userBill/userBill/editUserBill.xhtml">
+    <!-- <description>Edit UserBill: #{userBill.displayName}</description> -->
+    <navigation>
+      <rule if-outcome="save">
+        <redirect view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml"/>
+      </rule>
+      <rule if-outcome="cancel">
+       <redirect view-id="/admin/home.xhtml"/>
+      </rule>
+    </navigation>
+    <param name="userBillId" value="#{userBillAction.userBillId}"/>
+    <param name="billingCompanyId" value="#{userBillAction.billingCompanyId}"/>
+    <param name="employeeId" value="#{userBillAction.employeeId}"/>
+  </page>
+  <page view-id="/Managed/billManage/editUserBill.xhtml">
+    <!-- <description>Edit UserBill: #{userBill.displayName}</description> -->
+    <navigation>
+      <rule if-outcome="save">
+        <redirect view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml"/>
+      </rule>
+      <rule if-outcome="cancel">
+       <redirect view-id="/admin/home.xhtml"/>
+      </rule>
+    </navigation>
+    <param name="userBillId" value="#{userBillAction.userBillId}"/>
+    <param name="billingCompanyId" value="#{userBillAction.billingCompanyId}"/>
+    <param name="employeeId" value="#{userBillAction.employeeId}"/>
+    
+    
+  </page>
+
+  <page view-id="/admin/entities/userBill/userBill/viewUserBill.xhtml" action="#{redirect.captureCurrentView()}">
+    <!-- <description>View UserBill: #{userBill.displayName}</description> -->
+    <navigation>
+      <rule if-outcome="edit">
+        <redirect view-id="/admin/entities/userBill/userBill/editUserBill.xhtml"/>
+      </rule>
+      <rule if-outcome="cancel">
+        <redirect view-id="/admin/home.xhtml"/>
+      </rule>
+    </navigation>
+    <param name="userBillId" value="#{userBillAction.userBillId}"/>
+  </page>
+
+    <exception class="org.witchcraft.exceptions.CreateReportException">
+        <end-conversation before-redirect="true" />
+        <redirect view-id="/error.xhtml">
+            <message>An unexpected error has occurred when the system tried to create the report. We apologize for the inconvenience, please try again later or contact customer service at 1-888-888-8888.</message>
+        </redirect>
+    </exception>
+    <exception class="org.witchcraft.exceptions.ContractViolationException">
+        <redirect view-id="/error.xhtml">
+            <message>An application error has occurred ! We apologize for the inconvenience.</message>
+        </redirect>
+    </exception>
+    <exception class="org.jboss.seam.security.NotLoggedInException">
+       <redirect view-id="/index.xhtml">
+      <message severity="warn">#{messages['org.jboss.seam.NotLoggedIn']}</message>
+        </redirect>
+    </exception>
+    <exception class="org.jboss.seam.security.AuthorizationException">
+        <end-conversation />
+        <redirect view-id="/error.xhtml">
+            <message>You do not have the necessary security privileges to perform this action.</message>
+        </redirect>
+    </exception>
+    <exception class="javax.servlet.ServletException">
+        <redirect view-id="/error.xhtml">
+            <message>Your session has timed out, please try again</message>
+        </redirect>
+    </exception>
+    <exception class="javax.faces.application.ViewExpiredException">
+        <end-conversation before-redirect="true" />
+        <redirect view-id="/error.xhtml">
+            <message>Your session has timed out, please try again</message>
+        </redirect>
+    </exception>
+</pages>

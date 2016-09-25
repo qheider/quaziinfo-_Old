@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" >  
+ 
+    <rich:panel> 
+      <f:facet name="header"> 
+        <h:outputText value="PassProtect"/> 
+      </f:facet>  
+        <a:form ajaxSubmit="true">
+            <a:region>
+
+        <ui:include src="managedEditPassProtectComponent.xhtml"/>
+        <div class="buttonBox"> 
+            <a:commandButton value="Save" action="#{passProtectAction.save}" reRender="passprotectComponent" />
+          <h:outputText value=" "/>  
+          <a:commandButton value="Cancel" immediate="true" action="#{passProtectAction.cancel}" />
+        </div>
+            </a:region>
+      </a:form>
+    </rich:panel> 
+  
+</ui:composition>

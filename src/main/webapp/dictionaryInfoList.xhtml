@@ -1,0 +1,52 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/admin/template.xhtml">
+
+<ui:define name="content">
+
+    <rich:panel>
+        <f:facet name="header">dictionaryInfoList</f:facet>
+
+        <div class="results">
+
+            <h:outputText value="No dictionaryInfo exists"
+                       rendered="#{empty dictionaryInfoList.resultList}"/>
+
+            <h:dataTable id="dictionaryInfoList" var="dictionaryInfo"
+                      value="#{dictionaryInfoList.resultList}"
+                   rendered="#{not empty dictionaryInfoList.resultList}">
+                <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    #{dictionaryInfo.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Symbolic Name</f:facet>
+                    <s:link id="dictionaryInfo"
+                         value="#{dictionaryInfo.symbolicName}"
+                   propagation="none"
+                         view="/dictionaryInfo.xhtml">
+                        <f:param name="dictionaryInfoId"
+                                value="#{dictionaryInfo.id}"/>
+                    </s:link>
+                </h:column>
+            </h:dataTable>
+
+        </div>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+        <s:button id="done"
+               value="Create dictionaryInfo"
+                view="/dictionaryInfo.xhtml"/>
+    </div>
+
+</ui:define>
+
+</ui:composition>

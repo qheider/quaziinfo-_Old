@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf" template="/admin/template.xhtml">  
+  <ui:define name="content"> 
+    <rich:panel> 
+      <f:facet name="header"> 
+        <h:outputText value="Employee"/> 
+      </f:facet>  
+      <h:form> 
+        <ui:include src="/admin/entities/domain/employee/editEmployeeComponent.xhtml"/>  
+        <div class="buttonBox"> 
+          <h:commandButton value="Save" action="#{employeeAction.save}"></h:commandButton>  
+          <h:outputText value=" "/>  
+          <h:commandButton value="Cancel" immediate="true" action="#{employeeAction.cancel}"></h:commandButton> 
+        </div> 
+      </h:form> 
+    </rich:panel> 
+  </ui:define> 
+</ui:composition>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:inputText id="freeTypeRole"/>  
+  <rich:suggestionbox for="freeTypeRole" rules="all" suggestionAction="#{roleList.autocompletedb}" var="_result" fetchValue="#{_result.displayName}" minChars="2" nothingLabel="No Results found" zindex="99999"> 
+    <h:column> 
+      <h:outputText value="#{_result.displayName}"/> 
+    </h:column>  
+    <a:support event="onselect"> 
+      <f:setPropertyActionListener value="#{_result}" target="#{roleAction.instance}"/> 
+    </a:support> 
+  </rich:suggestionbox>  
+  <s:button view="/admin/entities/users/role/viewRole.xhtml" value="GO"/> 
+</ui:composition>

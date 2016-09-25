@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <div class="entry errors">
+    <h:messages globalOnly="true"/>
+  </div>  
+  <s:validateAll> 
+    <h:panelGrid columns="3" styleClass="summarywrap"> 
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_heading}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogEdit')}"/>  
+        <br/>  
+        <h:inputText size="155" id="heading" value="#{webLogAction.webLog.heading}"/>  
+        <rich:message styleClass="error errors" for="heading" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('heading', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_headingDesc}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogEdit')}"/>  
+        <br/>  
+        <h:inputText id="headingDesc" value="#{webLogAction.webLog.headingDesc}"/>  
+        <rich:message styleClass="error errors" for="headingDesc" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('headingDesc', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_body}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogEdit')}"/>  
+        <br/>  
+        <rich:editor id="body" value="#{webLogAction.webLog.body}"/>  
+        <rich:message styleClass="error errors" for="body" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('body', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_employee} * " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogEdit')}"/>  
+        <br/>  
+        <h:selectOneMenu id="employee" value="#{webLogAction.webLog.employee}"> 
+          <s:selectItems value="#{employeeList}" var="itemIter" label="#{itemIter.displayName}" noSelectionLabel="Select.."/>  
+          <s:convertEntity/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="employee" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('employee', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_tag}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogEdit')}"/>  
+        <br/>  
+        <h:inputText id="tag" value="#{webLogAction.webLog.tag}"/>  
+        <rich:message styleClass="error errors" for="tag" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tag', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_type}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogEdit')}"/>  
+        <br/>  
+        <h:selectOneMenu id="type" value="#{webLogAction.webLog.type}" required="false"> 
+          <f:selectItem itemLabel="Please Select..." itemValue=""/>  
+          <f:selectItem itemValue="Public" itemLabel="Public"/>  
+          <f:selectItem itemValue="Private" itemLabel="Private"/> 
+        </h:selectOneMenu>  
+        <rich:message styleClass="error errors" for="type" rendered="#{skipPermissionCheck == 'true' || s:hasPermission('type', 'webLogEdit')}"/> 
+      </h:panelGroup>  
+      <h:panelGroup> 
+        <h:outputText value="#{msg.webLog_tagFile}  " rendered="#{skipPermissionCheck == 'true' || s:hasPermission('tagFile', 'webLogEdit')}"/>  
+        <br/> 
+      </h:panelGroup> 
+    </h:panelGrid> 
+  </s:validateAll> 
+</ui:composition>

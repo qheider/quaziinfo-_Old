@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:wc="http://witchcraft.sourceforge.net/jsf">
+	<c:if test="${empty modalId}">
+		<c:set var="modalId" value="WebLogModalPanel" />
+	</c:if>
+
+	<!--    <rich:panel>
+            <f:facet name="header">${listTitle}</f:facet>-->
+	<a:form>
+
+
+		<rich:datascroller align="center" for="webLogList" maxPages="20"
+			reRender="sc2" id="sc1" />
+		<rich:spacer height="30" />
+		
+		<rich:dataTable id="webLogList" rows="15" value="#{records}"
+			var="_webLog" width="100%">
+
+			<rich:column rendered="#{s:hasPermission('id', 'webLogView' )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.id}" />
+				</f:facet>
+				<h:outputText value="#{_webLog.id}"></h:outputText>
+			</rich:column>
+
+
+			<rich:column sortBy="#{_webLog.tag}"
+				rendered="#{s:hasPermission('tag', 'webLogView'  )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.webLog_tag}" />
+				</f:facet>
+				<h:outputText
+					value="#{messagesFactory.instance().containsKey(_webLog.tag.toString()) ?  msg[_webLog.tag.toString()] : _webLog.tag}"
+					escape="false" />
+			</rich:column>
+
+			<rich:column sortBy="#{_webLog.type}"
+				rendered="#{s:hasPermission('type', 'webLogView'  )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.webLog_type}" />
+				</f:facet>
+				<h:outputText
+					value="#{messagesFactory.instance().containsKey(_webLog.type.toString()) ?  msg[_webLog.type.toString()] : _webLog.type}"
+					escape="false" />
+			</rich:column>
+
+
+
+			<rich:column id="webLogHeading" sortBy="#{_webLog.heading}"
+				rendered="#{s:hasPermission('heading', 'webLogView'  )}">
+				<h:outputText value="#{_webLog.employee.displayName}" />
+				<br />
+				<h:outputText value="#{_webLog.dateCreated}"
+					style="position: relative;left: 94%;top: 5%">
+					<s:convertDateTime type="both" pattern="yyyy-MM-dd" />
+				</h:outputText>
+				<s:div styleClass="div_wrap_weblog_heading">
+					<h:outputText style="font-size: x-large"
+						value="#{messagesFactory.instance().containsKey(_webLog.heading.toString()) ?  msg[_webLog.heading.toString()] : _webLog.heading}"
+						escape="false" />
+					<div
+						style="position: absolute; left: 5%; background-color: transparent; height: 5%; width: 89%; padding-left: 2%; padding-top: 24px;font-size: 15px;">
+						<s:formattedText value="#{_webLog.headingDesc}" />
+					</div>
+
+					<s:link view="/Managed/webLog/viewWebLog.xhtml"
+						style="border: 0px;position: absolute;left: 93%">
+						<h:graphicImage id="eyeView" value="/images/icons/eye.png"
+							alt="view">
+							<rich:toolTip for="eyeView" value="continue" />
+						</h:graphicImage>
+						<f:param name="webLogId" value="#{_webLog.id}" />
+					</s:link>
+					<s:link id="eyeEdit"
+						style="border: 0px;position: absolute;left: 96%"
+						view="/admin/entities/domain/webLog/editWebLog.xhtml"
+						rendered="#{s:hasPermission(_webLog,'edit')}" propagation="none">
+						<h:graphicImage value="/images/icons/edit.png" alt="edit">
+							<rich:toolTip for="eyeEdit" value="Edit" />
+						</h:graphicImage>
+						<f:param name="webLogId" value="#{_webLog.id}" />
+					</s:link>
+					<br />
+				</s:div>
+				<br />
+				<a:commandLink
+					action="#{webLogAction.setWebLogIdForModalDlg(_webLog.id)}"
+					rendered="#{s:hasPermission(_webLog, 'quickEdit')}"
+					oncomplete="Richfaces.showModalPanel('${modalId}',{});"
+					reRender="${modalId}">
+					<h:graphicImage value="/images/icons/editQuick.png"
+						style="border: 0px" alt="Quick Edit" />
+					<s:conversationPropagation type="join" />
+				</a:commandLink>
+
+			</rich:column>
+
+
+
+
+			<rich:column sortBy="#{_webLog.body}"
+				rendered="#{s:hasPermission('body', 'webLogView'  )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.webLog_body}" />
+				</f:facet>
+				<h:outputText
+					value="#{messagesFactory.instance().containsKey(_webLog.body.toString()) ?  msg[_webLog.body.toString()] : _webLog.body}"
+					escape="false" />
+			</rich:column>
+
+			<rich:column groupOn="#{webLog.employee.displayName}"
+				rendered="#{s:hasPermission('employee', 'webLogView'  )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.webLog_employee}" />
+				</f:facet>
+				<h:outputText value="#{_webLog.employee.displayName}" />
+			</rich:column>
+
+			<rich:column sortdBy="#{_webLog.dateCreated}"
+				rendered="#{s:hasPermission('creationDate', 'webLogView' )}">
+				<f:facet name="header">
+					<h:outputText value="#{msg.app_creation_date}" />
+				</f:facet>
+				<h:outputText value="#{_webLog.dateCreated}">
+					<s:convertDateTime type="both" pattern="yyyy-MM-dd" />
+				</h:outputText>
+			</rich:column>
+
+			<!--                <rich:column id="viewColumn" rendered="#{s:hasPermission('_webLog', 'view')}">
+                    <f:facet name="header">
+                        <h:outputText value="view"/>
+                    </f:facet>
+                    <s:link view="/Managed/webLog/viewWebLog.xhtml">
+                        <h:graphicImage value="/images/icons/eye.png" style="border: 0px" alt="view"/>
+                        <f:param name="webLogId" value="#{_webLog.id}"/>
+                    </s:link>
+                </rich:column>
+
+
+                <rich:column rendered="#{s:hasPermission(_webLog,'edit')}">
+                    <f:facet name="header">
+                        <h:outputText value=" "/>
+                    </f:facet>
+                    <s:link view="/admin/entities/domain/webLog/editWebLog.xhtml" rendered="#{s:hasPermission(_webLog,'edit')}"  propagation="none">
+                        <h:graphicImage value="/images/icons/edit.png" style="border: 0px" alt="edit"/>
+                        <f:param name="webLogId" value="#{_webLog.id}"/>
+                    </s:link>
+                </rich:column> -->
+			<rich:column
+				rendered="#{s:hasPermission('com.nas.recovery.web.action.domain', 'archive')}"
+				propagation="none">
+				<f:facet name="header">
+					<h:outputText value="" />
+				</f:facet>
+				<a:commandLink
+					action="#{webLogAction.setWebLogIdForModalDlg(_webLog.id)}"
+					onclick="#{rich:component('confirmPane_webLog')}.show()">
+					<h:graphicImage value="/images/icons/delete.png"
+						style="border: 0px" alt="archive" />
+				</a:commandLink>
+			</rich:column>
+
+		</rich:dataTable>
+
+
+		<rich:datascroller align="center" for="webLogList" maxPages="20"
+			id="sc2" reRender="sc1" />
+
+	</a:form>
+	<!--    </rich:panel>-->
+
+	<rich:modalPanel id="confirmPane_webLog#{entityId}" autosized="true"
+		width="260" height="140">
+		<br />
+		<h:graphicImage value="/img/Exclamation_mark.png" width="32"
+			height="32" />
+		<h:outputText value="Are you sure you want to delete the row?" />
+		<br />
+		<br />
+		<hr />
+		<a:form ajaxSubmit="true">
+			<a:commandButton value="Delete" action="#{webLogAction.archiveById}"
+				oncomplete="#{rich:component('confirmPane_webLog#{entityId}')}.hide();"
+				reRender="webLogList" styleClass="button"></a:commandButton>
+			<a:commandButton value="Cancel" immediate="true" type="reset"
+				styleClass="button"
+				onclick="#{rich:component('confirmPane_webLog#{entityId}')}.hide(); return false;" />
+		</a:form>
+	</rich:modalPanel>
+</ui:composition>

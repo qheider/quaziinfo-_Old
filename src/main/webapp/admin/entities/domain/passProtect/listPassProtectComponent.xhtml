@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <c:if test="${empty modalId}"> 
+    <c:set var="modalId" value="PassProtectModalPanel"/> 
+  </c:if>  
+  <c:if test="${empty listTitle}"> 
+    <c:set var="listTitle" value="PassProtect Search Results (#{empty records ? 0 : (passProtectList.paginated ? passProtectList.resultCount : records.size)})"/> 
+  </c:if>  
+  <rich:panel> 
+    <f:facet name="header">${listTitle}</f:facet>  
+    <a:form> 
+      <rich:dataTable var="_passProtect" value="#{records}" id="passProtectList" rowClasses="odd, even" styleClass="dataTable" onRowMouseOver="this.style.backgroundColor='#F8F8F8'" onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"> 
+        <rich:column rendered="#{s:hasPermission('id', 'passProtectView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.id}"/> 
+          </f:facet>  
+          <h:outputText value="#{_passProtect.id}"></h:outputText> 
+        </rich:column>  
+        <rich:column groupOn="#{passProtect.employee.displayName}" rendered="#{s:hasPermission('employee', 'passProtectView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.passProtect_employee}"/> 
+          </f:facet>  
+          <h:outputText value="#{_passProtect.employee.displayName}"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_passProtect.companyName}" rendered="#{s:hasPermission('companyName', 'passProtectView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.passProtect_companyName}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_passProtect.companyName.toString()) ?  msg[_passProtect.companyName.toString()] : _passProtect.companyName}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_passProtect.companyUserName}" rendered="#{s:hasPermission('companyUserName', 'passProtectView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.passProtect_companyUserName}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_passProtect.companyUserName.toString()) ?  msg[_passProtect.companyUserName.toString()] : _passProtect.companyUserName}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_passProtect.companyPassword}" rendered="#{s:hasPermission('companyPassword', 'passProtectView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.passProtect_companyPassword}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_passProtect.companyPassword.toString()) ?  msg[_passProtect.companyPassword.toString()] : _passProtect.companyPassword}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortBy="#{_passProtect.note}" rendered="#{s:hasPermission('note', 'passProtectView'  )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.passProtect_note}"/> 
+          </f:facet>  
+          <h:outputText value="#{messagesFactory.instance().containsKey(_passProtect.note.toString()) ?  msg[_passProtect.note.toString()] : _passProtect.note}" escape="false"/> 
+        </rich:column>  
+        <rich:column sortdBy="#{_passProtect.dateCreated}" rendered="#{s:hasPermission('creationDate', 'passProtectView' )}"> 
+          <f:facet name="header"> 
+            <h:outputText value="#{msg.app_creation_date}"/> 
+          </f:facet>  
+          <h:outputText value="#{_passProtect.dateCreated}"> 
+            <s:convertDateTime type="both" pattern="yyyy-MM-dd"/> 
+          </h:outputText> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_passProtect, 'view')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/domain/passProtect/viewPassProtect.xhtml" rendered="#{s:hasPermission(_passProtect, 'view')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/eye.png" style="border: 0px" alt="view"/>  
+            <f:param name="passProtectId" value="#{_passProtect.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission(_passProtect, 'edit')}"> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <s:link view="/admin/entities/domain/passProtect/editPassProtect.xhtml" rendered="#{s:hasPermission(_passProtect, 'edit')}" propagation="none"> 
+            <h:graphicImage value="/images/icons/edit.png" style="border: 0px" alt="edit"/>  
+            <f:param name="passProtectId" value="#{_passProtect.id}"/> 
+          </s:link> 
+        </rich:column>  
+        <rich:column rendered="#{s:hasPermission('com.nas.recovery.web.action.domain', 'archive')}" propagation="none"> 
+          <f:facet name="header"> 
+            <h:outputText value=""/> 
+          </f:facet>  
+          <a:commandLink action="#{passProtectAction.setPassProtectIdForModalDlg(_passProtect.id)}" onclick="#{rich:component('confirmPane_passProtect')}.show()"> 
+            <h:graphicImage value="/images/icons/delete.png" style="border: 0px" alt="archive"/> 
+          </a:commandLink> 
+        </rich:column>  
+        <rich:column> 
+          <f:facet name="header"> 
+            <h:outputText value=" "/> 
+          </f:facet>  
+          <a:commandLink action="#{passProtectAction.setPassProtectIdForModalDlg(_passProtect.id)}" rendered="#{s:hasPermission(_passProtect, 'quickEdit')}" oncomplete="Richfaces.showModalPanel('${modalId}',{});" reRender="${modalId}"> 
+            <h:graphicImage value="/images/icons/editQuick.png" style="border: 0px" alt="Quick Edit"/>  
+            <s:conversationPropagation type="join"/> 
+          </a:commandLink> 
+        </rich:column> 
+      </rich:dataTable> 
+    </a:form> 
+  </rich:panel>  
+  <div class="tableControl"> 
+    <s:link view="#{request.servletPath}" rendered="#{passProtectList.previousExists}" value="#{messages.left}#{messages.left} First Page"> 
+      <f:param name="firstResult" value="0"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{passProtectList.previousExists}" value="#{messages.left} Previous Page"> 
+      <f:param name="firstResult" value="#{passProtectList.previousFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{passProtectList.nextExists}" value="Next Page #{messages.right}"> 
+      <f:param name="firstResult" value="#{passProtectList.nextFirstResult}"/> 
+    </s:link>  
+    <s:link view="#{request.servletPath}" rendered="#{passProtectList.nextExists}" value="Last Page #{messages.right}#{messages.right}"> 
+      <f:param name="firstResult" value="#{passProtectList.lastFirstResult}"/> 
+    </s:link> 
+  </div>  
+  <rich:modalPanel id="confirmPane_passProtect" autosized="true" width="260" height="140"> 
+    <br/>  
+    <h:graphicImage value="/img/Exclamation_mark.png" width="32" height="32"/>  
+    <h:outputText value="Are you sure you want to delete the row?"/>  
+    <br/>
+    <br/>  
+    <hr/>  
+    <a:form ajaxSubmit="true"> 
+      <a:commandButton value="Delete" action="#{passProtectAction.archiveById}" oncomplete="#{rich:component('confirmPane_passProtect')}.hide();" reRender="passProtectList" styleClass="button"></a:commandButton>  
+      <a:commandButton value="Cancel" immediate="true" type="reset" styleClass="button" onclick="#{rich:component('confirmPane_passProtect')}.hide(); return false;"/> 
+    </a:form> 
+  </rich:modalPanel> 
+</ui:composition>

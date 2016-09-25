@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:s="http://jboss.com/products/seam/taglib" xmlns:a="http://richfaces.org/a4j" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:wc="http://witchcraft.sourceforge.net/jsf">  
+  <h:inputText value="#{roleList.searchText}" id="text"/>  
+  <rich:suggestionbox id="suggestionBoxId" for="text" tokens=",[]" rules="all" suggestionAction="#{roleList.autocomplete}" var="_result" fetchValue="#{_result.id}" minChars="2" nothingLabel="No Results found" onselect="processObjectsChange(suggestion)"> 
+    <h:column> 
+      <h:outputText value="#{_result.id}" style="font-style:italic"/> 
+    </h:column>  
+    <h:column> 
+      <h:outputText value="#{_result.displayName}"/> 
+    </h:column> 
+  </rich:suggestionbox> 
+</ui:composition>
