@@ -15,12 +15,10 @@
 	<!-- Default set of monitored resources -->
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-	<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" 
+	<!-- <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" -->
 	
 	
-	<!-- /********************************************************************************************************/ 
-												Place desired datasource here 
-		/********************************************************************************************************/ -->
+	
 	 <Resource name="jdbc/quaziinfods" auth="Container" type="javax.sql.DataSource" 
 	 maxActive="100" maxIdle="30" maxWait="10000" username="root" password="root" 
 	 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/quaziinfodb?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" 
