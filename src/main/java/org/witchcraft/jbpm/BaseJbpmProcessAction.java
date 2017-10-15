@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.drools.process.instance.ProcessInstance;
+//import org.drools.process.instance.ProcessInstance;
 import org.hibernate.Query;
 import org.jboss.seam.Component;
 import org.jboss.seam.annotations.In;
@@ -125,11 +125,11 @@ public class BaseJbpmProcessAction {
 		return taskPath;
 	}
 	
-	public ProcessInstance getProcessInstanceByKey(Long key){
-		Query qry = jbpmContext.getSession().createQuery("from ProcessInstance pi where pi.key =  " + key.toString());
-		List<ProcessInstance> piList = qry.list();
-		return piList.get(piList.size() - 1);
-	}
+//	public ProcessInstance getProcessInstanceByKey(Long key){
+//		Query qry = jbpmContext.getSession().createQuery("from ProcessInstance pi where pi.key =  " + key.toString());
+//		List<ProcessInstance> piList = qry.list();
+//		return piList.get(piList.size() - 1);
+//	}
 
 	@Transactional
 	public String makeDecision() {
