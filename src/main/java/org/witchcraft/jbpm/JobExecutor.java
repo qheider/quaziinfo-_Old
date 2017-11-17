@@ -70,7 +70,7 @@ public class JobExecutor implements Serializable {
 
 	boolean isStarted = false;
 
-	@Create
+//	@Create      //only component class can have @Create annotation 
 	public synchronized void start() {
 		if (!isStarted) {
 			log.debug("starting thread group '" + name + "'...");

@@ -29,11 +29,13 @@
  			      	http://jboss.com/products/seam/international
  			      	http://jboss.com/products/seam/international-2.2.xsd
  					http://jboss.com/products/seam/persistence
- 					http://jboss.com/products/seam/persistence-2.2.xsd">
+ 					http://jboss.com/products/seam/persistence-2.2.xsd
+ 					http://jboss.org/schema/seam/resteasy
+                    http://jboss.org/schema/seam/resteasy-2.2.xsd">
 
 	<core:init debug="false" jndi-pattern="newrecovery/#{ejbName}/local" />
 
-
+    
 	<core:manager conversation-timeout="40000000"
 		parent-conversation-id-parameter="pid" />
 
@@ -48,8 +50,7 @@
 		</navigation:resources>
 	</navigation:pages>
 
-	<web:multipart-filter create-temp-files="true"
-		max-request-size="20000000" url-pattern="/*" />
+	
 
 
 	<persistence:filter name="archivedFilter">
@@ -126,6 +127,7 @@
 		<property name="createTempFiles">true</property>
 		<property name="maxRequestSize">20000000</property>
 	</component>
+	
 
 	<!--  <component name="org.jboss.seam.captcha.captcha" class="org.witchcraft.utils.NrsCaptcha" />
 -->

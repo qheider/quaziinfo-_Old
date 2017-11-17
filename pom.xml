@@ -7,7 +7,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>quaziinfo</name>
 	<packaging>war</packaging>
-	<url>http://witchcraftmda.com</url>
+	<url>http://quazi.info</url>
 	<build>
 		<finalName>quaziinfo</finalName>
 
@@ -30,11 +30,6 @@
 			</testResource>
 		</testResources>
 		<plugins>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.11</version>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -88,16 +83,6 @@
 					<contextFile>context.xml</contextFile>
 				</configuration>
 
-			</plugin>
-			<plugin>
-				<groupId>com.googlecode.t7mp</groupId>
-				<artifactId>maven-t7-plugin</artifactId>
-				<version>0.9.6</version>
-				<configuration>
-					<warFile>target/newrecovery.war</warFile>
-					<contextFile>/context.xml</contextFile>
-					<tomcatVersion>7.0.25</tomcatVersion>
-				</configuration>
 			</plugin>
 
 		</plugins>
@@ -663,13 +648,24 @@
 			<artifactId>super-csv</artifactId>
 			<version>2.2.1</version>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
 			<version>1.8</version>
 		</dependency>
-
-
+        -->
+         <dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+		
+		<dependency>
+    <groupId>org.jboss.seam</groupId>
+    <artifactId>jboss-seam-resteasy</artifactId>
+    <version>2.2.1.Final</version>
+</dependency>
 	</dependencies>
 
 	<!-- repository for tomahawk -->
