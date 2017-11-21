@@ -151,7 +151,7 @@ public class User extends BusinessEntity implements java.io.Serializable {
 	@Transient
 	public String getDisplayName() {
 		try {
-			return userName;
+			return userName.concat(email);
 		} catch (Exception e) {
 			return " User ";
 		}
