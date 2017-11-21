@@ -126,8 +126,8 @@ public abstract class UserActionBase extends BaseAction<User>
 		return User.class;
 	}
 
-	public com.oreon.kg.domain.users.User findByUnqUserName(String userName) {
-		return executeSingleResultNamedQuery("user.findByUnqUserName", userName);
+		public com.oreon.kg.domain.users.User findByUnqUserName(String userName) {
+			return executeSingleResultNamedQuery("user.findByUnqUserName", userName);
 	}
 
 	/** This function is responsible for loading associations for the given entity e.g. when viewing an order, we load the customer so

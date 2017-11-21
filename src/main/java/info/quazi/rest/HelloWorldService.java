@@ -14,26 +14,30 @@ import org.jboss.seam.annotations.Scope;
 import org.witchcraft.seam.action.BaseAction;
 
 import com.nas.recovery.web.action.domain.EmployeeAction;
-import com.oreon.kg.domain.WebLog;
+import com.nas.recovery.web.action.users.UserAction;
+import com.oreon.kg.domain.users.User;
+
 
 @Path("/hello")
 @Scope(ScopeType.APPLICATION)
 @Name("quaziHello")
-public class HelloWorldService extends BaseAction<WebLog> {
+public class HelloWorldService extends BaseAction<User> {
 	@In(create=true)
 	protected FullTextEntityManager entityManager;
 	@In(create=true)
-	protected EmployeeAction employeeAction;
+	protected UserAction userAction;
 	
 	@GET
 	@Path("/{param}")
 	@Produces("text/plain")
 	public Response getMsg(@PathParam("param") String msg) {
 		
-//		employeeAction.findEmployeeId(Long.parseLong(msg));	
+User usr= new User();
+usr=userAction.findByUnqUserName(msg);
+
 		
 		String output = "Jersey say : " + msg;
-//        entityManager.getFlushMode();
+		String output1 = "Jersey say : " + usr.getUserName();
 		return Response.status(200).entity(output).build();
 
 	}
