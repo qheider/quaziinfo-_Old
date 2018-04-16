@@ -71,9 +71,9 @@ public class BusinessEntity implements Serializable{
 		return archived;
 	}
     
-    public Boolean getArchived(){
-    	return archived;
-    }
+//    public Boolean getArchived(){
+//    	return archived;
+//    }
 
 	public void setArchived(boolean archived) {
 		this.archived = archived;
