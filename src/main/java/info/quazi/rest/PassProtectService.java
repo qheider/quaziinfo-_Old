@@ -43,9 +43,7 @@ usrE.setEmail(usr.getEmail());
 
 
 return usrE;		
-//		String output = "Jersey say : " + msg;
-//		String output1 = "Jersey say : " + usr.getDisplayName();
-//		return Response.status(200).entity(output1).build();
+
 
 	}
 
